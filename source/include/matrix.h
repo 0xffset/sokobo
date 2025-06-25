@@ -27,6 +27,13 @@ public:
     
     T& operator()(int i, int j);
     const T& operator()(int i, int j) const;
+    std::vector<T>& operator[](int i) {
+            return data[i];
+        }
+
+    const std::vector<T>& operator[](int i) const {
+        return data[i];
+    }
     
     // Basic operations
     Matrix<T> operator+(const Matrix<T>& other) const;

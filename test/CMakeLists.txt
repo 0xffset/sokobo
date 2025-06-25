@@ -21,13 +21,14 @@ FetchContent_MakeAvailable(Catch2)
 include(Catch)
 
 # ---- Tests ----
-add_executable(sokobo_test source/sokobo_test.cpp)
+add_executable(matrix_test matrix_test.cpp)
 target_link_libraries(
-    sokobo_test PRIVATE
+    matrix_test PRIVATE
     sokobo_lib
     Catch2::Catch2WithMain
 )
-target_compile_features(sokobo_test PRIVATE cxx_std_17)
+target_compile_features(matrix_test PRIVATE cxx_std_17)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
 # catch_discover_tests(sokobo_test)
 

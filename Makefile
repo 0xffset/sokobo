@@ -5,10 +5,17 @@ LDFLAGS = -lm
 SRCDIR = source
 INCDIR = source/include
 OBJDIR = obj
+TESTDIR = test
+TESTOBJDIR = obj/test
 
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 TARGET = sokobo
+
+
+TEST_SOURCES = $(wildcard $(TESTDIR)/*_test.cpp)
+TEST_OBJECTS = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%.o)
+TEST_BINARIES = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%)
 
 .PHONY: all clean install
 
@@ -20,6 +27,18 @@ $(TARGET): $(OBJECTS)
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+test: $(TEST_BINARIES)
+	@for test in $^; do echo "Running $$test..."; ./$$test || exit 1; done
+
+$(TESTOBJDIR)/%: $(TESTOBJDIR)/%.o $(OBJECTS)
+	@mkdir -p $(TESTOBJDIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+
+$(TESTOBJDIR)/%.o: $(TESTDIR)/%.cpp
+	@mkdir -p $(TESTOBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 
 clean:
 	rm -rf $(OBJDIR) $(TARGET)
