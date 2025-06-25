@@ -43,7 +43,17 @@ make
 
 Run the executable:
 ```bash
-./cas
+./sokobo
+```
+
+## Unit Testing
+### Matrices
+```bash
+g++ -std=c++17 -Wall -Wextra -O3 \
+    -Itest -Isource -Isource/include \
+    test/matrix_test.cpp \
+    source/matrix.cpp source/complex_number.cpp \
+    -o matrix_test -lm
 ```
 
 ### Example Commands
@@ -134,6 +144,7 @@ See the [BUILDING](BUILDING.md) document.
 # Contributing
 
 See the [CONTRIBUTING](CONTRIBUTING.md) document.
+
 
 # Licensing
 
