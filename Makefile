@@ -1,14 +1,14 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -O3 -Iinclude
+CXXFLAGS = -std=c++17 -Wall -Wextra -O3   -Isource 
 LDFLAGS = -lm
 
-SRCDIR = src
-INCDIR = include
+SRCDIR = source
+INCDIR = source/include
 OBJDIR = obj
 
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
-TARGET = cas
+TARGET = sokobo
 
 .PHONY: all clean install
 
@@ -27,15 +27,18 @@ clean:
 install: $(TARGET)
 	cp $(TARGET) /usr/local/bin/
 
+# Include automatically generated dependencies
+-include $(OBJECTS:.o=.d)
+
 # Dependencies
 $(OBJDIR)/main.o: $(INCDIR)/cli.h
-$(OBJDIR)/cli.o: $(INCDIR)/cli.h $(INCDIR)/expression.h $(INCDIR)/polynomial.h $(INCDIR)/complex_number.h $(INCDIR)/matrix.h $(INCDIR)/calculus.h $(INCDIR)/laplace.h $(INCDIR)/fourier.h $(INCDIR)/differential_equations.h $(INCDIR)/numerical_methods.h
+$(OBJDIR)/cli.o: $(INCDIR)/cli.h $(INCDIR)/expression.h $(INCDIR)/complex_number.h $(INCDIR)/polynomial.h $(INCDIR)/complex_number.h $(INCDIR)/matrix.h $(INCDIR)/calculus.h $(INCDIR)/laplace.h $(INCDIR)/fourier.h $(INCDIR)/differential_equations.h $(INCDIR)/numerical_methods.h
 $(OBJDIR)/expression.o: $(INCDIR)/expression.h
 $(OBJDIR)/polynomial.o: $(INCDIR)/polynomial.h
 $(OBJDIR)/complex_number.o: $(INCDIR)/complex_number.h
 $(OBJDIR)/matrix.o: $(INCDIR)/matrix.h
 $(OBJDIR)/calculus.o: $(INCDIR)/calculus.h $(INCDIR)/expression.h $(INCDIR)/polynomial.h
 $(OBJDIR)/laplace.o: $(INCDIR)/laplace.h $(INCDIR)/expression.h $(INCDIR)/complex_number.h
-$(OBJDIR)/fourier.o: $(INCDIR)/fourier.h $(INCDIR)/complex_number.h
+$(OBJDIR)/fourier.o:  $(INCDIR)/complex_number.h
 $(OBJDIR)/differential_equations.o: $(INCDIR)/differential_equations.h $(INCDIR)/expression.h
 $(OBJDIR)/numerical_methods.o: $(INCDIR)/numerical_methods.h $(INCDIR)/matrix.h $(INCDIR)/polynomial.h

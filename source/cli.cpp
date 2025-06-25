@@ -2,7 +2,6 @@
 #include <iostream>
 #include <sstream>
 
-#include "include/cli.h"
 
 #include "include/calculus.h"
 #include "include/cli.h"
@@ -19,7 +18,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <include/fourier.h>
+#include "include/fourier.h"
 
 void CAS_CLI::run()
 {

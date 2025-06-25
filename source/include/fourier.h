@@ -1,4 +1,3 @@
-#pragma once
 #include "include/complex_number.h"
 #include <vector>
 #include <functional>

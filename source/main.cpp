@@ -1,7 +1,7 @@
 #include "include/cli.h"
 #include <iostream>
 
-int main() {
+int main(int argc, char* argv[]) {
     try {
          CAS_CLI cli;
          cli.run();

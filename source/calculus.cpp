@@ -7,7 +7,7 @@
 #include <random>
 #include <algorithm>
 #include <stdexcept>
-#include <corecrt_math_defines.h>
+// #include <corecrt_math_defines.h>
 
 // Symbolic differentiation
 std::shared_ptr<Expression> Calculus::differentiate(
@@ -59,7 +59,7 @@ Expression::Type
       switch (op) {
         case '+':
         case '-': {
-          // d/dx (f ± g) = df/dx ± dg/dx
+          // d/dx (f ï¿½ g) = df/dx ï¿½ dg/dx
           auto leftDeriv = partialDerivative(left, var);
           auto rightDeriv = partialDerivative(right, var);
           return std::make_shared<BinaryOp>(

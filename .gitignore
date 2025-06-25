@@ -3,6 +3,8 @@
 .vs/
 .vscode/
 build/
+obj/
+sokobo
 cmake-build-*/
 conan/
 prefix/

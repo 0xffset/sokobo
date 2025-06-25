@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "expression.h"
-#include "polynomial.h"
-#include "complex_number.h"
-#include "matrix.h"
+#include "include/expression.h"
+#include "include/polynomial.h"
+#include "include/complex_number.h"
+#include "include/matrix.h"
 
 class CAS_CLI {
 private:
