@@ -1,24 +1,24 @@
 ﻿#include <algorithm>
-#include <iostream>
-#include <sstream>
-
-
-#include "include/calculus.h"
-#include "include/cli.h"
-#include "include/complex_number.h"
-#include "include/differential_equations.h"
-#include "include/expression.h"
-#include "include/laplace.h"
-#include "include/numerical_methods.h"
-#include "include/polynomial.h"
 #include <cctype>
 #include <cmath>
 #include <exception>
+#include <iostream>
 #include <memory>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+#include "include/cli.h"
+
+#include "include/calculus.h"
+#include "include/complex_number.h"
+#include "include/differential_equations.h"
+#include "include/expression.h"
 #include "include/fourier.h"
+#include "include/laplace.h"
+#include "include/numerical_methods.h"
+#include "include/polynomial.h"
 
 void CAS_CLI::run()
 {
@@ -257,58 +257,57 @@ void CAS_CLI::clearAll()
   std::cout << "All objects cleared (" << totalObjects << " objects removed)."
             << std::endl;
 }
-  void CAS_CLI::listObjects()
-  {
-    bool hasObjects = false;
 
-    // List expressions
-    if (!expressions.empty()) {
-      std::cout << "\nExpressions:" << std::endl;
-      for (const auto& pair : expressions) {
-        std::cout << "  " << pair.first << " = " << pair.second->toString()
-                  << std::endl;
-      }
-      hasObjects = true;
+void CAS_CLI::listObjects()
+{
+  bool hasObjects = false;
+
+  // List expressions
+  if (!expressions.empty()) {
+    std::cout << "\nExpressions:" << std::endl;
+    for (const auto& pair : expressions) {
+      std::cout << "  " << pair.first << " = " << pair.second->toString()
+                << std::endl;
     }
-
-    // List polynomials
-    if (!polynomials.empty()) {
-      std::cout << "\nPolynomials:" << std::endl;
-      for (const auto& pair : polynomials) {
-        std::cout << "  " << pair.first << " = " << pair.second.toString()
-                  << std::endl;
-      }
-      hasObjects = true;
-    }
-
-    // List complex numbers
-    if (!complexNumbers.empty()) {
-      std::cout << "\nComplex Numbers:" << std::endl;
-      for (const auto& pair : complexNumbers) {
-        std::cout << "  " << pair.first << " = " << pair.second.toString()
-                  << std::endl;
-      }
-      hasObjects = true;
-    }
-
-    // List matrices
-    if (!matrices.empty()) {
-      std::cout << "\nMatrices:" << std::endl;
-      for (const auto& pair : matrices) {
-        std::cout << "  " << pair.first << " (" << pair.second.getRows() << "x"
-                  << pair.second.getCols() << ")" << std::endl;
-      }
-      hasObjects = true;
-    }
-
-    if (!hasObjects) {
-      std::cout << "No objects stored." << std::endl;
-    }
-
-    std::cout << std::endl;
+    hasObjects = true;
   }
 
+  // List polynomials
+  if (!polynomials.empty()) {
+    std::cout << "\nPolynomials:" << std::endl;
+    for (const auto& pair : polynomials) {
+      std::cout << "  " << pair.first << " = " << pair.second.toString()
+                << std::endl;
+    }
+    hasObjects = true;
+  }
 
+  // List complex numbers
+  if (!complexNumbers.empty()) {
+    std::cout << "\nComplex Numbers:" << std::endl;
+    for (const auto& pair : complexNumbers) {
+      std::cout << "  " << pair.first << " = " << pair.second.toString()
+                << std::endl;
+    }
+    hasObjects = true;
+  }
+
+  // List matrices
+  if (!matrices.empty()) {
+    std::cout << "\nMatrices:" << std::endl;
+    for (const auto& pair : matrices) {
+      std::cout << "  " << pair.first << " (" << pair.second.getRows() << "x"
+                << pair.second.getCols() << ")" << std::endl;
+    }
+    hasObjects = true;
+  }
+
+  if (!hasObjects) {
+    std::cout << "No objects stored." << std::endl;
+  }
+
+  std::cout << std::endl;
+}
 
 // Helper method to parse expression strings (you'll need to implement this)
 std::shared_ptr<Expression> CAS_CLI::parseExpression(const std::string& exprStr)
@@ -487,7 +486,7 @@ void CAS_CLI::handleDerivative(const std::vector<std::string>& tokens)
 
   std::string expr = tokens[1];
   std::string var = tokens[2];
-  
+
   if (expressions.find(expr) == expressions.end()) {
     std::cout << "Expression '" << expr << "' not found." << std::endl;
     return;
