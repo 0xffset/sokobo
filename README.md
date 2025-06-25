@@ -123,7 +123,7 @@ interpolate lagrange x_vals y_vals  # Lagrange interpolation
 ## Project Structure
 
 ```
-cas/
+sokobo/
 ├── include/           # Header files
 │   ├── expression.h
 │   ├── polynomial.h
@@ -137,6 +137,7 @@ cas/
 │   └── cli.h
 ├── src/              # Source
 
+```
 # Building and installing
 
 See the [BUILDING](BUILDING.md) document.
