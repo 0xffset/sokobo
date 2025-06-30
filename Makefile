@@ -1,23 +1,51 @@
+# Detect OS
+ifeq ($(OS),Windows_NT)
+    DETECTED_OS := Windows
+else
+    DETECTED_OS := $(shell uname -s)
+endif
+
+# Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -O3   -Isource 
-LDFLAGS = -lm
+CXXFLAGS = -std=c++17 -Wall -Wextra -O3 -Isource
+
+# OS-specific settings
+ifeq ($(DETECTED_OS),Windows)
+    # Windows specific settings
+    LDFLAGS = -lm
+    TARGET = sokobo.exe
+    MKDIR = if not exist "$(1)" mkdir "$(1)"
+    RM = rmdir /s /q
+    CP = copy
+    INSTALL_DIR = C:\Program Files\sokobo
+    PATH_SEP = \\
+    TEST_RUN = @for %%t in ($^) do (echo Running %%t... && %%t || exit /b 1)
+else
+    # Unix-like (Linux/macOS) specific settings
+    LDFLAGS = -lm
+    TARGET = sokobo
+    MKDIR = mkdir -p $(1)
+    RM = rm -rf
+    CP = cp
+    INSTALL_DIR = /usr/local/bin
+    PATH_SEP = /
+    TEST_RUN = @for test in $^; do echo "Running $$test..."; ./$$test || exit 1; done
+endif
 
 SRCDIR = source
-INCDIR = source/include
+INCDIR = source$(PATH_SEP)include
 OBJDIR = obj
 TESTDIR = test
-TESTOBJDIR = obj/test
+TESTOBJDIR = obj$(PATH_SEP)test
 
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
-TARGET = sokobo
-
 
 TEST_SOURCES = $(wildcard $(TESTDIR)/*_test.cpp)
 TEST_OBJECTS = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%.o)
 TEST_BINARIES = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%)
 
-.PHONY: all clean install
+.PHONY: all clean install test
 
 all: $(TARGET)
 
@@ -25,39 +53,48 @@ $(TARGET): $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(OBJDIR)
+	$(call MKDIR,$(OBJDIR))
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 test: $(TEST_BINARIES)
-	@for test in $^; do echo "Running $$test..."; ./$$test || exit 1; done
+	$(TEST_RUN)
 
 $(TESTOBJDIR)/%: $(TESTOBJDIR)/%.o $(OBJECTS)
-	@mkdir -p $(TESTOBJDIR)
+	$(call MKDIR,$(TESTOBJDIR))
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(TESTOBJDIR)/%.o: $(TESTDIR)/%.cpp
-	@mkdir -p $(TESTOBJDIR)
+	$(call MKDIR,$(TESTOBJDIR))
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+ifeq ($(DETECTED_OS),Windows)
+	$(RM) $(OBJDIR) 2>nul || echo.
+	del /q $(TARGET) 2>nul || echo.
+else
+	$(RM) $(OBJDIR) $(TARGET)
+endif
 
 install: $(TARGET)
-	cp $(TARGET) /usr/local/bin/
+ifeq ($(DETECTED_OS),Windows)
+	$(call MKDIR,$(INSTALL_DIR))
+	$(CP) $(TARGET) "$(INSTALL_DIR)$(PATH_SEP)"
+else
+	$(CP) $(TARGET) $(INSTALL_DIR)/
+endif
 
 # Include automatically generated dependencies
 -include $(OBJECTS:.o=.d)
 
 # Dependencies
-$(OBJDIR)/main.o: $(INCDIR)/cli.h
-$(OBJDIR)/cli.o: $(INCDIR)/cli.h $(INCDIR)/expression.h $(INCDIR)/complex_number.h $(INCDIR)/polynomial.h $(INCDIR)/complex_number.h $(INCDIR)/matrix.h $(INCDIR)/calculus.h $(INCDIR)/laplace.h $(INCDIR)/fourier.h $(INCDIR)/differential_equations.h $(INCDIR)/numerical_methods.h
-$(OBJDIR)/expression.o: $(INCDIR)/expression.h
-$(OBJDIR)/polynomial.o: $(INCDIR)/polynomial.h
-$(OBJDIR)/complex_number.o: $(INCDIR)/complex_number.h
-$(OBJDIR)/matrix.o: $(INCDIR)/matrix.h
-$(OBJDIR)/calculus.o: $(INCDIR)/calculus.h $(INCDIR)/expression.h $(INCDIR)/polynomial.h
-$(OBJDIR)/laplace.o: $(INCDIR)/laplace.h $(INCDIR)/expression.h $(INCDIR)/complex_number.h
-$(OBJDIR)/fourier.o:  $(INCDIR)/complex_number.h
-$(OBJDIR)/differential_equations.o: $(INCDIR)/differential_equations.h $(INCDIR)/expression.h
-$(OBJDIR)/numerical_methods.o: $(INCDIR)/numerical_methods.h $(INCDIR)/matrix.h $(INCDIR)/polynomial.h
+$(OBJDIR)/main.o: $(INCDIR)$(PATH_SEP)cli.h
+$(OBJDIR)/cli.o: $(INCDIR)$(PATH_SEP)cli.h $(INCDIR)$(PATH_SEP)expression.h $(INCDIR)$(PATH_SEP)complex_number.h $(INCDIR)$(PATH_SEP)polynomial.h $(INCDIR)$(PATH_SEP)complex_number.h $(INCDIR)$(PATH_SEP)matrix.h $(INCDIR)$(PATH_SEP)calculus.h $(INCDIR)$(PATH_SEP)laplace.h $(INCDIR)$(PATH_SEP)fourier.h $(INCDIR)$(PATH_SEP)differential_equations.h $(INCDIR)$(PATH_SEP)numerical_methods.h
+$(OBJDIR)/expression.o: $(INCDIR)$(PATH_SEP)expression.h
+$(OBJDIR)/polynomial.o: $(INCDIR)$(PATH_SEP)polynomial.h
+$(OBJDIR)/complex_number.o: $(INCDIR)$(PATH_SEP)complex_number.h
+$(OBJDIR)/matrix.o: $(INCDIR)$(PATH_SEP)matrix.h
+$(OBJDIR)/calculus.o: $(INCDIR)$(PATH_SEP)calculus.h $(INCDIR)$(PATH_SEP)expression.h $(INCDIR)$(PATH_SEP)polynomial.h
+$(OBJDIR)/laplace.o: $(INCDIR)$(PATH_SEP)laplace.h $(INCDIR)$(PATH_SEP)expression.h $(INCDIR)$(PATH_SEP)complex_number.h
+$(OBJDIR)/fourier.o: $(INCDIR)$(PATH_SEP)complex_number.h
+$(OBJDIR)/differential_equations.o: $(INCDIR)$(PATH_SEP)differential_equations.h $(INCDIR)$(PATH_SEP)expression.h
+$(OBJDIR)/numerical_methods.o: $(INCDIR)$(PATH_SEP)numerical_methods.h $(INCDIR)$(PATH_SEP)matrix.h $(INCDIR)$(PATH_SEP)polynomial.h

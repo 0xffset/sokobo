@@ -87,21 +87,21 @@ Matrix<T>::Matrix(const std::vector<std::vector<T>>& mat)
 }
 
 template<typename T>
-T& Matrix<T>::operator()(int i, int j)
+T& Matrix<T>::operator()(int row, int column)
 {
-  if (i < 0 || i >= rows || j < 0 || j >= cols) {
+  if (row < 0 || row >= rows ||column < 0 || column >= cols) {
     throw std::out_of_range("Matrix index out of bounds");
   }
-  return data[i][j];
+  return data[row][column];
 }
 
 template<typename T>
-const T& Matrix<T>::operator()(int i, int j) const
+const T& Matrix<T>::operator()(int row, int column) const
 {
-  if (i < 0 || i >= rows || j < 0 || j >= cols) {
+  if (row < 0 || row >= rows || column < 0 || column >= cols) {
     throw std::out_of_range("Matrix index out of bounds");
   }
-  return data[i][j];
+  return data[row][column];
 }
 
 template<typename T>
@@ -208,9 +208,12 @@ Matrix<T> Matrix<T>::inverse() const
     throw std::runtime_error("Matrix is singular (determinant is zero)");
   }
 
-  if (rows == 1) {
-    return Matrix<T>({{T {1} / data[0][0]}});
+   if (rows == 1) {
+    Matrix<T> result(1, 1);
+    result[0][0] = T{1} / data[0][0];
+    return result;
   }
+  
 
   if (rows == 2) {
     Matrix<T> result(2, 2);

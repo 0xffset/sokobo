@@ -26,8 +26,8 @@ public:
 
   Matrix(const std::vector<std::vector<T>>& mat);
 
-  T& operator()(int i, int j);
-  const T& operator()(int i, int j) const;
+  T& operator()(int row, int column);
+  const T& operator()(int row, int column) const;
 
   std::vector<T>& operator[](int i) { return data[i]; }
 
