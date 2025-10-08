@@ -1,5 +1,5 @@
-#include "include/expression.h"
-#include "include/polynomial.h"
+#include "expression.h"
+#include "polynomial.h"
 #include <functional>
 #include <vector>
 

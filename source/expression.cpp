@@ -122,19 +122,19 @@ BinaryOp::BinaryOp(std::shared_ptr<Expression> l,
   }
 }
 
-std::string BinaryOp::toString() const
+auto BinaryOp::toString() const -> std::string
 {
-  std::string leftStr = left->toString();
-  std::string rightStr = right->toString();
+  std::string left_str = left->toString();
+  std::string right_str = right->toString();
 
   if (left->getType() == BINARY_OP) {
-    leftStr = "(" + leftStr + ")";
+    left_str = "(" + left_str + ")";
   }
   if (right->getType() == BINARY_OP) {
-    rightStr = "(" + rightStr + ")";
+    right_str = "(" + right_str + ")";
   }
 
-  return leftStr + " " + op + " " + rightStr;
+  return left_str + " " + op + " " + right_str;
 }
 
 std::shared_ptr<Expression> BinaryOp::derivative(const std::string& var) const
@@ -162,8 +162,8 @@ std::shared_ptr<Expression> BinaryOp::derivative(const std::string& var) const
           std::make_shared<BinaryOp>(right->clone(), '*', right->clone()));
     case '^':
       if (right->getType() == CONSTANT) {
-        auto constRight = std::static_pointer_cast<Constant>(right);
-        double n = constRight->getValue();
+        auto const_right = std::static_pointer_cast<Constant>(right);
+        double n = const_right->getValue();
         return std::make_shared<BinaryOp>(
             std::make_shared<BinaryOp>(
                 std::make_shared<Constant>(n),
@@ -180,128 +180,131 @@ std::shared_ptr<Expression> BinaryOp::derivative(const std::string& var) const
 
 std::shared_ptr<Expression> BinaryOp::simplify() const
 {
-  auto sLeft = left->simplify();
-  auto sRight = right->simplify();
+  auto s_left = left->simplify();
+  auto s_right = right->simplify();
 
   // Check for constant folding
-  if (sLeft->getType() == CONSTANT && sRight->getType() == CONSTANT) {
-    auto cLeft = std::static_pointer_cast<Constant>(sLeft);
-    auto cRight = std::static_pointer_cast<Constant>(sRight);
-    double lVal = cLeft->getValue();
-    double rVal = cRight->getValue();
+  if (s_left->getType() == CONSTANT && s_right->getType() == CONSTANT) {
+    auto c_left = std::static_pointer_cast<Constant>(s_left);
+    auto c_right = std::static_pointer_cast<Constant>(s_right);
+    double l_val = c_left->getValue();
+    double r_val = c_right->getValue();
 
     switch (op) {
       case '+':
-        return std::make_shared<Constant>(lVal + rVal);
+        return std::make_shared<Constant>(l_val + r_val);
       case '-':
-        return std::make_shared<Constant>(lVal - rVal);
+        return std::make_shared<Constant>(l_val - r_val);
       case '*':
-        return std::make_shared<Constant>(lVal * rVal);
+        return std::make_shared<Constant>(l_val * r_val);
       case '/':
-        if (rVal != 0) {
-          return std::make_shared<Constant>(lVal / rVal);
+        if (r_val != 0) {
+          return std::make_shared<Constant>(l_val / r_val);
         }
         break;
       case '^':
-        return std::make_shared<Constant>(std::pow(lVal, rVal));
+        return std::make_shared<Constant>(std::pow(l_val, r_val));
     }
   }
 
   // Algebraic simplifications
-  if (sLeft->getType() == CONSTANT) {
-    auto cLeft = std::static_pointer_cast<Constant>(sLeft);
-    double lVal = cLeft->getValue();
+  if (s_left->getType() == CONSTANT) {
+    auto c_left = std::static_pointer_cast<Constant>(s_left);
+    double const l_val = c_left->getValue();
 
     switch (op) {
       case '+':
-        if (lVal == 0) {
-          return sRight;  // 0 + x = x
+        if (l_val == 0) {
+          return s_right;  // 0 + x = x
         }
         break;
       case '-':
-        if (lVal == 0) {
+        if (l_val == 0) {
           // 0 - x = -x (need to implement unary minus or use -1 * x)
           return std::make_shared<BinaryOp>(
-              std::make_shared<Constant>(-1), '*', sRight);
+              std::make_shared<Constant>(-1), '*', s_right);
         }
         break;
       case '*':
-        if (lVal == 0) {
+        if (l_val == 0) {
           return std::make_shared<Constant>(0);  // 0 * x = 0
         }
-        if (lVal == 1) {
-          return sRight;  // 1 * x = x
+        if (l_val == 1) {
+          return s_right;  // 1 * x = x
         }
         break;
       case '/':
-        if (lVal == 0) {
+        if (l_val == 0) {
           return std::make_shared<Constant>(0);  // 0 / x = 0
         }
         break;
+      default:;
     }
   }
 
-  if (sRight->getType() == CONSTANT) {
-    auto cRight = std::static_pointer_cast<Constant>(sRight);
-    double rVal = cRight->getValue();
+  if (s_right->getType() == CONSTANT) {
+    auto c_right = std::static_pointer_cast<Constant>(s_right);
+    double r_val = c_right->getValue();
 
     switch (op) {
       case '+':
-        if (rVal == 0) {
-          return sLeft;  // x + 0 = x
+        if (r_val == 0) {
+          return s_left;  // x + 0 = x
         }
         break;
       case '-':
-        if (rVal == 0) {
-          return sLeft;  // x - 0 = x
+        if (r_val == 0) {
+          return s_left;  // x - 0 = x
         }
         break;
       case '*':
-        if (rVal == 0) {
+        if (r_val == 0) {
           return std::make_shared<Constant>(0);  // x * 0 = 0
         }
-        if (rVal == 1) {
-          return sLeft;  // x * 1 = x
+        if (r_val == 1) {
+          return s_left;  // x * 1 = x
         }
         break;
       case '/':
-        if (rVal == 1) {
-          return sLeft;  // x / 1 = x
+        if (r_val == 1) {
+          return s_left;  // x / 1 = x
         }
         break;
       case '^':
-        if (rVal == 0) {
+        if (r_val == 0) {
           return std::make_shared<Constant>(1);  // x^0 = 1
         }
-        if (rVal == 1) {
-          return sLeft;  // x^1 = x
+        if (r_val == 1) {
+          return s_left;  // x^1 = x
         }
         break;
+      default:;
     }
   }
 
-  return std::make_shared<BinaryOp>(sLeft, op, sRight);
+  return std::make_shared<BinaryOp>(s_left, op, s_right);
 }
 
 double BinaryOp::evaluate(const std::map<std::string, double>& vars) const
 {
-  double lVal = left->evaluate(vars);
-  double rVal = right->evaluate(vars);
+  double const l_val = left->evaluate(vars);
+  double const r_val = right->evaluate(vars);
 
   switch (op) {
     case '+':
-      return lVal + rVal;
+      return l_val + r_val;
     case '-':
-      return lVal - rVal;
+      return l_val - r_val;
     case '*':
-      return lVal * rVal;
+      return l_val * r_val;
     case '/':
-      if (rVal == 0) {
+      if (r_val == 0) {
         throw std::runtime_error("Division by zero");
       }
-      return lVal / rVal;
+      return l_val / r_val;
     case '^':
-      return std::pow(lVal, rVal);
+      return std::pow(l_val, r_val);
+    default:;
   }
   throw std::runtime_error("Unknown binary operation");
 }

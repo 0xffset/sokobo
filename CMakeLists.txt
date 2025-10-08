@@ -11,7 +11,7 @@ project(
     sokobo
     VERSION 0.1.0
     DESCRIPTION "C++ Computational Algebra CLI"
-    HOMEPAGE_URL "https://example.com/"
+    HOMEPAGE_URL ""
     LANGUAGES CXX
 )
 
@@ -20,18 +20,18 @@ include(cmake/variables.cmake)
 
 # ---- Declare library ----
 
-add_library(
-    sokobo_lib OBJECT
-    source/lib.cpp
-)
-
-target_include_directories(
-    sokobo_lib ${warning_guard}
-    PUBLIC
-    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
-)
-
-target_compile_features(sokobo_lib PUBLIC cxx_std_17)
+#add_library(
+#    sokobo_lib OBJECT
+#    source/lib.cpp
+#)
+#
+#target_include_directories(
+#    sokobo_lib ${warning_guard}
+#    PUBLIC
+#    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
+#)
+#
+#target_compile_features(sokobo_lib PUBLIC cxx_std_17)
 
 include(FetchContent)
 
@@ -43,7 +43,7 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(fmt)
 
-target_link_libraries(sokobo_lib PRIVATE fmt::fmt)
+#target_link_libraries(sokobo_lib PRIVATE fmt::fmt)
 
 
 # ---- Declare executable ----
@@ -58,14 +58,15 @@ add_executable(fourier "source/fourier.cpp" "source/include/fourier.h")
 add_executable(laplace "source/laplace.cpp" "source/include/laplace.h" )
 add_executable(numerical_methods "source/numerical_methods.cpp" "source/include/numerical_methods.h")
 add_executable(polynomial "source/polynomial.cpp" "source/include/polynomial.h")
-add_executable(matrix "source/matrix.cpp" "source/include/matrix.h")
+add_executable(matrix "source/matrix.cpp" "source/include/matrix.h"
+        test/matrix_test.cpp)
 add_executable(cli "source/cli.cpp" "source/include/cli.h")
 
 set_property(TARGET sokobo_exe PROPERTY OUTPUT_NAME sokobo)
 
 target_compile_features(sokobo_exe PRIVATE cxx_std_17)
 
-target_link_libraries(sokobo_exe PRIVATE sokobo_lib)
+#target_link_libraries(sokobo_exe PRIVATE sokobo_lib)
 
 # ---- Install rules ----
 

@@ -22,9 +22,9 @@
 
 void CAS_CLI::run()
 {
-  std::cout << "=== sokobo - Computational Algebra System ===" << std::endl;
+  std::cout << "=== sokobo - Computational Algebra System ===" << '\n';
   std::cout << "Type 'help' for available commands or 'quit' to exit."
-            << std::endl;
+            << '\n';
 
   std::string line;
   while (true) {
@@ -72,7 +72,7 @@ void CAS_CLI::run()
       } else if (cmd == "poly") {
         handlePolynomial(tokens);
       } else if (cmd == "peval") {
-        // handlePolynomialEvaluate(tokens);
+        handlePolynomialEvaluate(tokens);
       } else if (cmd == "padd") {
         handlePolynomialAdd(tokens);
       } else if (cmd == "pmult") {
@@ -118,15 +118,15 @@ void CAS_CLI::run()
       } else if (cmd == "interpolate") {
         // handleInterpolate(tokens);
       } else {
-        std::cout << "Unknown command: " << cmd << std::endl;
-        std::cout << "Type 'help' for available commands." << std::endl;
+        std::cout << "Unknown command: " << cmd << '\n';
+        std::cout << "Type 'help' for available commands." << '\n';
       }
     } catch (const std::exception& e) {
-      std::cout << "Error: " << e.what() << std::endl;
+      std::cout << "Error: " << e.what() << '\n';
     }
   }
 
-  std::cout << "Goodbye!" << std::endl;
+  std::cout << "Goodbye!" << '\n';
 }
 
 std::vector<std::string> CAS_CLI::split(const std::string& str)
@@ -572,26 +572,26 @@ void CAS_CLI::handlePolynomial(const std::vector<std::string>& tokens)
             << " stored." << std::endl;
 }
 
-// void CAS_CLI::handlePolynomialEvaluate(const std::vector<std::string>&
-// tokens)
-//{
-//   if (tokens.size() < 3) {
-//     std::cout << "Usage: peval <polynomial> <value>" << std::endl;
-//     return;
-//   }
-//
-//   std::string name = tokens[1];
-//   double value = std::stod(tokens[2]);
-//
-//   if (polynomials.find(name) == polynomials.end()) {
-//     std::cout << "Polynomial '" << name << "' not found." << std::endl;
-//     return;
-//   }
-//
-//   double result = polynomials[name].evaluate(value);
-//   std::cout << name << "(" << value << ") = " << result << std::endl;
-// }
-//
+ void CAS_CLI::handlePolynomialEvaluate(const std::vector<std::string>&
+ tokens)
+{
+   if (tokens.size() < 3) {
+     std::cout << "Usage: peval <polynomial> <value>" << std::endl;
+     return;
+   }
+
+   std::string name = tokens[1];
+   double value = std::stod(tokens[2]);
+
+   if (polynomials.find(name) == polynomials.end()) {
+     std::cout << "Polynomial '" << name << "' not found." << std::endl;
+     return;
+   }
+
+   double result = polynomials[name].evaluate(value);
+   std::cout << name << "(" << value << ") = " << result << std::endl;
+ }
+
 void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
 {
   if (tokens.size() < 4) {

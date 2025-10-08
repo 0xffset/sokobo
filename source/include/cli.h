@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "include/expression.h"
-#include "include/polynomial.h"
-#include "include/complex_number.h"
-#include "include/matrix.h"
+#include "expression.h"
+#include "polynomial.h"
+#include "complex_number.h"
+#include "matrix.h"
 
 class CAS_CLI {
 private:
@@ -29,7 +29,7 @@ private:
     
     // Polynomial commands
     //void handlePolynomial(const std::vector<std::string>& tokens);
-    //void handlePolynomialEvaluate(const std::vector<std::string>& tokens);
+    void handlePolynomialEvaluate(const std::vector<std::string>& tokens);
     //void handlePolynomialAdd(const std::vector<std::string>& tokens);
     //void handlePolynomialMultiply(const std::vector<std::string>& tokens);
     //void handlePolynomialGCD(const std::vector<std::string>& tokens);

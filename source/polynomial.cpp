@@ -174,11 +174,11 @@ double Polynomial::evaluate(double x) const
   }
 
   double result = coefficients[0];
-  double xPower = 1;
+  double x_power = 1;
 
   for (size_t i = 1; i < coefficients.size(); i++) {
-    xPower *= x;
-    result += coefficients[i] * xPower;
+    x_power *= x;
+    result += coefficients[i] * x_power;
   }
 
   return result;
@@ -187,11 +187,11 @@ double Polynomial::evaluate(double x) const
 std::complex<double> Polynomial::evaluate(std::complex<double> x) const
 {
   if (coefficients.empty()) {
-    return std::complex<double>(0);
+    return std::complex<double>(0, 0);
   }
 
-  std::complex<double> result(coefficients[0]);
-  std::complex<double> xPower(1);
+  std::complex<double> result(coefficients[0], coefficients[1]);
+  std::complex<double> xPower(1, 1);
 
   for (size_t i = 1; i < coefficients.size(); i++) {
     xPower *= x;

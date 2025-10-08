@@ -9,7 +9,6 @@
 #include <stdexcept>
 // #include <corecrt_math_defines.h>
 
-#define M_PI acos(-1.0)
 
 // Symbolic differentiation
 std::shared_ptr<Expression> Calculus::differentiate(
