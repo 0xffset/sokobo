@@ -33,7 +33,7 @@ private:
     //void handlePolynomialAdd(const std::vector<std::string>& tokens);
     //void handlePolynomialMultiply(const std::vector<std::string>& tokens);
     //void handlePolynomialGCD(const std::vector<std::string>& tokens);
-    //void handlePolynomialRoots(const std::vector<std::string>& tokens);
+    void handlePolynomialRoots(const std::vector<std::string>& tokens);
     //void handlePolynomialFactor(const std::vector<std::string>& tokens);
     
     // Complex number commands

@@ -80,7 +80,7 @@ void CAS_CLI::run()
       } else if (cmd == "pgcd") {
         // handlePolynomialGCD(tokens);
       } else if (cmd == "proots") {
-        // handlePolynomialRoots(tokens);
+        handlePolynomialRoots(tokens);
       } else if (cmd == "pfactor") {
         // handlePolynomialFactor(tokens);
       } else if (cmd == "complex") {
@@ -664,28 +664,28 @@ void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
 //             << std::endl;
 // }
 //
-// void CAS_CLI::handlePolynomialRoots(const std::vector<std::string>& tokens)
-//{
-//   if (tokens.size() < 2) {
-//     std::cout << "Usage: proots <polynomial>" << std::endl;
-//     return;
-//   }
-//
-//   std::string name = tokens[1];
-//
-//   if (polynomials.find(name) == polynomials.end()) {
-//     std::cout << "Polynomial '" << name << "' not found." << std::endl;
-//     return;
-//   }
-//
-//   auto roots = polynomials[name].roots();
-//   std::cout << "Roots of " << name << ":" << std::endl;
-//   for (size_t i = 0; i < roots.size(); ++i) {
-//     std::cout << "  r" << (i + 1) << " = " <<
-//     ComplexNumber(roots[i]).toString()
-//               << std::endl;
-//   }
-// }
+ void CAS_CLI::handlePolynomialRoots(const std::vector<std::string>& tokens)
+{
+   if (tokens.size() < 2) {
+     std::cout << "Usage: proots <polynomial>" << '\n';
+     return;
+   }
+
+  std::string const name = tokens[1];
+
+  if (polynomials.find(name) == polynomials.end()) {
+    std::cout << "Polynomial '" << name << "' not found." << std::endl;
+    return;
+  }
+
+  auto roots = polynomials[name].roots();
+  std::cout << "Roots of " << name << ":" << std::endl;
+  for (size_t i = 0; i < roots.size(); ++i) {
+    std::cout << "  r" << (i + 1) << " = " <<
+    ComplexNumber(roots[i]).toString()
+              << std::endl;
+  }
+}
 //
 // void CAS_CLI::handlePolynomialFactor(const std::vector<std::string>& tokens)
 //{

@@ -207,7 +207,7 @@ std::vector<std::complex<double>> Polynomial::roots() const
 
   if (degree() == 0) {
     return result;
-  } else if (degree() == 1) {
+  } if (degree() == 1) {
     result.push_back(std::complex<double>(-getCoeff(0) / getCoeff(1), 0));
   } else if (degree() == 2) {
     double a = getCoeff(2);
