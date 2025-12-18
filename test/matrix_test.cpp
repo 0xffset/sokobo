@@ -1,5 +1,5 @@
 #define CATCH_CONFIG_MAIN
-#include "include/matrix.h"
+#include "matrix.h"
 
 #include "catch.hpp"
 
