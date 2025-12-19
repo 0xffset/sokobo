@@ -38,14 +38,15 @@ public:
   Matrix<T> operator-(const Matrix<T>& other) const;
   Matrix<T> operator*(const Matrix<T>& other) const;
   Matrix<T> operator*(const T& scalar) const;
-
+  Matrix<T> operator/=(const Matrix<T>& other) const;
+  Matrix<T> operator-=(const Matrix<T>& other) const;
   // Advanced operations
   T determinant() const;
   Matrix<T> inverse() const;
   Matrix<T> transpose() const;
   std::vector<T> eigenvalues() const;
   Matrix<T> eigenvectors() const;
-
+  T rank() const;
   // Decompositions
   std::pair<Matrix<T>, Matrix<T>> LUDecomposition() const;
   std::pair<Matrix<T>, Matrix<T>> QRDecomposition() const;

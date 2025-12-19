@@ -95,7 +95,12 @@ void CAS_CLI::run()
         handleComplexRoots(tokens);
       } else if (cmd == "matrix") {
         handleMatrix(tokens);
-      } else if (cmd == "mset") {
+      } else if (cmd == "mdisp") {
+        handleMatrixDisplay(tokens);
+      } else if (cmd == "mrank") {
+        handleMatrixRank(tokens);
+      }
+      else if (cmd == "mset") {
         handleMatrixSet(tokens);
       } else if (cmd == "mdet") {
         handleMatrixDeterminant(tokens);
@@ -145,6 +150,7 @@ void CAS_CLI::showHelpMatrices()
 {
   std::cout << "\nMatrices:" << std::endl;
   std::cout << "  matrix <name> <rows> <cols>     - Create matrix" << '\n';
+  std::cout << "  mdisp <name>                    - Display matrix" << '\n';
   std::cout << "  mset <matrix> <i> <j> <val>     - Set matrix element" << '\n';
   std::cout << "  mdet <matrix>                   - Matrix determinant" << std::endl;
   std::cout << "  minv <matrix>                   - Matrix inverse" << std::endl;
@@ -153,6 +159,8 @@ void CAS_CLI::showHelpMatrices()
   std::cout << "  madj <matrix>                   - Matrix adjoint" << std::endl;
   std::cout << "  mrank <matrix>                  - Matrix rank" << std::endl;
   std::cout << "  mtrans <matrix>                 - Matrix transpose" << std::endl;
+
+
 }
 
 void CAS_CLI::showHelp()
@@ -836,6 +844,24 @@ void CAS_CLI::handleMatrix(const std::vector<std::string>& tokens)
   matrices[name] = Matrix<float>(rows, cols);
   std::cout << "Matrix '" << name << "' (" << rows << "x" << cols
             << ") created." << std::endl;
+}
+
+void CAS_CLI::handleMatrixDisplay(const std::vector<std::string>& tokens)
+{
+  if (tokens.size() < 2) {
+    std::cout << "Usage: mdisp <name>" << std::endl;
+  }
+  std::string name = tokens[1];
+  std::cout << matrices[name].toString() << std::endl;
+}
+
+void CAS_CLI::handleMatrixRank(const std::vector<std::string>& tokens)
+{
+  if (tokens.size() < 2) {
+    std::cout << "Usage: mrank <name>" << std::endl;
+  }
+  std::string name = tokens[1];
+  std::cout << matrices[name].rank() << std::endl;
 }
 
 void CAS_CLI::handleMatrixSet(const std::vector<std::string>& tokens)

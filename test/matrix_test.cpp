@@ -1,6 +1,8 @@
 #define CATCH_CONFIG_MAIN
-#include "../../sokobo/source/include/matrix.h"
 #include <vector>
+
+#include "../../sokobo/source/include/matrix.h"
+
 #include "catch.hpp"
 
 /* Adding two matrices */
@@ -117,7 +119,7 @@ TEST_CASE("determinant_matrix", "[matrix]")
   int result = a.determinant();
   int expected = 2;
 
-REQUIRE(result == expected);
+  REQUIRE(result == expected);
 }
 
 // Eigenvalues of a matrix
@@ -139,3 +141,28 @@ TEST_CASE("eigenvalues of a 2x2 matrix", "[matrix]")
   REQUIRE(expected_lambada_2 == result[1]);
 }
 
+TEST_CASE("eigenvalues of 3x3 matrix", "[matrix]")
+{
+  Matrix<float> a(3, 3);
+  a[0][0] = 2;
+  a[0][1] = 4;
+  a[0][2] = 6;
+  a[1][0] = 8;
+  a[1][1] = 12;
+  a[1][2] = 16;
+  a[2][0] = 10;
+  a[2][1] = 12;
+  a[2][2] = 14;
+
+  float expected_lambda_1 = -2.1245;
+  float expected_lambda_2 = 30.1245;
+  float expected_lambda_3 = 0;
+
+  std::vector<float> result = a.eigenvalues();
+
+  REQUIRE(result.size() == 3);
+  REQUIRE(expected_lambda_1 == result[0]);
+  REQUIRE(expected_lambda_2 == result[1]);
+  REQUIRE(expected_lambda_3 == result[2]);
+
+}

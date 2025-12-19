@@ -46,6 +46,8 @@ private:
     
     // Matrix commands
     void handleMatrix(const std::vector<std::string>& tokens);
+    void handleMatrixDisplay(const std::vector<std::string>& tokens);
+    void handleMatrixRank(const std::vector<std::string>& tokens);
     void handleMatrixSet(const std::vector<std::string>& tokens);
     void handleMatrixDeterminant(const std::vector<std::string>& tokens);
     void handleMatrixInverse(const std::vector<std::string>& tokens);

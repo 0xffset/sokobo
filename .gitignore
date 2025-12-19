@@ -17,3 +17,5 @@ conan_cache_*.tgz
 sokobo.kdev4
 *.swp
 *.exe
+.project
+.cproject

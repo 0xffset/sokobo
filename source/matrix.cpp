@@ -1,16 +1,17 @@
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
-
-#include "include/matrix.h"
-
-#include "include/complex_number.h"
-#include <cstdlib>
 #include <string>
 #include <type_traits>
 #include <utility>
 #include <vector>
+
+#include "include/matrix.h"
+
+#include "include/complex_number.h"
 
 // template<typename T>
 // Matrix<T>::Matrix(int r, int c)
@@ -168,6 +169,44 @@ Matrix<T> Matrix<T>::operator*(const T& scalar) const
   }
   return result;
 }
+
+
+template<typename T>
+T Matrix<T>::rank() const
+{
+
+  std::vector<std::vector<T>> matrix = data;
+  int n = matrix.size();
+  int m = matrix[0].size();
+  const double EPS = 1E-9;
+  int rank = 0;
+  std::vector<bool> row_selected(n, false);
+
+  for (int i = 0; i < m; ++i) {
+    int j;
+    for (j = 0; j<n; ++j) {
+      if (!row_selected[j] && abs(matrix[j][i]) > EPS)
+        break;
+    }
+      if (j != n) {
+        ++rank;
+        row_selected[j] = true;
+        for (int p = i +1; p < m; ++p) {
+          matrix[j][p] /= matrix[j][i];
+        }
+        for (int k = 0; k < n; ++k) {
+         if (k != j && abs(matrix[k][i]) > EPS) {
+           for (int p = i+1; p < m; ++p) {
+             matrix[k][p]  -=  (matrix[j][p] * matrix[k][i]);
+           }
+         }
+        }
+      }
+    }
+  return rank;
+
+}
+
 
 template<typename T>
 T Matrix<T>::determinant() const
@@ -553,10 +592,10 @@ template<typename T>
 std::string Matrix<T>::toString() const
 {
   std::ostringstream oss;
-  oss << "[";
+  oss << "[" << '\n';
   for (int i = 0; i < rows; ++i) {
     if (i > 0) {
-      oss << ", ";
+      oss << ",";
     }
     oss << "[";
     for (int j = 0; j < cols; ++j) {
@@ -565,7 +604,7 @@ std::string Matrix<T>::toString() const
       }
       oss << data[i][j];
     }
-    oss << "]";
+    oss << "]" << '\n';
   }
   oss << "]";
   return oss.str();
