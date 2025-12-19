@@ -140,6 +140,21 @@ std::vector<std::string> CAS_CLI::split(const std::string& str)
   return tokens;
 }
 
+
+void CAS_CLI::showHelpMatrices()
+{
+  std::cout << "\nMatrices:" << std::endl;
+  std::cout << "  matrix <name> <rows> <cols>     - Create matrix" << '\n';
+  std::cout << "  mset <matrix> <i> <j> <val>     - Set matrix element" << '\n';
+  std::cout << "  mdet <matrix>                   - Matrix determinant" << std::endl;
+  std::cout << "  minv <matrix>                   - Matrix inverse" << std::endl;
+  std::cout << "  meigen <matrix>                 - Matrix eigenvalues" << std::endl;
+  std::cout << "  meigenv <matrix>                - Matrix eigenvectors" << std::endl;
+  std::cout << "  madj <matrix>                   - Matrix adjoint" << std::endl;
+  std::cout << "  mrank <matrix>                  - Matrix rank" << std::endl;
+  std::cout << "  mtrans <matrix>                 - Matrix transpose" << std::endl;
+}
+
 void CAS_CLI::showHelp()
 {
   std::cout << "\n=== CAS Commands ===" << std::endl;
@@ -180,13 +195,8 @@ void CAS_CLI::showHelp()
   std::cout << "  cpower <c> <n> <result> - Complex power" << std::endl;
   std::cout << "  croots <n>              - Roots of unity" << std::endl;
 
-  std::cout << "\nMatrices:" << std::endl;
-  std::cout << "  matrix <name> <rows> <cols> - Create matrix" << std::endl;
-  std::cout << "  mset <matrix> <i> <j> <val> - Set matrix element"
-            << std::endl;
-  std::cout << "  mdet <matrix>           - Matrix determinant" << std::endl;
-  std::cout << "  minv <matrix>           - Matrix inverse" << std::endl;
-  std::cout << "  meigen <matrix>         - Matrix eigenvalues" << std::endl;
+
+  CAS_CLI::showHelpMatrices();
 
   std::cout << "\nTransforms:" << std::endl;
   std::cout << "  laplace <expr> <var>    - Laplace transform" << std::endl;
@@ -823,7 +833,7 @@ void CAS_CLI::handleMatrix(const std::vector<std::string>& tokens)
   int rows = std::stoi(tokens[2]);
   int cols = std::stoi(tokens[3]);
 
-  matrices[name] = Matrix<int>(rows, cols);
+  matrices[name] = Matrix<float>(rows, cols);
   std::cout << "Matrix '" << name << "' (" << rows << "x" << cols
             << ") created." << std::endl;
 }
@@ -866,6 +876,7 @@ void CAS_CLI::handleMatrixDeterminant(const std::vector<std::string>& tokens)
 
   double det = matrices[name].determinant();
   std::cout << "det(" << name << ") = " << det << std::endl;
+  std::cout << matrices[name].toString() << std::endl;
 }
 
 void CAS_CLI::handleMatrixInverse(const std::vector<std::string>& tokens)
@@ -883,7 +894,7 @@ void CAS_CLI::handleMatrixInverse(const std::vector<std::string>& tokens)
   }
 
   try {
-    Matrix<int> inv = matrices[name].inverse();
+    Matrix<float> inv = matrices[name].inverse();
     std::cout << "Inverse of " << name << ":" << std::endl;
     std::cout << inv.toString() << std::endl;
   } catch (const std::exception& e) {
@@ -908,7 +919,7 @@ void CAS_CLI::handleMatrixEigenvalues(const std::vector<std::string>& tokens)
   auto eigenvals = matrices[name].eigenvalues();
   std::cout << "Eigenvalues of " << name << ":" << std::endl;
   for (size_t i = 0; i < eigenvals.size(); ++i) {
-    std::cout << "  λ" << (i + 1) << " = " << eigenvals[i] << std::endl;
+    std::cout << "  lambda_" << (i + 1) << " = " << eigenvals[i] << std::endl;
   }
 }
 

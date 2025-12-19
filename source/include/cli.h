@@ -14,6 +14,7 @@ private:
     
     // Command handlers
     void showHelp();
+    void showHelpMatrices();
     std::vector<std::string> split(const std::string& str);
     
     // Expression commands
@@ -88,7 +89,7 @@ private:
 public:
     std::map<std::string, Polynomial> polynomials;
     std::map<std::string, ComplexNumber> complexNumbers;
-    std::map<std::string, Matrix<int>> matrices;
+    std::map<std::string, Matrix<float>> matrices;
     std::map<std::string, std::shared_ptr<Expression>> expressions;
     std::map<std::string, double> variables;
     void run();

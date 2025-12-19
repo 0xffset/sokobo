@@ -1,42 +1,48 @@
 #define CATCH_CONFIG_MAIN
-#include "matrix.h"
-
+#include "../../sokobo/source/include/matrix.h"
+#include <vector>
 #include "catch.hpp"
 
-TEST_CASE("Suma de matrices", "[matrix]")
+/* Adding two matrices */
+TEST_CASE("add_two_matrices", "[matrix]")
 {
-  Matrix<int> a(2, 2), b(2, 2), esperado(2, 2);
+  Matrix<int> matrix1(2, 2);
+  Matrix<int> matrix2(2, 2);
+  Matrix<int> expected(2, 2);
 
-  a[0][0] = 1;
-  a[0][1] = 2;
-  a[1][0] = 3;
-  a[1][1] = 4;
+  matrix1[0][0] = 1;
+  matrix1[0][1] = 2;
+  matrix1[1][0] = 3;
+  matrix1[1][1] = 4;
 
-  b[0][0] = 5;
-  b[0][1] = 6;
-  b[1][0] = 7;
-  b[1][1] = 8;
+  matrix2[0][0] = 5;
+  matrix2[0][1] = 6;
+  matrix2[1][0] = 7;
+  matrix2[1][1] = 8;
 
-  esperado[0][0] = 6;
-  esperado[0][1] = 8;
-  esperado[1][0] = 10;
-  esperado[1][1] = 12;
+  expected[0][0] = 6;
+  expected[0][1] = 8;
+  expected[1][0] = 10;
+  expected[1][1] = 12;
 
-  Matrix<int> resultado = a + b;
+  Matrix<int> result = matrix1 + matrix2;
 
-  REQUIRE(resultado.getRows() == esperado.getRows());
-  REQUIRE(resultado.getCols() == esperado.getCols());
+  REQUIRE(result.getRows() == expected.getRows());
+  REQUIRE(result.getCols() == expected.getCols());
 
-  for (int i = 0; i < resultado.getRows(); ++i) {
-    for (int j = 0; j < resultado.getCols(); ++j) {
-      REQUIRE(resultado[i][j] == esperado[i][j]);
+  for (int i = 0; i < result.getRows(); ++i) {
+    for (int j = 0; j < result.getCols(); ++j) {
+      REQUIRE(result[i][j] == expected[i][j]);
     }
   }
 }
 
-TEST_CASE("Multiplicación de matrices", "[matrix]")
+// Subtracting two matrices
+TEST_CASE("subtract_two_matrices", "[matrix]")
 {
-  Matrix<int> a(2, 2), b(2, 2), esperado(2, 2);
+  Matrix<int> a(2, 2);
+  Matrix<int> b(2, 2);
+  Matrix<int> expected(2, 2);
 
   a[0][0] = 1;
   a[0][1] = 2;
@@ -48,19 +54,88 @@ TEST_CASE("Multiplicación de matrices", "[matrix]")
   b[1][0] = 1;
   b[1][1] = 2;
 
-  esperado[0][0] = 4;
-  esperado[0][1] = 4;
-  esperado[1][0] = 10;
-  esperado[1][1] = 8;
+  expected[0][0] = -1;
+  expected[0][1] = 2;
+  expected[1][0] = 2;
+  expected[1][1] = 2;
 
-  Matrix<int> resultado = a * b;
+  Matrix<int> result = a - b;
+  REQUIRE(result.getRows() == expected.getRows());
+  REQUIRE(result.getCols() == expected.getCols());
 
-  REQUIRE(resultado.getRows() == esperado.getRows());
-  REQUIRE(resultado.getCols() == esperado.getCols());
-
-  for (int i = 0; i < resultado.getRows(); ++i) {
-    for (int j = 0; j < resultado.getCols(); ++j) {
-      REQUIRE(resultado[i][j] == esperado[i][j]);
+  for (int i = 0; i < result.getRows(); ++i) {
+    for (int j = 0; j < result.getCols(); ++j) {
+      REQUIRE(result[i][j] == expected[i][j]);
     }
   }
 }
+
+// Multiplying two matrices
+TEST_CASE("multiply_two_matrices", "[matrix]")
+{
+  Matrix<int> a(2, 2);
+  Matrix<int> b(2, 2);
+  Matrix<int> expected(2, 2);
+
+  a[0][0] = 1;
+  a[0][1] = 2;
+  a[1][0] = 3;
+  a[1][1] = 4;
+
+  b[0][0] = 2;
+  b[0][1] = 0;
+  b[1][0] = 1;
+  b[1][1] = 2;
+
+  expected[0][0] = 4;
+  expected[0][1] = 4;
+  expected[1][0] = 10;
+  expected[1][1] = 8;
+
+  Matrix<int> result = a * b;
+
+  REQUIRE(result.getRows() == expected.getRows());
+  REQUIRE(result.getCols() == expected.getCols());
+
+  for (int i = 0; i < result.getRows(); ++i) {
+    for (int j = 0; j < result.getCols(); ++j) {
+      REQUIRE(result[i][j] == expected[i][j]);
+    }
+  }
+}
+
+// Determinant matrix
+TEST_CASE("determinant_matrix", "[matrix]")
+{
+  Matrix<int> a(2, 2);
+
+  a[0][0] = 4;
+  a[0][1] = 1;
+  a[1][0] = 6;
+  a[1][1] = 2;
+
+  int result = a.determinant();
+  int expected = 2;
+
+REQUIRE(result == expected);
+}
+
+// Eigenvalues of a matrix
+TEST_CASE("eigenvalues of a 2x2 matrix", "[matrix]")
+{
+  Matrix<int> a(2, 2);
+  a[0][0] = 1;
+  a[0][1] = 2;
+  a[1][0] = 3;
+  a[1][1] = 4;
+
+  int expected_lambada_1 = 5;
+  int expected_lambada_2 = 0;
+
+  std::vector<int> result = a.eigenvalues();
+
+  REQUIRE(result.size() == 2);
+  REQUIRE(expected_lambada_1 == result[0]);
+  REQUIRE(expected_lambada_2 == result[1]);
+}
+

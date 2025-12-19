@@ -65,6 +65,7 @@ add_executable(cli "source/cli.cpp" "source/include/cli.h")
 set_property(TARGET sokobo_exe PROPERTY OUTPUT_NAME sokobo)
 
 target_compile_features(sokobo_exe PRIVATE cxx_std_17)
+#target_include_directories(sokobo_lib INTERFACE ${CMAKE_SOURCE_DIR}/source)
 
 #target_link_libraries(sokobo_exe PRIVATE sokobo_lib)
 
