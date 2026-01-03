@@ -52,7 +52,6 @@ auto safe_abs(T value) ->
   }
 }
 
-
 template<typename T>
 double getAbsoluteValue(const T& value)
 {
@@ -90,7 +89,7 @@ Matrix<T>::Matrix(const std::vector<std::vector<T>>& mat)
 template<typename T>
 T& Matrix<T>::operator()(int row, int column)
 {
-  if (row < 0 || row >= rows ||column < 0 || column >= cols) {
+  if (row < 0 || row >= rows || column < 0 || column >= cols) {
     throw std::out_of_range("Matrix index out of bounds");
   }
   return data[row][column];
@@ -170,11 +169,9 @@ Matrix<T> Matrix<T>::operator*(const T& scalar) const
   return result;
 }
 
-
 template<typename T>
 T Matrix<T>::rank() const
 {
-
   std::vector<std::vector<T>> matrix = data;
   int n = matrix.size();
   int m = matrix[0].size();
@@ -184,29 +181,28 @@ T Matrix<T>::rank() const
 
   for (int i = 0; i < m; ++i) {
     int j;
-    for (j = 0; j<n; ++j) {
-      if (!row_selected[j] && abs(matrix[j][i]) > EPS)
+    for (j = 0; j < n; ++j) {
+      if (!row_selected[j] && abs(matrix[j][i]) > EPS) {
         break;
+      }
     }
-      if (j != n) {
-        ++rank;
-        row_selected[j] = true;
-        for (int p = i +1; p < m; ++p) {
-          matrix[j][p] /= matrix[j][i];
-        }
-        for (int k = 0; k < n; ++k) {
-         if (k != j && abs(matrix[k][i]) > EPS) {
-           for (int p = i+1; p < m; ++p) {
-             matrix[k][p]  -=  (matrix[j][p] * matrix[k][i]);
-           }
-         }
+    if (j != n) {
+      ++rank;
+      row_selected[j] = true;
+      for (int p = i + 1; p < m; ++p) {
+        matrix[j][p] /= matrix[j][i];
+      }
+      for (int k = 0; k < n; ++k) {
+        if (k != j && abs(matrix[k][i]) > EPS) {
+          for (int p = i + 1; p < m; ++p) {
+            matrix[k][p] -= (matrix[j][p] * matrix[k][i]);
+          }
         }
       }
     }
+  }
   return rank;
-
 }
-
 
 template<typename T>
 T Matrix<T>::determinant() const
@@ -247,12 +243,11 @@ Matrix<T> Matrix<T>::inverse() const
     throw std::runtime_error("Matrix is singular (determinant is zero)");
   }
 
-   if (rows == 1) {
+  if (rows == 1) {
     Matrix<T> result(1, 1);
-    result[0][0] = T{1} / data[0][0];
+    result[0][0] = T {1} / data[0][0];
     return result;
   }
-  
 
   if (rows == 2) {
     Matrix<T> result(2, 2);
@@ -336,6 +331,31 @@ Matrix<T> Matrix<T>::transpose() const
   return result;
 }
 
+
+template<typename T>
+Matrix<T> Matrix<T>::adjoint() const
+{
+  if (rows != cols) {
+    throw std::invalid_argument("Adjoint requires a square matrix.");
+  }
+  Matrix<T> adj(rows, cols);
+
+  if (rows == 1) {
+    adj(0, 0) = T(1);
+    return adj;
+  }
+
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      Matrix<T> minorMat = getMinor(i, j);
+      T det = minorMat.determinant();
+      T cofactor = ((i + j) % 2 == 0) ? det : (det * (T(-1)));
+      adj(j, i) = cofactor;
+    }
+  }
+  return adj;
+}
+
 template<typename T>
 std::vector<T> Matrix<T>::eigenvalues() const
 {
@@ -371,8 +391,8 @@ std::vector<T> Matrix<T>::eigenvalues() const
   const int maxIter = 1000;
   const double tolerance = 1e-10;
 
-  for (int ev = 0; ev < std::min(rows, 3); ++ev)
-  {  // Compute first few eigenvalues
+  for (int ev = 0; ev < std::min(rows, 3);
+       ++ev) {  // Compute first few eigenvalues
     std::vector<T> v(rows, T {1});
 
     for (int iter = 0; iter < maxIter; ++iter) {
@@ -655,4 +675,3 @@ template class Matrix<double>;
 template class Matrix<float>;
 template class Matrix<int>;
 template class Matrix<ComplexNumber>;
-

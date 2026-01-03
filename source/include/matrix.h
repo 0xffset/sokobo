@@ -46,6 +46,7 @@ public:
   Matrix<T> transpose() const;
   std::vector<T> eigenvalues() const;
   Matrix<T> eigenvectors() const;
+  Matrix<T> adjoint() const;
   T rank() const;
   // Decompositions
   std::pair<Matrix<T>, Matrix<T>> LUDecomposition() const;

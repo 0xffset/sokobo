@@ -86,11 +86,14 @@ limit f 0            # Limit of f as x approaches 0
 
 #### Matrices
 ```
-matrix m1 3 3        # Create 3x3 matrix m1
-mset m1 0 0 5        # Set m1[0][0] = 5
-mdet m1              # Determinant of m1
-minv m1              # Inverse of m1
-meigen m1            # Eigenvalues of m1
+matrix m1 3 3                   # Create 3x3 matrix m1
+matrix_raw m1 ([1,2],[3,4])     # Create 2x2 matrix m1 from a raw input
+mset m1 0 0 5                   # Set m1[0][0] = 5
+mdet m1                         # Determinant of m1
+minv m1                         # Inverse of m1
+meigen m1                       # Eigenvalues of m1
+madj m1                         # Adjoint matrix of m1
+mrank m1                        # Rank matrix of m1
 ```
 
 #### Transforms

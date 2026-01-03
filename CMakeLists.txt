@@ -1,11 +1,12 @@
 # Ensure CMAKE_MODULE_PATH is initialized before use
+set(CMAKE_ERROR_DEPRECATED OFF)
 if(NOT DEFINED CMAKE_MODULE_PATH)
   set(CMAKE_MODULE_PATH "")
 endif()
 
 cmake_minimum_required(VERSION 3.14)
 
-include(cmake/prelude.cmake)
+# include(cmake/prelude.cmake)
 
 project(
     sokobo
@@ -15,8 +16,8 @@ project(
     LANGUAGES CXX
 )
 
-include(cmake/project-is-top-level.cmake)
-include(cmake/variables.cmake)
+# include(cmake/project-is-top-level.cmake)
+# include(cmake/variables.cmake)
 
 # ---- Declare library ----
 
@@ -33,15 +34,15 @@ include(cmake/variables.cmake)
 #
 #target_compile_features(sokobo_lib PUBLIC cxx_std_17)
 
-include(FetchContent)
+# include(FetchContent)
 
-FetchContent_Declare(
-  fmt
-  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-  GIT_TAG 10.2.1 
-)
+# FetchContent_Declare(
+#   fmt
+#   GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+#   GIT_TAG 10.2.1 
+# )
 
-FetchContent_MakeAvailable(fmt)
+# FetchContent_MakeAvailable(fmt)
 
 #target_link_libraries(sokobo_lib PRIVATE fmt::fmt)
 
@@ -72,7 +73,7 @@ target_compile_features(sokobo_exe PRIVATE cxx_std_17)
 # ---- Install rules ----
 
 if(NOT CMAKE_SKIP_INSTALL_RULES)
-  include(cmake/install-rules.cmake)
+  # include(cmake/install-rules.cmake)
 endif()
 
 # ---- Developer mode ----
@@ -86,4 +87,4 @@ elseif(NOT PROJECT_IS_TOP_LEVEL)
   )
 endif()
 
-include(cmake/dev-mode.cmake)
+# include(cmake/dev-mode.cmake)

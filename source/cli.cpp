@@ -23,8 +23,7 @@
 void CAS_CLI::run()
 {
   std::cout << "=== sokobo - Computational Algebra System ===" << '\n';
-  std::cout << "Type 'help' for available commands or 'quit' to exit."
-            << '\n';
+  std::cout << "Type 'help' for available commands or 'quit' to exit." << '\n';
 
   std::string line;
   while (true) {
@@ -95,12 +94,15 @@ void CAS_CLI::run()
         handleComplexRoots(tokens);
       } else if (cmd == "matrix") {
         handleMatrix(tokens);
+      } else if (cmd == "matrix_raw") {
+        handleMatrixRaw(tokens);
+      } else if (cmd == "madj") {
+        handleMatrixAdjoint(tokens);
       } else if (cmd == "mdisp") {
         handleMatrixDisplay(tokens);
       } else if (cmd == "mrank") {
         handleMatrixRank(tokens);
-      }
-      else if (cmd == "mset") {
+      } else if (cmd == "mset") {
         handleMatrixSet(tokens);
       } else if (cmd == "mdet") {
         handleMatrixDeterminant(tokens);
@@ -145,22 +147,23 @@ std::vector<std::string> CAS_CLI::split(const std::string& str)
   return tokens;
 }
 
-
 void CAS_CLI::showHelpMatrices()
 {
-  std::cout << "\nMatrices:" << std::endl;
+  std::cout << "\nMatrices:" << '\n';
   std::cout << "  matrix <name> <rows> <cols>     - Create matrix" << '\n';
+  std::cout
+      << "  matrix_raw <name> <raw>         - Create a matrix from a raw input"
+      << '\n';
   std::cout << "  mdisp <name>                    - Display matrix" << '\n';
   std::cout << "  mset <matrix> <i> <j> <val>     - Set matrix element" << '\n';
-  std::cout << "  mdet <matrix>                   - Matrix determinant" << std::endl;
-  std::cout << "  minv <matrix>                   - Matrix inverse" << std::endl;
-  std::cout << "  meigen <matrix>                 - Matrix eigenvalues" << std::endl;
-  std::cout << "  meigenv <matrix>                - Matrix eigenvectors" << std::endl;
-  std::cout << "  madj <matrix>                   - Matrix adjoint" << std::endl;
-  std::cout << "  mrank <matrix>                  - Matrix rank" << std::endl;
-  std::cout << "  mtrans <matrix>                 - Matrix transpose" << std::endl;
-
-
+  std::cout << "  mdet <matrix>                   - Matrix determinant" << '\n';
+  std::cout << "  minv <matrix>                   - Matrix inverse" << '\n';
+  std::cout << "  meigen <matrix>                 - Matrix eigenvalues" << '\n';
+  std::cout << "  meigenv <matrix>                - Matrix eigenvectors"
+            << '\n';
+  std::cout << "  madj <matrix>                   - Matrix adjoint" << '\n';
+  std::cout << "  mrank <matrix>                  - Matrix rank" << '\n';
+  std::cout << "  mtrans <matrix>                 - Matrix transpose" << '\n';
 }
 
 void CAS_CLI::showHelp()
@@ -202,7 +205,6 @@ void CAS_CLI::showHelp()
             << std::endl;
   std::cout << "  cpower <c> <n> <result> - Complex power" << std::endl;
   std::cout << "  croots <n>              - Roots of unity" << std::endl;
-
 
   CAS_CLI::showHelpMatrices();
 
@@ -590,25 +592,24 @@ void CAS_CLI::handlePolynomial(const std::vector<std::string>& tokens)
             << " stored." << std::endl;
 }
 
- void CAS_CLI::handlePolynomialEvaluate(const std::vector<std::string>&
- tokens)
+void CAS_CLI::handlePolynomialEvaluate(const std::vector<std::string>& tokens)
 {
-   if (tokens.size() < 3) {
-     std::cout << "Usage: peval <polynomial> <value>" << std::endl;
-     return;
-   }
+  if (tokens.size() < 3) {
+    std::cout << "Usage: peval <polynomial> <value>" << std::endl;
+    return;
+  }
 
-   std::string name = tokens[1];
-   double value = std::stod(tokens[2]);
+  std::string name = tokens[1];
+  double value = std::stod(tokens[2]);
 
-   if (polynomials.find(name) == polynomials.end()) {
-     std::cout << "Polynomial '" << name << "' not found." << std::endl;
-     return;
-   }
+  if (polynomials.find(name) == polynomials.end()) {
+    std::cout << "Polynomial '" << name << "' not found." << std::endl;
+    return;
+  }
 
-   double result = polynomials[name].evaluate(value);
-   std::cout << name << "(" << value << ") = " << result << std::endl;
- }
+  double result = polynomials[name].evaluate(value);
+  std::cout << name << "(" << value << ") = " << result << std::endl;
+}
 
 void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
 {
@@ -682,12 +683,12 @@ void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
 //             << std::endl;
 // }
 //
- void CAS_CLI::handlePolynomialRoots(const std::vector<std::string>& tokens)
+void CAS_CLI::handlePolynomialRoots(const std::vector<std::string>& tokens)
 {
-   if (tokens.size() < 2) {
-     std::cout << "Usage: proots <polynomial>" << '\n';
-     return;
-   }
+  if (tokens.size() < 2) {
+    std::cout << "Usage: proots <polynomial>" << '\n';
+    return;
+  }
 
   std::string const name = tokens[1];
 
@@ -699,11 +700,11 @@ void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
   auto roots = polynomials[name].roots();
   std::cout << "Roots of " << name << ":" << std::endl;
   for (size_t i = 0; i < roots.size(); ++i) {
-    std::cout << "  r" << (i + 1) << " = " <<
-    ComplexNumber(roots[i]).toString()
+    std::cout << "  r" << (i + 1) << " = " << ComplexNumber(roots[i]).toString()
               << std::endl;
   }
 }
+
 //
 // void CAS_CLI::handlePolynomialFactor(const std::vector<std::string>& tokens)
 //{
@@ -828,6 +829,102 @@ void CAS_CLI::handleComplexRoots(const std::vector<std::string>& tokens)
   for (size_t i = 0; i < roots.size(); ++i) {
     std::cout << "  ω^" << i << " = " << roots[i].toString() << std::endl;
   }
+}
+
+void CAS_CLI::handleMatrixAdjoint(const std::vector<std::string>& tokens)
+{
+  if (tokens.size() < 2) {
+    std::cout << "Usage: madj <name>";
+  }
+  std::string name = tokens[1];
+  std::cout << matrices[name].adjoint().toString() << '\n';
+}
+
+void CAS_CLI::handleMatrixRaw(const std::vector<std::string>& tokens)
+{
+  if (tokens.size() < 3) {
+    std::cout << "Usage: matrix <name> (<raw>)\n";
+    return;
+  }
+
+  const std::string& name = tokens[1];
+  const std::string& raw = tokens[2];
+
+  if (raw.front() != '(' || raw.back() != ')') {
+    std::cout << "Invalid format: expected '(...)'\n";
+    return;
+  }
+
+  std::string content = raw.substr(1, raw.size() - 2);
+
+  std::vector<std::vector<float>> data;
+  size_t i = 0;
+  int expected_cols = -1;
+
+  while (i < content.size()) {
+    if (content[i] != '[') {
+      std::cout << "Invalid format: expected '['\n";
+      return;
+    }
+
+    size_t close = content.find(']', i);
+    if (close == std::string::npos) {
+      std::cout << "Invalid format: missing ']'\n";
+      return;
+    }
+
+    std::string row_str = content.substr(i + 1, close - i - 1);
+    std::stringstream ss(row_str);
+
+    std::vector<float> row;
+    std::string value;
+
+    while (getline(ss, value, ',')) {
+      try {
+        row.push_back(std::stof(value));
+      } catch (...) {
+        std::cout << "Invalid numeric value\n";
+        return;
+      }
+    }
+
+    if (row.empty()) {
+      std::cout << "Empty row not allowed\n";
+      return;
+    }
+
+    if (expected_cols == -1) {
+      expected_cols = row.size();
+    } else if (row.size() != expected_cols) {
+      std::cout << "Rows with different column count\n";
+      return;
+    }
+
+    data.push_back(row);
+
+    i = close + 1;
+    if (i < content.size() && content[i] == ',') {
+      i++;
+    }
+  }
+
+  if (data.empty()) {
+    std::cout << "Matrix cannot be empty\n";
+    return;
+  }
+
+  Matrix<float> matrix(data.size(), expected_cols);
+
+  for (size_t r = 0; r < data.size(); ++r) {
+    for (size_t c = 0; c < data[r].size(); ++c) {
+      matrix(r, c) = data[r][c];
+    }
+  }
+
+  matrices[name] = matrix;
+
+  std::cout << "Matrix '" << name << "' created (" << data.size() << "x"
+            << expected_cols << ")\n";
 }
 
 void CAS_CLI::handleMatrix(const std::vector<std::string>& tokens)
