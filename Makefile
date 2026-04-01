@@ -7,7 +7,7 @@ endif
 
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -O3 -Isource
+CXXFLAGS = -std=c++23 -Wall -Wextra -O3 -Isource
 
 # OS-specific settings
 ifeq ($(DETECTED_OS),Windows)

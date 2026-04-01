@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <print>
 
 #include "include/cli.h"
 
@@ -1042,8 +1043,22 @@ void CAS_CLI::handleMatrixEigenvalues(const std::vector<std::string>& tokens)
   auto eigenvals = matrices[name].eigenvalues();
   std::cout << "Eigenvalues of " << name << ":" << std::endl;
   for (size_t i = 0; i < eigenvals.size(); ++i) {
-    std::cout << "  lambda_" << (i + 1) << " = " << eigenvals[i] << std::endl;
+    std::cout << "lambda_" << (i + 1) << " = " << eigenvals[i] << std::endl;
   }
+}
+
+void CAS_CLI::handleMatrixEigenvectors(const std::vector<std::string> &tokens) {
+  if (tokens.size() < 2) {
+    std::cout << "Usage: meigenv <matrix> " << std::endl;
+    return;
+  }
+  std::string name = tokens[1];
+  if (matrices.find(name) == matrices.end()) {
+    std::cout<< "Matrix '" << name << "' not found." << std::endl;
+    return ;
+  }
+  auto eigenvectors = matrices[name].eigenvectors(); 
+  // TODO: implement Lanczos algorithm to find eigenvectors of any NxM matrix 
 }
 
 void CAS_CLI::handleLaplace(const std::vector<std::string>& tokens)

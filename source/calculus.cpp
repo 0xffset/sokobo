@@ -9,6 +9,7 @@
 #include <stdexcept>
 // #include <corecrt_math_defines.h>
 
+constexpr double M_PI = 3.14159265358979323846;
 
 // Symbolic differentiation
 std::shared_ptr<Expression> Calculus::differentiate(
@@ -390,7 +391,7 @@ Polynomial Calculus::chebyshevSeries(std::function<double(double)> f, double a, 
         int n_points = std::max(degree + 1, 50);  // Use enough points for accuracy
         
         for (int j = 0; j < n_points; j++) {
-            double t = std::cos(M_PI * (j + 0.5) / n_points);  // Chebyshev points
+            double t = std::cos(std::acos(-1.0) * (j + 0.5) / n_points);  // Chebyshev points
             double x = transform(t);
             double T_k = 1.0;  // T_0(t) = 1
             

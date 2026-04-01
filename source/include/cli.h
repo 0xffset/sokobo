@@ -54,6 +54,7 @@ private:
   void handleMatrixDeterminant(const std::vector<std::string>& tokens);
   void handleMatrixInverse(const std::vector<std::string>& tokens);
   void handleMatrixEigenvalues(const std::vector<std::string>& tokens);
+  void handleMatrixEigenvectors(const std::vector<std::string>& tokens);
 
   // Transform commands
   void handleLaplace(const std::vector<std::string>& tokens);
