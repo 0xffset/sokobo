@@ -9,7 +9,7 @@
 #include <stdexcept>
 // #include <corecrt_math_defines.h>
 
-constexpr double M_PI = 3.14159265358979323846;
+#define M_PI  3.14159265358979323846;
 
 // Symbolic differentiation
 std::shared_ptr<Expression> Calculus::differentiate(
