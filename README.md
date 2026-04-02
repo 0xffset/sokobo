@@ -1,5 +1,5 @@
 # sokobo - Computational Algebra System (CAS)
-
+[![C++ Linux Build](https://github.com/0xffset/sokobo/actions/workflows/linux.yml/badge.svg)](https://github.com/0xffset/sokobo/actions/workflows/linux.yml)
 
 A comprehensive C++ implementation of a Computer Algebra System with advanced mathematical capabilities.
 
