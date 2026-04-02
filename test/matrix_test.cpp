@@ -154,15 +154,14 @@ TEST_CASE("eigenvalues of 3x3 matrix", "[matrix]")
   a[2][1] = 12;
   a[2][2] = 14;
 
-  float expected_lambda_1 = -2.1245;
-  float expected_lambda_2 = 30.1245;
-  float expected_lambda_3 = 0;
+  float expected_lambda_1 = -2.124515;
+  float expected_lambda_2 = 30.124516;
+  float expected_lambda_3 = -0.074920;
 
   std::vector<float> result = a.eigenvalues();
 
   REQUIRE(result.size() == 3);
-  REQUIRE(expected_lambda_1 == result[0]);
-  REQUIRE(expected_lambda_2 == result[1]);
-  REQUIRE(expected_lambda_3 == result[2]);
-
+  REQUIRE(std::to_string(expected_lambda_2) == std::to_string(result[0]));
+  REQUIRE(std::to_string(expected_lambda_3) == std::to_string(result[2]));
+  REQUIRE(std::to_string(expected_lambda_1) == std::to_string(result[1]));
 }

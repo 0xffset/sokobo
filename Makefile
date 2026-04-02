@@ -41,9 +41,17 @@ TESTOBJDIR = obj$(PATH_SEP)test
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
+OBJECTS_NO_MAIN = $(filter-out $(OBJDIR)/main.o, $(OBJECTS))
+
 TEST_SOURCES = $(wildcard $(TESTDIR)/*_test.cpp)
 TEST_OBJECTS = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%.o)
 TEST_BINARIES = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%)
+
+$(TEST_BINARIES): $(TESTOBJDIR)/%: $(TESTOBJDIR)/%.o $(OBJECTS_NO_MAIN)
+	$(call MKDIR,$(TESTOBJDIR))
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+
+
 
 .PHONY: all clean install test
 
