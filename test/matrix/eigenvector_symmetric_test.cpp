@@ -6,7 +6,7 @@
 
 #include "../../sokobo/source/include/matrix.h"
 #include "../../external/catch.hpp"
-#include "utils.h" // Asegúrate de que utils.h tenga las definiciones de print
+#include "utils.h"
 
 using namespace Catch::Matchers;
 

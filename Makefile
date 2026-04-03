@@ -1,98 +1,144 @@
-# Detect OS
+# ==========================================
+# 1. OS Detection
+# ==========================================
 ifeq ($(OS),Windows_NT)
     DETECTED_OS := Windows
 else
     DETECTED_OS := $(shell uname -s)
 endif
 
-# Compiler and flags
+# ==========================================
+# 2. Compiler and Flags
+# ==========================================
 CXX = g++
-CXXFLAGS = -std=c++23 -Wall -Wextra -O3 -Isource
+# -MMD -MP: Generates dependency files (.d) to track header changes
+CXXFLAGS = -std=c++23 -MMD -MP -Wall -Wextra -O3  -I$(SRCDIR) -I$(INCDIR)
+LDFLAGS = -lm
 
-# OS-specific settings
-ifeq ($(DETECTED_OS),Windows)
-    # Windows specific settings
-    LDFLAGS = -lm
-    TARGET = sokobo.exe
-    MKDIR = if not exist "$(1)" mkdir "$(1)"
-    RM = rmdir /s /q
-    CP = copy
-    INSTALL_DIR = C:\Program Files\sokobo
-    PATH_SEP = \\
-    TEST_RUN = @for %%t in ($^) do (echo Running %%t... && %%t || exit /b 1)
-else
-    # Unix-like (Linux/macOS) specific settings
-    LDFLAGS = -lm
-    TARGET = sokobo
-    MKDIR = mkdir -p $(1)
-    RM = rm -rf
-    CP = cp
-    INSTALL_DIR = /usr/local/bin
-    PATH_SEP = /
-    TEST_RUN = @for test in $^; do echo "Running $$test..."; ./$$test || exit 1; done
-endif
-
+# ==========================================
+# 3. Directories
+# ==========================================
 SRCDIR = source
-INCDIR = source$(PATH_SEP)include
+INCDIR = source/include/
 OBJDIR = obj
 TESTDIR = test
-TESTOBJDIR = obj$(PATH_SEP)test
+TESTOBJDIR = obj/test
+PATH_SEP = /
 
+# ==========================================
+# 4. File Discovery and Exclusions
+# ==========================================
+
+# Main application sources and objects
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
-OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
+
+# $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(SRCDIR)/$(INCDIR)%.h
 
 OBJECTS_NO_MAIN = $(filter-out $(OBJDIR)/main.o, $(OBJECTS))
 
-TEST_SOURCES = $(wildcard $(TESTDIR)/*_test.cpp)
-TEST_OBJECTS = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%.o)
-TEST_BINARIES = $(TEST_SOURCES:$(TESTDIR)/%.cpp=$(TESTOBJDIR)/%)
+# --- TEST EXCLUSION SECTION ---
+# Add any test files you want to skip here (relative path)
+EXCLUDE_TESTS := test/matrix/dot_product_test.cpp
 
-$(TEST_BINARIES): $(TESTOBJDIR)/%: $(TESTOBJDIR)/%.o $(OBJECTS_NO_MAIN)
-	$(call MKDIR,$(TESTOBJDIR))
-	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+# Find all .cpp files in /test and subdirectories
+ifeq ($(DETECTED_OS),Windows)
+    TEST_SOURCES_ALL := $(wildcard $(TESTDIR)/*.cpp) $(wildcard $(TESTDIR)/**/*.cpp)
+    LDFLAGS += -mconsole
+else
+    TEST_SOURCES_ALL := $(shell find $(TESTDIR) -name "*.cpp")
+endif
 
+# Apply the exclusion filter
+TEST_SOURCES := $(filter-out $(EXCLUDE_TESTS), $(TEST_SOURCES_ALL))
 
+# Map test sources to objects and binaries
+TEST_OBJECTS = $(patsubst $(TESTDIR)/%.cpp, $(TESTOBJDIR)/%.o, $(TEST_SOURCES))
 
-.PHONY: all clean install test
+ifeq ($(DETECTED_OS),Windows)
+    TEST_BINARIES = $(patsubst $(TESTDIR)/%.cpp, $(TESTOBJDIR)/%.exe, $(TEST_SOURCES))
+else
+    TEST_BINARIES = $(patsubst $(TESTDIR)/%.cpp, $(TESTOBJDIR)/%, $(TEST_SOURCES))
+endif
 
-all: $(TARGET)
+# ==========================================
+# 5. OS-Specific Commands
+# ==========================================
+ifeq ($(DETECTED_OS),Windows)
+    TARGET = sokobo.exe
+    RM = rmdir /s /q
+    # Windows mkdir requires backslashes and a check if exists
+    MKDIR = if not exist "$(subst /,\,$(1))" mkdir "$(subst /,\,$(1))"
+    # CMD loop: converts paths to backslashes for execution
+    TEST_RUN = @for %%t in ($(subst /,\,$(TEST_BINARIES))) do (echo Running %%t... && %%t || exit /b 1)
+else
+    TARGET = sokobo
+    RM = rm -rf
+    MKDIR = mkdir -p $(1)
+    # Bash loop
+    TEST_RUN = @for test_bin in $(TEST_BINARIES); do echo "Running $$test_bin..."; ./$$test_bin || exit 1; done
+endif
 
+# ==========================================
+# 6. Build Rules
+# ==========================================
+.PHONY: all clean test check-paths
+
+$(OBJDIR):
+	@$(call MKDIR,$@)
+
+all:$(OBJDIR) $(TARGET)
+
+# Link main application
 $(TARGET): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
+	@$(call MKDIR,$(dir $@))
+	$(CXX) $^ -o $@ $(LDFLAGS) -mconsole
 
+# Compile application objects
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	$(call MKDIR,$(OBJDIR))
+	@$(call MKDIR,$(dir $@))
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# --- Test Rules ---
+
+# Build and run all tests
 test: $(TEST_BINARIES)
+	@echo ------------------------------------------
+	@echo Starting Test Execution
+	@echo ------------------------------------------
 	$(TEST_RUN)
 
-$(TESTOBJDIR)/%: $(TESTOBJDIR)/%.o $(OBJECTS)
-	$(call MKDIR,$(TESTOBJDIR))
-	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
-
-$(TESTOBJDIR)/%.o: $(TESTDIR)/%.cpp
-	$(call MKDIR,$(TESTOBJDIR))
+# Compile test objects
+$(TESTOBJDIR)/%.o: $(TESTDIR)/%.cpp | $(OBJDIR)
+	@$(call MKDIR,$(dir $@))
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Link each test (test file + all app code except main.o)
+$(TEST_BINARIES): $(TESTOBJDIR)/%$(if $(findstring Windows,$(DETECTED_OS)),.exe): $(TESTOBJDIR)/%.o $(OBJECTS_NO_MAIN) | $(TESTOBJDIR)
+	@$(call MKDIR,$(dir $@))
+	$(CXX) $^ -o $@ $(LDFLAGS)
+
+# ==========================================
+# 7. Utilities
+# ==========================================
+
 clean:
-ifeq ($(DETECTED_OS),Windows)
-	$(RM) $(OBJDIR) 2>nul || echo.
-	del /q $(TARGET) 2>nul || echo.
-else
-	$(RM) $(OBJDIR) $(TARGET)
-endif
+	$(RM) $(OBJDIR) $(TARGET) 2>nul || echo Clean.
+    # Include auto-generated dependencies (.d files)
+    -include $(OBJECTS:.o=.d)
+    -include $(TEST_OBJECTS:.o=.d)
 
-install: $(TARGET)
-ifeq ($(DETECTED_OS),Windows)
-	$(call MKDIR,$(INSTALL_DIR))
-	$(CP) $(TARGET) "$(INSTALL_DIR)$(PATH_SEP)"
-else
-	$(CP) $(TARGET) $(INSTALL_DIR)/
-endif
+# Use this to verify which files are being picked up
+check-paths:
+	@echo "OS: $(DETECTED_OS)"
+	@echo "Included Tests: $(TEST_SOURCES)"
+	@echo "Excluded: $(EXCLUDE_TESTS)"\
+    @echo "Source Dir: $(SRCDIR)"
+	@echo "Include Dir: $(INCDIR)"
+	@echo "Combined path: $(SRCDIR)/$(INCDIR)calculus.h"
 
-# Include automatically generated dependencies
--include $(OBJECTS:.o=.d)
+
+
 
 # Dependencies
 $(OBJDIR)/main.o: $(INCDIR)$(PATH_SEP)cli.h
