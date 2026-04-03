@@ -3,7 +3,12 @@
 
 #include "../../sokobo/source/include/matrix.h"
 
-#include "catch.hpp"
+#include "../../external/catch.hpp".\te
+#include "utils.h"
+
+
+using namespace Catch::Matchers;
+using namespace Catch::Detail;
 
 /* Adding two matrices */
 TEST_CASE("add_two_matrices", "[matrix]")
@@ -165,3 +170,92 @@ TEST_CASE("eigenvalues of 3x3 matrix", "[matrix]")
   REQUIRE(std::to_string(expected_lambda_3) == std::to_string(result[2]));
   REQUIRE(std::to_string(expected_lambda_1) == std::to_string(result[1]));
 }
+
+
+TEST_CASE("Matrix Operations", "[matrix]") {
+    SECTION("Matrix Multiplication") {
+        Matrix<double> A(2, 2);
+        A(0, 0) = 1; A(0, 1) = 2;
+        A(1, 0) = 3; A(1, 1) = 4;
+        
+        Matrix<double> B(2, 2);
+        B(0, 0) = 5; B(0, 1) = 6;
+        B(1, 0) = 7; B(1, 1) = 8;
+        
+        Matrix<double> C = A * B;
+        
+        printMatrix("A", A);
+        printMatrix("B", B);
+        printMatrix("A * B", C);
+        
+        // A * B should be [[19, 22], [43, 50]]
+        REQUIRE_THAT(C(0, 0), WithinAbs(19.0, 1e-10));
+        REQUIRE_THAT(C(0, 1), WithinAbs(22.0, 1e-10));
+        REQUIRE_THAT(C(1, 0), WithinAbs(43.0, 1e-10));
+        REQUIRE_THAT(C(1, 1), WithinAbs(50.0, 1e-10));
+    }
+    
+    SECTION("Matrix Transpose") {
+        Matrix<double> A(2, 2);
+        A(0, 0) = 1; A(0, 1) = 2;
+        A(1, 0) = 3; A(1, 1) = 4;
+        
+        Matrix<double> At = A.transpose();
+        
+        printMatrix("A", A);
+        printMatrix("A^T", At);
+        
+        REQUIRE_THAT(At(0, 0), WithinAbs(1.0, 1e-10));
+        REQUIRE_THAT(At(0, 1), WithinAbs(3.0, 1e-10));
+        REQUIRE_THAT(At(1, 0), WithinAbs(2.0, 1e-10));
+        REQUIRE_THAT(At(1, 1), WithinAbs(4.0, 1e-10));
+    }
+    
+    SECTION("Matrix-Vector Multiplication") {
+        Matrix<double> A(2, 2);
+        A(0, 0) = 1; A(0, 1) = 2;
+        A(1, 0) = 3; A(1, 1) = 4;
+        
+        std::vector<double> v = {1, 2};
+        auto result = A.matVec(v);
+        
+        printMatrix("A", A);
+        printVector("v", v);
+        printVector("A*v", result);
+        
+        // A * [1, 2] = [5, 11]
+        REQUIRE_THAT(result[0], WithinAbs(5.0, 1e-10));
+        REQUIRE_THAT(result[1], WithinAbs(11.0, 1e-10));
+    }
+}
+
+TEST_CASE("QR Decomposition - Symmetric", "[qr]") {
+    Matrix<double> A(2, 2);
+    A(0, 0) = 2; A(0, 1) = 1;
+    A(1, 0) = 1; A(1, 1) = 2;
+    
+    auto [Q, R] = A.QRDecomposition();
+
+    printMatrix("Q", Q);
+    printMatrix("R", R);
+    
+    // Verify Q * R = A
+    Matrix<double> QR = Q * R;
+    printMatrix("Q * R (should equal A)", QR);
+    
+    SECTION("Q * R should equal A") {
+        REQUIRE_THAT(QR(0, 0), WithinAbs(2.0, 1e-10));
+        REQUIRE_THAT(QR(0, 1), WithinAbs(1.0, 1e-10));
+        REQUIRE_THAT(QR(1, 0), WithinAbs(1.0, 1e-10));
+        REQUIRE_THAT(QR(1, 1), WithinAbs(2.0, 1e-10));
+    }
+
+    SECTION("Q should be orthogonal") {
+        Matrix<double> QtQ = Q.transpose() * Q;
+        REQUIRE_THAT(QtQ(0, 0), WithinAbs(1.0, 1e-10));
+        REQUIRE_THAT(QtQ(1, 1), WithinAbs(1.0, 1e-10));
+        REQUIRE_THAT(std::abs(QtQ(0, 1)), WithinAbs(0.0, 1e-10));
+    }
+}
+
+

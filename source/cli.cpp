@@ -110,6 +110,8 @@ void CAS_CLI::run()
         handleMatrixInverse(tokens);
       } else if (cmd == "meigen") {
         handleMatrixEigenvalues(tokens);
+      } else if (cmd == "meigenv") {
+        handleMatrixEigenvectors(tokens);
       } else if (cmd == "laplace") {
         handleLaplace(tokens);
       } else if (cmd == "fourier") {
@@ -1046,18 +1048,24 @@ void CAS_CLI::handleMatrixEigenvalues(const std::vector<std::string>& tokens)
   }
 }
 
-void CAS_CLI::handleMatrixEigenvectors(const std::vector<std::string> &tokens) {
+void CAS_CLI::handleMatrixEigenvectors(const std::vector<std::string>& tokens)
+{
   if (tokens.size() < 2) {
     std::cout << "Usage: meigenv <matrix> " << std::endl;
     return;
   }
   std::string name = tokens[1];
   if (matrices.find(name) == matrices.end()) {
-    std::cout<< "Matrix '" << name << "' not found." << std::endl;
-    return ;
+    std::cout << "Matrix '" << name << "' not found." << std::endl;
+    return;
   }
-  auto eigenvectors = matrices[name].eigenvectors(); 
-  // TODO: implement Lanczos algorithm to find eigenvectors of any NxM matrix 
+  auto eigenvectors = matrices[name].eigenvectors();
+  for (int i = 0; i < eigenvectors.getRows(); i++) {
+    for (int j = 0; j < eigenvectors.getCols(); j++) {
+      std::cout << eigenvectors(i, j) << " ";
+    }
+    std::cout << "\n";
+  }
 }
 
 void CAS_CLI::handleLaplace(const std::vector<std::string>& tokens)

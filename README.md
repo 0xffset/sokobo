@@ -47,11 +47,15 @@ Run the executable:
 ```bash
 ./sokobo
 ```
+## Compile all
+```bash
+g++ -std=c++23 -Wall -Wextra -O3 -Isource source/*.cpp -o sokobo
+```
 
 ## Unit Testing
 ### Matrices
 ```bash
-g++ -std=c++17 -Wall -Wextra -O3 -Itest -Isource -Isource/include test/matrix_test.cpp source/matrix.cpp source/complex_number.cpp -o matrix_test -lm
+g++ -std=c++23 -Wall -Wextra -O3 -Itest -Isource -Isource/include test/matrix_test.cpp source/matrix.cpp source/complex_number.cpp -o matrix_test -lm
 ```
 
 ### Example Commands

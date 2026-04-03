@@ -90,7 +90,10 @@ template<typename T>
 T& Matrix<T>::operator()(int row, int column)
 {
   if (row < 0 || row >= rows || column < 0 || column >= cols) {
-    throw std::out_of_range("Matrix index out of bounds");
+    throw std::out_of_range(
+        std::string("Matrix index out of bounds\n") + "[row]: "
+        + std::to_string(row) + " [col]: " + std::to_string(column) + "\n"
+        + "[dimension]: " + std::to_string(rows) + "x" + std::to_string(cols));
   }
   return data[row][column];
 }
@@ -99,7 +102,10 @@ template<typename T>
 const T& Matrix<T>::operator()(int row, int column) const
 {
   if (row < 0 || row >= rows || column < 0 || column >= cols) {
-    throw std::out_of_range("Matrix index out of bounds");
+    throw std::out_of_range(
+        std::string("Matrix index out of bounds\n") + "[row]: "
+        + std::to_string(row) + " [col]: " + std::to_string(column) + "\n"
+        + "[dimension]: " + std::to_string(rows) + "x" + std::to_string(cols));
   }
   return data[row][column];
 }
@@ -331,7 +337,6 @@ Matrix<T> Matrix<T>::transpose() const
   return result;
 }
 
-
 template<typename T>
 Matrix<T> Matrix<T>::adjoint() const
 {
@@ -454,13 +459,13 @@ std::vector<T> Matrix<T>::eigenvalues() const
   return eigenvals;
 }
 
-template<typename T>
-Matrix<T> Matrix<T>::eigenvectors() const
-{
-  // Simplified implementation - returns identity matrix
-  // Full implementation would require more sophisticated algorithms
-  return identity(rows);
-}
+// template<typename T>
+// Matrix<T> Matrix<T>::eigenvectors() const
+// {
+//   // Simplified implementation - returns identity matrix
+//   // Full implementation would require more sophisticated algorithms
+//   return identity(rows);
+// }
 
 template<typename T>
 std::pair<Matrix<T>, Matrix<T>> Matrix<T>::LUDecomposition() const
@@ -491,25 +496,26 @@ std::pair<Matrix<T>, Matrix<T>> Matrix<T>::LUDecomposition() const
   return {L, U};
 }
 
+// QR (Gram-Schmidt)
 template<typename T>
 std::pair<Matrix<T>, Matrix<T>> Matrix<T>::QRDecomposition() const
 {
-  Matrix<T> Q = *this;
+  Matrix<T> Q(rows, cols);  // Start with empty Q
   Matrix<T> R = zeros(cols, cols);
 
   // Gram-Schmidt process
   for (int j = 0; j < cols; ++j) {
-    // Extract column j
+    // Extract column j from ORIGINAL matrix (this)
     std::vector<T> v(rows);
     for (int i = 0; i < rows; ++i) {
-      v[i] = Q(i, j);
+      v[i] = (*this)(i, j);  // Read from original matrix, not Q
     }
 
-    // Orthogonalize against previous columns
+    // Orthogonalize against previous Q columns
     for (int k = 0; k < j; ++k) {
       T dot = T {};
       for (int i = 0; i < rows; ++i) {
-        dot += Q(i, k) * v[i];
+        dot += Q(i, k) * v[i];  // Use already-computed Q columns
       }
       R(k, j) = dot;
 
@@ -528,7 +534,12 @@ std::pair<Matrix<T>, Matrix<T>> Matrix<T>::QRDecomposition() const
 
     if (norm > 1e-12) {
       for (int i = 0; i < rows; ++i) {
-        Q(i, j) = v[i] / norm;
+        Q(i, j) = v[i] / norm;  // Write to Q
+      }
+    } else {
+      // Handle zero norm case
+      for (int i = 0; i < rows; ++i) {
+        Q(i, j) = 0;
       }
     }
   }
@@ -536,10 +547,9 @@ std::pair<Matrix<T>, Matrix<T>> Matrix<T>::QRDecomposition() const
   return {Q, R};
 }
 
-// Add this outside your class, in the same namespace as ComplexNumber
 double abs(const ComplexNumber& c)
 {
-  return c.magnitude();  // or whatever method calculates |c|
+  return c.magnitude();
 }
 
 // Then your original code will work:
@@ -644,6 +654,185 @@ Matrix<T> Matrix<T>::identity(int n)
   return result;
 }
 
+// Helper
+template<typename T>
+std::vector<T> Matrix<T>::matVec(const std::vector<T>& v) const
+{
+  std::vector<T> r(rows, 0);
+  for (int i = 0; i < rows; ++i) {
+    for (int j = 0; j < cols; ++j) {
+      r[i] += data[i][j] * v[j];
+    }
+  }
+  return r;
+}
+
+template<typename T>
+T Matrix<T>::dot(const std::vector<T>& a, const std::vector<T>& b) const
+{
+  T s = 0;
+  for (int i = 0; i < a.size(); ++i) {
+    s += a[i] * b[i];
+  }
+  return s;
+}
+
+template<typename T>
+double Matrix<T>::norm(const std::vector<T>& v) const
+{
+  return std::sqrt((double)dot(v, v));
+}
+
+template<typename T>
+void Matrix<T>::normalize(std::vector<T>& v) const
+{
+  double n = norm(v);
+  if (n == 0) {
+    return;
+  }
+  for (auto& x : v) {
+    x /= n;
+  }
+}
+
+// Extract a submatrix from (row_start, col_start) to (row_end, col_end)
+// [exclusive]
+template<typename T>
+Matrix<T> Matrix<T>::submatrix(int row_start,
+                               int row_end,
+                               int col_start,
+                               int col_end) const
+{
+  // Validate bounds
+  if (row_start < 0 || row_end > rows || col_start < 0 || col_end > cols) {
+    throw std::out_of_range("Submatrix indices out of bounds");
+  }
+  if (row_start >= row_end || col_start >= col_end) {
+    throw std::invalid_argument("Invalid submatrix range");
+  }
+
+  int sub_rows = row_end - row_start;
+  int sub_cols = col_end - col_start;
+
+  Matrix<T> result(sub_rows, sub_cols);
+
+  for (int i = 0; i < sub_rows; ++i) {
+    for (int j = 0; j < sub_cols; ++j) {
+      result(i, j) = (*this)(row_start + i, col_start + j);
+    }
+  }
+
+  return result;
+}
+
+// Lanczos's algorithm implementation to find eigenvectors
+template<typename T>
+void Matrix<T>::lanczos(int m,
+                        std::vector<T>& alpha,
+                        std::vector<T>& beta,
+                        Matrix<T>& Q) const
+{
+  int n = rows;
+  alpha.resize(m);
+  beta.resize(m - 1);  // FIX: beta has m-1 elements
+  Q = Matrix<T>(n, m);
+
+  std::vector<T> q(n, 1);
+  normalize(q);
+
+  std::vector<T> q_prev(n, 0);
+
+  for (int j = 0; j < m; ++j) {
+    auto v = matVec(q);
+
+    if (j > 0) {
+      for (int i = 0; i < n; ++i) {
+        v[i] -= beta[j - 1] * q_prev[i];
+      }
+    }
+    alpha[j] = dot(q, v);
+
+    for (int i = 0; i < n; ++i) {
+      v[i] -= alpha[j] * q[i];
+    }
+
+    // FIX: Store current q in column j of Q before computing next q
+    for (int i = 0; i < n; ++i) {
+      Q(i, j) = q[i];  // Store in column j, not row j
+    }
+
+    // FIX: Only compute beta if not last iteration
+    if (j < m - 1) {
+      beta[j] = norm(v);
+      if (beta[j] < 1e-10) {
+        // FIX: Resize arrays to actual size
+        alpha.resize(j + 1);
+        beta.resize(j);
+        Q = Q.submatrix(0, n, 0, j + 1);  // Assuming you have submatrix method
+        break;
+      }
+
+      q_prev = q;
+      for (int i = 0; i < n; ++i) {
+        q[i] = v[i] / beta[j];
+      }
+    }
+  }
+}
+
+// Build T
+template<typename T>
+Matrix<T> Matrix<T>::buildTridiagonal(const std::vector<T>& alpha,
+                                      const std::vector<T>& beta,
+                                      int m) const
+{
+  Matrix<T> Tm(m, m);
+  for (int i = 0; i < m; ++i) {
+    Tm(i, i) = alpha[i];
+    if (i > 0) {
+      Tm(i, i - 1) = beta[i - 1];
+    }
+    if (i < m - 1) {
+      Tm(i, i + 1) = beta[i];
+    }
+  }
+  return Tm;
+}
+
+template<typename T>
+Matrix<T> Matrix<T>::eigenvectors() const
+{
+  int m = std::min(rows, 20);
+  std::vector<T> alpha, beta;
+  Matrix<T> Ql;
+
+  lanczos(m, alpha, beta, Ql);
+
+  // FIX: Use actual size (in case of early termination)
+  int actual_m = alpha.size();
+  Matrix<T> Tm = buildTridiagonal(alpha, beta, actual_m);
+
+  Matrix<T> V = Matrix<T>::identity(actual_m);
+
+  for (int i = 0; i < 100; ++i) {
+    auto [Qk, Rk] = Tm.QRDecomposition();
+    Tm = Rk * Qk;
+    V = V * Qk;
+  }
+
+  Matrix<T> result(rows, actual_m);
+
+  // FIX: Now Ql(i, j) correctly has vectors in columns
+  for (int k = 0; k < actual_m; ++k) {
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < actual_m; ++j) {
+        result(i, k) += Ql(i, j) * V(j, k);
+      }
+    }
+  }
+  return result;
+}
+
 template<typename T>
 Matrix<T> Matrix<T>::zeros(int r, int c)
 {
@@ -674,4 +863,4 @@ Matrix<T> Matrix<T>::ones(int r, int c)
 template class Matrix<double>;
 template class Matrix<float>;
 template class Matrix<int>;
-template class Matrix<ComplexNumber>;
+// template class Matrix<ComplexNumber>;
