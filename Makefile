@@ -12,7 +12,7 @@ endif
 # ==========================================
 CXX = g++
 # -MMD -MP: Generates dependency files (.d) to track header changes
-CXXFLAGS = -std=c++23 -MMD -MP -Wall -Wextra -O3  -I$(SRCDIR) -I$(INCDIR)
+CXXFLAGS = -std=c++20 -MMD -MP -Wall -Wextra -O3  -I$(SRCDIR) -I$(INCDIR)
 LDFLAGS = -lm
 
 # ==========================================
