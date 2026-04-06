@@ -1,5 +1,5 @@
 @echo off
-set EXE_NAME=transpose_matrix_test.exe
+set EXE_NAME=matrix_transpose_test.exe
 
 if exist %EXE_NAME% (
     del %EXE_NAME%
@@ -8,10 +8,10 @@ if exist %EXE_NAME% (
 echo [BUILD] Compiling...
 g++ -std=c++23 -Wall -Wextra -O3 ^
     -Itest -Isource -Isource/include ^
-    test/matrix/transpose_matrix_test.cpp ^
+    test/matrix/matrix_transpose_test.cpp ^
     source/matrix.cpp ^
     source/complex_number.cpp ^
-    -o transpose_matrix_test -lm
+    -o matrix_transpose_test -lm
 
 if %errorlevel% equ 0 (
     echo [BUILD] Success! Starting %EXE_NAME%...

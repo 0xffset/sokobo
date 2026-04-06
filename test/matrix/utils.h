@@ -6,7 +6,6 @@
 #include <string>
 #include <iomanip>
 
-// Asegúrate de que la ruta a matrix.h sea correcta desde la ubicación de este archivo
 #include "../../sokobo/source/include/matrix.h"
 
 /**
@@ -33,8 +32,7 @@ void printMatrix(const std::string& name, const Matrix<T>& m) {
     std::cout << name << " (" << m.getRows() << "x" << m.getCols() << "):\n";
     for (int i = 0; i < m.getRows(); ++i) {
         for (int j = 0; j < m.getCols(); ++j) {
-            // Accedemos mediante m(i, j). 
-            // Si tu clase usa m[i][j], cambia los paréntesis por corchetes.
+          
             std::cout << std::setw(12) << std::fixed << std::setprecision(6) << static_cast<double>(m(i, j));
         }
         std::cout << "\n";
