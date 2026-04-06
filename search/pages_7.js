@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['licensing_0',['Licensing',['../md__r_e_a_d_m_e.html#autotoc_md22',1,'']]]
+  ['ode_20solvers_0',['ODE Solvers',['../ode_solvers.html',1,'algorithms']]],
+  ['optimization_20algorithms_1',['Optimization Algorithms',['../optimization.html',1,'algorithms']]]
 ];

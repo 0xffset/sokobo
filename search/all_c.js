@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['polynomial_0',['Polynomial',['../classPolynomial.html',1,'']]],
-  ['polynomials_1',['Polynomials',['../md_README.html#autotoc_md12',1,'']]],
-  ['project_20structure_2',['Project Structure',['../md_README.html#autotoc_md19',1,'']]]
+  ['pde_20solvers_0',['PDE Solvers',['../pde_solvers.html',1,'algorithms']]],
+  ['polynomial_1',['Polynomial',['../classPolynomial.html',1,'']]],
+  ['polynomial_20module_2',['Polynomial Module',['../group__polynomial.html',1,'']]]
 ];

@@ -25,6 +25,13 @@
 var NAVTREE =
 [
   [ "sokobo", "index.html", [
+    [ "sokobo - Computational Algebra System (CAS)", "index.html", "index" ],
+    [ "Algorithms", "algorithms.html", "algorithms" ],
+    [ "Command Line Interface", "cli.html", null ],
+    [ "Examples", "examples.html", null ],
+    [ "Getting Started", "getting_started.html", [
+      [ "Installation", "getting_started.html#install", null ]
+    ] ],
     [ "sokobo - Computational Algebra System (CAS)", "md_README.html", [
       [ "Features", "md_README.html#autotoc_md1", [
         [ "Core Functionality", "md_README.html#autotoc_md2", null ],
@@ -53,6 +60,7 @@ var NAVTREE =
       [ "Contributing", "md_README.html#autotoc_md21", null ],
       [ "Licensing", "md_README.html#autotoc_md22", null ]
     ] ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -60,7 +68,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
-        [ "Related Symbols", "functions_rela.html", null ]
+        [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -71,7 +79,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"algorithms.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
