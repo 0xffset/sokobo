@@ -1,0 +1,179 @@
+\doxysection{Unary\+Op\+Expression Class Reference}
+\hypertarget{class_unary_op_expression}{}\label{class_unary_op_expression}\index{UnaryOpExpression@{UnaryOpExpression}}
+Inheritance diagram for Unary\+Op\+Expression:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_unary_op_expression}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_unary_op_expression_a67c8de514b8dc66d3f6608fcc611e354}{Unary\+Op\+Expression}} (char op, std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ operand)
+\item 
+virtual double \doxymbox{\hyperlink{class_unary_op_expression_a014481e087cae075624faf726ff56ebc}{evaluate}} (const std::\+map$<$ std::\+string, double $>$ \&variables) const override
+\item 
+virtual std::\+string \doxymbox{\hyperlink{class_unary_op_expression_a5fd32660f13a8d615ab44952c0fdfad0}{to\+String}} () const override
+\item 
+virtual Expression::\+\+Type \doxymbox{\hyperlink{class_unary_op_expression_ad3a29b5ec7cff2e45783894a725caf43}{get\+Type}} () const override
+\item 
+virtual std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_unary_op_expression_a59ec481e1aee99539333d672ff04f4a3}{clone}} () const override
+\item 
+virtual std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_unary_op_expression_ad8c015135278e2ed94d658470e3f094c}{derivative}} (const std::\+string \&var) const override
+\item 
+virtual std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_unary_op_expression_a6a60522a32be2ae2f542d2d40d62b04b}{simplify}} () const override
+\item 
+char \doxymbox{\hyperlink{class_unary_op_expression_aedb279e6caf3e8a8fbeb530b40c8b30e}{get\+Operator}} () const
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_unary_op_expression_a6a57994abd5421b4d9f3037329562b4d}{get\+Operand}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \doxymbox{\hyperlink{class_expression}{Expression}}}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Type} \{ \newline
+{\bfseries CONSTANT}
+, {\bfseries VARIABLE}
+, {\bfseries BINARY\+\_\+\+OP}
+, {\bfseries UNARY\+\_\+\+OP}
+, \newline
+{\bfseries FUNCTION}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00131}{131}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_unary_op_expression_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_unary_op_expression_a67c8de514b8dc66d3f6608fcc611e354}\index{UnaryOpExpression@{UnaryOpExpression}!UnaryOpExpression@{UnaryOpExpression}}
+\index{UnaryOpExpression@{UnaryOpExpression}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{UnaryOpExpression()}{UnaryOpExpression()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_a67c8de514b8dc66d3f6608fcc611e354} 
+Unary\+Op\+Expression::\+\+Unary\+Op\+Expression (\begin{DoxyParamCaption}\item[{char}]{op}{, }\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{operand}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00487}{487}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_unary_op_expression_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_unary_op_expression_a59ec481e1aee99539333d672ff04f4a3}\index{UnaryOpExpression@{UnaryOpExpression}!clone@{clone}}
+\index{clone@{clone}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_a59ec481e1aee99539333d672ff04f4a3} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Unary\+Op\+Expression::\+clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00652}{652}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_unary_op_expression_ad8c015135278e2ed94d658470e3f094c}\index{UnaryOpExpression@{UnaryOpExpression}!derivative@{derivative}}
+\index{derivative@{derivative}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{derivative()}{derivative()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_ad8c015135278e2ed94d658470e3f094c} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Unary\+Op\+Expression::\+derivative (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{var}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00572}{572}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_unary_op_expression_a014481e087cae075624faf726ff56ebc}\index{UnaryOpExpression@{UnaryOpExpression}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_a014481e087cae075624faf726ff56ebc} 
+double Unary\+Op\+Expression::\+evaluate (\begin{DoxyParamCaption}\item[{const std::\+map$<$ std::\+string, double $>$ \&}]{variables}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00497}{497}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_unary_op_expression_a6a57994abd5421b4d9f3037329562b4d}\index{UnaryOpExpression@{UnaryOpExpression}!getOperand@{getOperand}}
+\index{getOperand@{getOperand}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{getOperand()}{getOperand()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_a6a57994abd5421b4d9f3037329562b4d} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Unary\+Op\+Expression::\+get\+Operand (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00565}{565}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_unary_op_expression_aedb279e6caf3e8a8fbeb530b40c8b30e}\index{UnaryOpExpression@{UnaryOpExpression}!getOperator@{getOperator}}
+\index{getOperator@{getOperator}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{getOperator()}{getOperator()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_aedb279e6caf3e8a8fbeb530b40c8b30e} 
+char Unary\+Op\+Expression::\+get\+Operator (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00560}{560}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_unary_op_expression_ad3a29b5ec7cff2e45783894a725caf43}\index{UnaryOpExpression@{UnaryOpExpression}!getType@{getType}}
+\index{getType@{getType}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_ad3a29b5ec7cff2e45783894a725caf43} 
+Expression::\+\+Type Unary\+Op\+Expression::\+get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00547}{547}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_unary_op_expression_a6a60522a32be2ae2f542d2d40d62b04b}\index{UnaryOpExpression@{UnaryOpExpression}!simplify@{simplify}}
+\index{simplify@{simplify}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{simplify()}{simplify()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_a6a60522a32be2ae2f542d2d40d62b04b} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Unary\+Op\+Expression::\+simplify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00601}{601}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_unary_op_expression_a5fd32660f13a8d615ab44952c0fdfad0}\index{UnaryOpExpression@{UnaryOpExpression}!toString@{toString}}
+\index{toString@{toString}!UnaryOpExpression@{UnaryOpExpression}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_unary_op_expression_a5fd32660f13a8d615ab44952c0fdfad0} 
+std::\+string Unary\+Op\+Expression::\+to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00530}{530}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+expression.\+h\item 
+source/\+expression.\+cpp\end{DoxyCompactItemize}

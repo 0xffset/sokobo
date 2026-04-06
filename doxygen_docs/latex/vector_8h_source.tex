@@ -1,0 +1,43 @@
+\doxysection{vector.\+h}
+\hypertarget{vector_8h_source}{}\label{vector_8h_source}\index{source/include/vector.h@{source/include/vector.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00008}00008\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00009}\doxymbox{\hyperlink{class_vector}{00009}}\ \textcolor{keyword}{class\ }Vector}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00011}00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00012}00012\ \ \ std::vector<T>\ data;}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00014}00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00015}00015\ \ \ Vector();}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00016}00016\ \ \ Vector(\textcolor{keywordtype}{int}\ size);}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00017}00017\ \ \ Vector(\textcolor{keyword}{const}\ std::vector<T>\&\ vec);}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00019}00019\ \ \ T\&\ operator[](\textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00020}00020\ \ \ \textcolor{keyword}{const}\ T\&\ operator[](\textcolor{keywordtype}{int}\ i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00021}00021\ \ \ \textcolor{keywordtype}{int}\ size()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00023}00023\ \ \ Vector<T>\ operator+(\textcolor{keyword}{const}\ Vector<T>\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00024}00024\ \ \ Vector<T>\ operator-\/(\textcolor{keyword}{const}\ Vector<T>\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00025}00025\ \ \ Vector<T>\ operator*(T\ scalar)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00026}00026\ \ \ Vector<T>\ operator/(T\ scalar)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00028}00028\ \ \ T\ dot(\textcolor{keyword}{const}\ Vector<T>\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00029}00029\ \ \ \textcolor{keywordtype}{double}\ norm()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00030}00030\ \ \ \textcolor{keywordtype}{void}\ normalize();}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00032}00032\ \ \ std::string\ toString()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00034}00034\ \ \ \textcolor{keyword}{static}\ Vector<T>\ zeros(\textcolor{keywordtype}{int}\ size);}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00035}00035\ \ \ \textcolor{keyword}{static}\ Vector<T>\ ones(\textcolor{keywordtype}{int}\ size);}
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00036}00036\ \ }
+\DoxyCodeLine{\Hypertarget{vector_8h_source_l00037}00037\ \};}
+
+\end{DoxyCode}

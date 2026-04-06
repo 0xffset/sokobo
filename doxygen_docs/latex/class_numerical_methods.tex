@@ -1,0 +1,323 @@
+\doxysection{Numerical\+Methods Class Reference}
+\hypertarget{class_numerical_methods}{}\label{class_numerical_methods}\index{NumericalMethods@{NumericalMethods}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_ae6499c3bdc0b07d9a6e8fd3ee35e27f2}{bisection\+Method}} (std::\+function$<$ double(double)$>$ f, double a, double b, double tolerance=1e-\/10)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_a9c965f04c95d425d9d595cfae46b2546}{newton\+Raphson}} (std::\+function$<$ double(double)$>$ f, std::\+function$<$ double(double)$>$ df, double x0, double tolerance=1e-\/10)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_aabeba36e979d260b45f99ef85869c5f2}{secant\+Method}} (std::\+function$<$ double(double)$>$ f, double x0, double x1, double tolerance=1e-\/10)
+\item 
+static std::\+vector$<$ double $>$ \doxymbox{\hyperlink{class_numerical_methods_ae85ba2bfc41c64e4a0c9ac60d3bc2a04}{polynomial\+Roots}} (const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&p)
+\item 
+static std::\+vector$<$ double $>$ \doxymbox{\hyperlink{class_numerical_methods_a15ccc907ec3634e38f6cec9ed0b0aa3a}{gaussian\+Elimination}} (\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$ A, std::\+vector$<$ double $>$ b)
+\item 
+static std::\+vector$<$ double $>$ \doxymbox{\hyperlink{class_numerical_methods_ab5f1b02af78ad3296e11399b026fcae5}{LUDecomposition}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$ \&A, const std::\+vector$<$ double $>$ \&b)
+\item 
+static std::\+vector$<$ double $>$ \doxymbox{\hyperlink{class_numerical_methods_a996748c00967996efcbfab5464aa8064}{jacobi\+Method}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$ \&A, const std::\+vector$<$ double $>$ \&b, double tolerance=1e-\/10, int max\+Iterations=1000)
+\item 
+static std::\+vector$<$ double $>$ \doxymbox{\hyperlink{class_numerical_methods_ac456525069e0912d1df01d92d6f9b958}{gauss\+Seidel\+Method}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$ \&A, const std::\+vector$<$ double $>$ \&b, double tolerance=1e-\/10, int max\+Iterations=1000)
+\item 
+static \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_numerical_methods_a20faac0bc4f7547f9b217f969ed1246f}{lagrange\+Interpolation}} (const std::\+vector$<$ double $>$ \&x, const std::\+vector$<$ double $>$ \&y)
+\item 
+static \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_numerical_methods_a1379786d3e1aa8f690688532678c9743}{newton\+Interpolation}} (const std::\+vector$<$ double $>$ \&x, const std::\+vector$<$ double $>$ \&y)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_a633a7407d3e0e26e026957fdf70a697f}{spline\+Interpolation}} (const std::\+vector$<$ double $>$ \&x, const std::\+vector$<$ double $>$ \&y, double xi)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_aa16e663962778b41c443f1424ea3a475}{golden\+Section\+Search}} (std::\+function$<$ double(double)$>$ f, double a, double b, double tolerance=1e-\/10)
+\item 
+static std::\+vector$<$ double $>$ \doxymbox{\hyperlink{class_numerical_methods_a07fb64e6244d04db3e383932cd817994}{gradient\+Descent}} (std::\+function$<$ double(const std::\+vector$<$ double $>$ \&)$>$ f, std::\+function$<$ std::\+vector$<$ double $>$(const std::\+vector$<$ double $>$ \&)$>$ grad, std::\+vector$<$ double $>$ x0, double learning\+Rate=0.\+01, double tolerance=1e-\/10)
+\item 
+static std::\+vector$<$ double $>$ \doxymbox{\hyperlink{class_numerical_methods_ae4789854b4a4b571b6a79768a82e4b76}{newton\+Optimization}} (std::\+function$<$ double(const std::\+vector$<$ double $>$ \&)$>$ f, std::\+function$<$ std::\+vector$<$ double $>$(const std::\+vector$<$ double $>$ \&)$>$ grad, std::\+function$<$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$(const std::\+vector$<$ double $>$ \&)$>$ hessian, std::\+vector$<$ double $>$ x0, double tolerance=1e-\/10)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_ae475aef01dcd4cd6162346c616020379}{mean}} (const std::\+vector$<$ double $>$ \&data)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_ab073707dbe25762fe923b5c39c74928c}{variance}} (const std::\+vector$<$ double $>$ \&data)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_ac520605592c71bc7f28c1fe2c7b255ea}{standard\+Deviation}} (const std::\+vector$<$ double $>$ \&data)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_ac3c88a287cc1092e7df30cd949e33895}{correlation}} (const std::\+vector$<$ double $>$ \&x, const std::\+vector$<$ double $>$ \&y)
+\item 
+static std::\+pair$<$ double, double $>$ \doxymbox{\hyperlink{class_numerical_methods_a4eccb93cf01e01834eeae71c4a6476ab}{linear\+Regression}} (const std::\+vector$<$ double $>$ \&x, const std::\+vector$<$ double $>$ \&y)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_a8fda45b5099a3e21dcb8d83c0098ab95}{gamma}} (double x)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_ac2f877233adf5ed8d4008bb1cf7b746b}{beta}} (double a, double b)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_aebd63bed2ad5e5781f8a0b03b80f2c6b}{erf}} (double x)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_a74c00d35db19ad179ed241afc92046c4}{besselJ}} (int n, double x)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_a3566494d9a50a387a9f854ae49ba515d}{legendreP}} (int n, double x)
+\item 
+static double \doxymbox{\hyperlink{class_numerical_methods_ac9a31d60f24423bc2125c12548aa1a6a}{hermiteH}} (int n, double x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8h_source_l00007}{7}} of file \doxymbox{\hyperlink{numerical__methods_8h_source}{numerical\+\_\+methods.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_numerical_methods_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_numerical_methods_a74c00d35db19ad179ed241afc92046c4}\index{NumericalMethods@{NumericalMethods}!besselJ@{besselJ}}
+\index{besselJ@{besselJ}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{besselJ()}{besselJ()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a74c00d35db19ad179ed241afc92046c4} 
+double Numerical\+Methods::\+besselJ (\begin{DoxyParamCaption}\item[{int}]{n}{, }\item[{double}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00732}{732}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ac2f877233adf5ed8d4008bb1cf7b746b}\index{NumericalMethods@{NumericalMethods}!beta@{beta}}
+\index{beta@{beta}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{beta()}{beta()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ac2f877233adf5ed8d4008bb1cf7b746b} 
+double Numerical\+Methods::\+beta (\begin{DoxyParamCaption}\item[{double}]{a}{, }\item[{double}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00707}{707}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ae6499c3bdc0b07d9a6e8fd3ee35e27f2}\index{NumericalMethods@{NumericalMethods}!bisectionMethod@{bisectionMethod}}
+\index{bisectionMethod@{bisectionMethod}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{bisectionMethod()}{bisectionMethod()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ae6499c3bdc0b07d9a6e8fd3ee35e27f2} 
+double Numerical\+Methods::\+bisection\+Method (\begin{DoxyParamCaption}\item[{std::\+function$<$ double(double)$>$}]{f}{, }\item[{double}]{a}{, }\item[{double}]{b}{, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00020}{20}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ac3c88a287cc1092e7df30cd949e33895}\index{NumericalMethods@{NumericalMethods}!correlation@{correlation}}
+\index{correlation@{correlation}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{correlation()}{correlation()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ac3c88a287cc1092e7df30cd949e33895} 
+double Numerical\+Methods::\+correlation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{x}{, }\item[{const std::\+vector$<$ double $>$ \&}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00606}{606}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_aebd63bed2ad5e5781f8a0b03b80f2c6b}\index{NumericalMethods@{NumericalMethods}!erf@{erf}}
+\index{erf@{erf}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{erf()}{erf()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_aebd63bed2ad5e5781f8a0b03b80f2c6b} 
+double Numerical\+Methods::\+erf (\begin{DoxyParamCaption}\item[{double}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00712}{712}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a8fda45b5099a3e21dcb8d83c0098ab95}\index{NumericalMethods@{NumericalMethods}!gamma@{gamma}}
+\index{gamma@{gamma}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{gamma()}{gamma()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a8fda45b5099a3e21dcb8d83c0098ab95} 
+double Numerical\+Methods::\+gamma (\begin{DoxyParamCaption}\item[{double}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00668}{668}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a15ccc907ec3634e38f6cec9ed0b0aa3a}\index{NumericalMethods@{NumericalMethods}!gaussianElimination@{gaussianElimination}}
+\index{gaussianElimination@{gaussianElimination}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{gaussianElimination()}{gaussianElimination()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a15ccc907ec3634e38f6cec9ed0b0aa3a} 
+std::\+vector$<$ double $>$ Numerical\+Methods::\+gaussian\+Elimination (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$}]{A}{, }\item[{std::\+vector$<$ double $>$}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00205}{205}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ac456525069e0912d1df01d92d6f9b958}\index{NumericalMethods@{NumericalMethods}!gaussSeidelMethod@{gaussSeidelMethod}}
+\index{gaussSeidelMethod@{gaussSeidelMethod}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{gaussSeidelMethod()}{gaussSeidelMethod()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ac456525069e0912d1df01d92d6f9b958} 
+std::\+vector$<$ double $>$ Numerical\+Methods::\+gauss\+Seidel\+Method (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$ \&}]{A}{, }\item[{const std::\+vector$<$ double $>$ \&}]{b}{, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}, }\item[{int}]{max\+Iterations}{ = {\ttfamily 1000}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00324}{324}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_aa16e663962778b41c443f1424ea3a475}\index{NumericalMethods@{NumericalMethods}!goldenSectionSearch@{goldenSectionSearch}}
+\index{goldenSectionSearch@{goldenSectionSearch}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{goldenSectionSearch()}{goldenSectionSearch()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_aa16e663962778b41c443f1424ea3a475} 
+double Numerical\+Methods::\+golden\+Section\+Search (\begin{DoxyParamCaption}\item[{std::\+function$<$ double(double)$>$}]{f}{, }\item[{double}]{a}{, }\item[{double}]{b}{, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00460}{460}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a07fb64e6244d04db3e383932cd817994}\index{NumericalMethods@{NumericalMethods}!gradientDescent@{gradientDescent}}
+\index{gradientDescent@{gradientDescent}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{gradientDescent()}{gradientDescent()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a07fb64e6244d04db3e383932cd817994} 
+std::\+vector$<$ double $>$ Numerical\+Methods::\+gradient\+Descent (\begin{DoxyParamCaption}\item[{std::\+function$<$ double(const std::\+vector$<$ double $>$ \&)$>$}]{f}{, }\item[{std::\+function$<$ std::\+vector$<$ double $>$(const std::\+vector$<$ double $>$ \&)$>$}]{grad}{, }\item[{std::\+vector$<$ double $>$}]{x0}{, }\item[{double}]{learning\+Rate}{ = {\ttfamily 0.01}, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00492}{492}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ac9a31d60f24423bc2125c12548aa1a6a}\index{NumericalMethods@{NumericalMethods}!hermiteH@{hermiteH}}
+\index{hermiteH@{hermiteH}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{hermiteH()}{hermiteH()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ac9a31d60f24423bc2125c12548aa1a6a} 
+double Numerical\+Methods::\+hermiteH (\begin{DoxyParamCaption}\item[{int}]{n}{, }\item[{double}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00789}{789}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a996748c00967996efcbfab5464aa8064}\index{NumericalMethods@{NumericalMethods}!jacobiMethod@{jacobiMethod}}
+\index{jacobiMethod@{jacobiMethod}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{jacobiMethod()}{jacobiMethod()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a996748c00967996efcbfab5464aa8064} 
+std::\+vector$<$ double $>$ Numerical\+Methods::\+jacobi\+Method (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$ \&}]{A}{, }\item[{const std::\+vector$<$ double $>$ \&}]{b}{, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}, }\item[{int}]{max\+Iterations}{ = {\ttfamily 1000}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00288}{288}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a20faac0bc4f7547f9b217f969ed1246f}\index{NumericalMethods@{NumericalMethods}!lagrangeInterpolation@{lagrangeInterpolation}}
+\index{lagrangeInterpolation@{lagrangeInterpolation}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{lagrangeInterpolation()}{lagrangeInterpolation()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a20faac0bc4f7547f9b217f969ed1246f} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Numerical\+Methods::\+lagrange\+Interpolation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{x}{, }\item[{const std::\+vector$<$ double $>$ \&}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00362}{362}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a3566494d9a50a387a9f854ae49ba515d}\index{NumericalMethods@{NumericalMethods}!legendreP@{legendreP}}
+\index{legendreP@{legendreP}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{legendreP()}{legendreP()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a3566494d9a50a387a9f854ae49ba515d} 
+double Numerical\+Methods::\+legendreP (\begin{DoxyParamCaption}\item[{int}]{n}{, }\item[{double}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00763}{763}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a4eccb93cf01e01834eeae71c4a6476ab}\index{NumericalMethods@{NumericalMethods}!linearRegression@{linearRegression}}
+\index{linearRegression@{linearRegression}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{linearRegression()}{linearRegression()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a4eccb93cf01e01834eeae71c4a6476ab} 
+std::\+pair$<$ double, double $>$ Numerical\+Methods::\+linear\+Regression (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{x}{, }\item[{const std::\+vector$<$ double $>$ \&}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00636}{636}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ab5f1b02af78ad3296e11399b026fcae5}\index{NumericalMethods@{NumericalMethods}!LUDecomposition@{LUDecomposition}}
+\index{LUDecomposition@{LUDecomposition}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{LUDecomposition()}{LUDecomposition()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ab5f1b02af78ad3296e11399b026fcae5} 
+std::\+vector$<$ double $>$ Numerical\+Methods::\+\+LUDecomposition (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$ \&}]{A}{, }\item[{const std::\+vector$<$ double $>$ \&}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00260}{260}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ae475aef01dcd4cd6162346c616020379}\index{NumericalMethods@{NumericalMethods}!mean@{mean}}
+\index{mean@{mean}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ae475aef01dcd4cd6162346c616020379} 
+double Numerical\+Methods::\+mean (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00576}{576}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a1379786d3e1aa8f690688532678c9743}\index{NumericalMethods@{NumericalMethods}!newtonInterpolation@{newtonInterpolation}}
+\index{newtonInterpolation@{newtonInterpolation}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{newtonInterpolation()}{newtonInterpolation()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a1379786d3e1aa8f690688532678c9743} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Numerical\+Methods::\+newton\+Interpolation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{x}{, }\item[{const std::\+vector$<$ double $>$ \&}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00391}{391}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ae4789854b4a4b571b6a79768a82e4b76}\index{NumericalMethods@{NumericalMethods}!newtonOptimization@{newtonOptimization}}
+\index{newtonOptimization@{newtonOptimization}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{newtonOptimization()}{newtonOptimization()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ae4789854b4a4b571b6a79768a82e4b76} 
+std::\+vector$<$ double $>$ Numerical\+Methods::\+newton\+Optimization (\begin{DoxyParamCaption}\item[{std::\+function$<$ double(const std::\+vector$<$ double $>$ \&)$>$}]{f}{, }\item[{std::\+function$<$ std::\+vector$<$ double $>$(const std::\+vector$<$ double $>$ \&)$>$}]{grad}{, }\item[{std::\+function$<$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ double $>$(const std::\+vector$<$ double $>$ \&)$>$}]{hessian}{, }\item[{std::\+vector$<$ double $>$}]{x0}{, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00525}{525}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a9c965f04c95d425d9d595cfae46b2546}\index{NumericalMethods@{NumericalMethods}!newtonRaphson@{newtonRaphson}}
+\index{newtonRaphson@{newtonRaphson}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{newtonRaphson()}{newtonRaphson()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a9c965f04c95d425d9d595cfae46b2546} 
+double Numerical\+Methods::\+newton\+Raphson (\begin{DoxyParamCaption}\item[{std::\+function$<$ double(double)$>$}]{f}{, }\item[{std::\+function$<$ double(double)$>$}]{df}{, }\item[{double}]{x0}{, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00057}{57}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ae85ba2bfc41c64e4a0c9ac60d3bc2a04}\index{NumericalMethods@{NumericalMethods}!polynomialRoots@{polynomialRoots}}
+\index{polynomialRoots@{polynomialRoots}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{polynomialRoots()}{polynomialRoots()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ae85ba2bfc41c64e4a0c9ac60d3bc2a04} 
+std::\+vector$<$ double $>$ Numerical\+Methods::\+polynomial\+Roots (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00121}{121}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_aabeba36e979d260b45f99ef85869c5f2}\index{NumericalMethods@{NumericalMethods}!secantMethod@{secantMethod}}
+\index{secantMethod@{secantMethod}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{secantMethod()}{secantMethod()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_aabeba36e979d260b45f99ef85869c5f2} 
+double Numerical\+Methods::\+secant\+Method (\begin{DoxyParamCaption}\item[{std::\+function$<$ double(double)$>$}]{f}{, }\item[{double}]{x0}{, }\item[{double}]{x1}{, }\item[{double}]{tolerance}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00089}{89}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_a633a7407d3e0e26e026957fdf70a697f}\index{NumericalMethods@{NumericalMethods}!splineInterpolation@{splineInterpolation}}
+\index{splineInterpolation@{splineInterpolation}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{splineInterpolation()}{splineInterpolation()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_a633a7407d3e0e26e026957fdf70a697f} 
+double Numerical\+Methods::\+spline\+Interpolation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{x}{, }\item[{const std::\+vector$<$ double $>$ \&}]{y}{, }\item[{double}]{xi}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00430}{430}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ac520605592c71bc7f28c1fe2c7b255ea}\index{NumericalMethods@{NumericalMethods}!standardDeviation@{standardDeviation}}
+\index{standardDeviation@{standardDeviation}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{standardDeviation()}{standardDeviation()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ac520605592c71bc7f28c1fe2c7b255ea} 
+double Numerical\+Methods::\+standard\+Deviation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00601}{601}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+\Hypertarget{class_numerical_methods_ab073707dbe25762fe923b5c39c74928c}\index{NumericalMethods@{NumericalMethods}!variance@{variance}}
+\index{variance@{variance}!NumericalMethods@{NumericalMethods}}
+\doxysubsubsection{\texorpdfstring{variance()}{variance()}}
+{\footnotesize\ttfamily \label{class_numerical_methods_ab073707dbe25762fe923b5c39c74928c} 
+double Numerical\+Methods::\+variance (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{numerical__methods_8cpp_source_l00585}{585}} of file \doxymbox{\hyperlink{numerical__methods_8cpp_source}{numerical\+\_\+methods.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+numerical\+\_\+methods.\+h\item 
+source/\+numerical\+\_\+methods.\+cpp\end{DoxyCompactItemize}

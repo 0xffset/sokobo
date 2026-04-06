@@ -1,0 +1,179 @@
+\doxysection{Function Class Reference}
+\hypertarget{class_function}{}\label{class_function}\index{Function@{Function}}
+Inheritance diagram for Function:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_function}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_function_a41bf0df2017c5e35b608cd7f1780834c}{Function}} (const std::\+string \&fname, std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ arg)
+\item 
+std::\+string \doxymbox{\hyperlink{class_function_a5d5a36161be88d28c03c120e35816e31}{to\+String}} () const override
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_function_aa11477f05d8997195fc67d9cad0d17b5}{derivative}} (const std::\+string \&var) const override
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_function_ae72495d7dff7f2678d5337ed68392758}{simplify}} () const override
+\item 
+double \doxymbox{\hyperlink{class_function_a7bdd4de13a3cd47ac16c0d6a218dc933}{evaluate}} (const std::\+map$<$ std::\+string, double $>$ \&vars=\{\}) const override
+\item 
+Type \doxymbox{\hyperlink{class_function_aa40cfeeae3ece062944473a6fa6a37f5}{get\+Type}} () const override
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_function_a039484549f8a85fddd1022d2331f6b2b}{clone}} () const override
+\item 
+std::\+string \doxymbox{\hyperlink{class_function_a694a9144c81b208d9056dfcedcbe63e5}{get\+Function\+Name}} () const
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_function_ab4b879921414a89c43246ead058e5548}{get\+Argument}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \doxymbox{\hyperlink{class_expression}{Expression}}}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Type} \{ \newline
+{\bfseries CONSTANT}
+, {\bfseries VARIABLE}
+, {\bfseries BINARY\+\_\+\+OP}
+, {\bfseries UNARY\+\_\+\+OP}
+, \newline
+{\bfseries FUNCTION}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00107}{107}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_function_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_function_a41bf0df2017c5e35b608cd7f1780834c}\index{Function@{Function}!Function@{Function}}
+\index{Function@{Function}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{Function()}{Function()}}
+{\footnotesize\ttfamily \label{class_function_a41bf0df2017c5e35b608cd7f1780834c} 
+Function::\+\+Function (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{fname}{, }\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{arg}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00323}{323}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_function_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_function_a039484549f8a85fddd1022d2331f6b2b}\index{Function@{Function}!clone@{clone}}
+\index{clone@{clone}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \label{class_function_a039484549f8a85fddd1022d2331f6b2b} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Function::\+clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00477}{477}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_function_aa11477f05d8997195fc67d9cad0d17b5}\index{Function@{Function}!derivative@{derivative}}
+\index{derivative@{derivative}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{derivative()}{derivative()}}
+{\footnotesize\ttfamily \label{class_function_aa11477f05d8997195fc67d9cad0d17b5} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Function::\+derivative (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{var}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00334}{334}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_function_a7bdd4de13a3cd47ac16c0d6a218dc933}\index{Function@{Function}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{class_function_a7bdd4de13a3cd47ac16c0d6a218dc933} 
+double Function::\+evaluate (\begin{DoxyParamCaption}\item[{const std::\+map$<$ std::\+string, double $>$ \&}]{vars}{ = {\ttfamily \{\}}}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00431}{431}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_function_ab4b879921414a89c43246ead058e5548}\index{Function@{Function}!getArgument@{getArgument}}
+\index{getArgument@{getArgument}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{getArgument()}{getArgument()}}
+{\footnotesize\ttfamily \label{class_function_ab4b879921414a89c43246ead058e5548} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Function::\+get\+Argument (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00125}{125}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+\Hypertarget{class_function_a694a9144c81b208d9056dfcedcbe63e5}\index{Function@{Function}!getFunctionName@{getFunctionName}}
+\index{getFunctionName@{getFunctionName}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{getFunctionName()}{getFunctionName()}}
+{\footnotesize\ttfamily \label{class_function_a694a9144c81b208d9056dfcedcbe63e5} 
+std::\+string Function::\+get\+Function\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00123}{123}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+\Hypertarget{class_function_aa40cfeeae3ece062944473a6fa6a37f5}\index{Function@{Function}!getType@{getType}}
+\index{getType@{getType}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_function_aa40cfeeae3ece062944473a6fa6a37f5} 
+Expression::\+\+Type Function::\+get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00472}{472}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_function_ae72495d7dff7f2678d5337ed68392758}\index{Function@{Function}!simplify@{simplify}}
+\index{simplify@{simplify}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{simplify()}{simplify()}}
+{\footnotesize\ttfamily \label{class_function_ae72495d7dff7f2678d5337ed68392758} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Function::\+simplify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00382}{382}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_function_a5d5a36161be88d28c03c120e35816e31}\index{Function@{Function}!toString@{toString}}
+\index{toString@{toString}!Function@{Function}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_function_a5d5a36161be88d28c03c120e35816e31} 
+std::\+string Function::\+to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00329}{329}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+expression.\+h\item 
+source/\+expression.\+cpp\end{DoxyCompactItemize}

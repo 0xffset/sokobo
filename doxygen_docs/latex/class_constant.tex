@@ -1,0 +1,167 @@
+\doxysection{Constant Class Reference}
+\hypertarget{class_constant}{}\label{class_constant}\index{Constant@{Constant}}
+Inheritance diagram for Constant:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_constant}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_constant_ae2b5a303f88a6a0d0b2aa730894b8aa8}{Constant}} (double val)
+\item 
+std::\+string \doxymbox{\hyperlink{class_constant_a7b26bdaa26559595fd3a6846f7df3289}{to\+String}} () const override
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_constant_aa5836d13ce3886096fc07bda4e2cdf33}{derivative}} (const std::\+string \&var) const override
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_constant_a8dabf684fc660c1eddf51406849c1d2c}{simplify}} () const override
+\item 
+double \doxymbox{\hyperlink{class_constant_a6c0a2b38116f93823a27c193b458c5e9}{evaluate}} (const std::\+map$<$ std::\+string, double $>$ \&vars=\{\}) const override
+\item 
+Type \doxymbox{\hyperlink{class_constant_a3f052956f5d1f8acaa9dd2845d715f76}{get\+Type}} () const override
+\item 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_constant_aa291294a566b4f04cfa3ba4e85faf682}{clone}} () const override
+\item 
+double \doxymbox{\hyperlink{class_constant_ad06f2cc9040e3f19ab06e01962baa0a3}{get\+Value}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \doxymbox{\hyperlink{class_expression}{Expression}}}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Type} \{ \newline
+{\bfseries CONSTANT}
+, {\bfseries VARIABLE}
+, {\bfseries BINARY\+\_\+\+OP}
+, {\bfseries UNARY\+\_\+\+OP}
+, \newline
+{\bfseries FUNCTION}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00030}{30}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_constant_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_constant_ae2b5a303f88a6a0d0b2aa730894b8aa8}\index{Constant@{Constant}!Constant@{Constant}}
+\index{Constant@{Constant}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}}
+{\footnotesize\ttfamily \label{class_constant_ae2b5a303f88a6a0d0b2aa730894b8aa8} 
+Constant::\+\+Constant (\begin{DoxyParamCaption}\item[{double}]{val}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_constant_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_constant_aa291294a566b4f04cfa3ba4e85faf682}\index{Constant@{Constant}!clone@{clone}}
+\index{clone@{clone}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \label{class_constant_aa291294a566b4f04cfa3ba4e85faf682} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Constant::\+clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00044}{44}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_constant_aa5836d13ce3886096fc07bda4e2cdf33}\index{Constant@{Constant}!derivative@{derivative}}
+\index{derivative@{derivative}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{derivative()}{derivative()}}
+{\footnotesize\ttfamily \label{class_constant_aa5836d13ce3886096fc07bda4e2cdf33} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Constant::\+derivative (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{var}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00024}{24}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_constant_a6c0a2b38116f93823a27c193b458c5e9}\index{Constant@{Constant}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{class_constant_a6c0a2b38116f93823a27c193b458c5e9} 
+double Constant::\+evaluate (\begin{DoxyParamCaption}\item[{const std::\+map$<$ std::\+string, double $>$ \&}]{vars}{ = {\ttfamily \{\}}}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00034}{34}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_constant_a3f052956f5d1f8acaa9dd2845d715f76}\index{Constant@{Constant}!getType@{getType}}
+\index{getType@{getType}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_constant_a3f052956f5d1f8acaa9dd2845d715f76} 
+Expression::\+\+Type Constant::\+get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00039}{39}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_constant_ad06f2cc9040e3f19ab06e01962baa0a3}\index{Constant@{Constant}!getValue@{getValue}}
+\index{getValue@{getValue}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \label{class_constant_ad06f2cc9040e3f19ab06e01962baa0a3} 
+double Constant::\+get\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00045}{45}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+\Hypertarget{class_constant_a8dabf684fc660c1eddf51406849c1d2c}\index{Constant@{Constant}!simplify@{simplify}}
+\index{simplify@{simplify}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{simplify()}{simplify()}}
+{\footnotesize\ttfamily \label{class_constant_a8dabf684fc660c1eddf51406849c1d2c} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Constant::\+simplify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00029}{29}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+\Hypertarget{class_constant_a7b26bdaa26559595fd3a6846f7df3289}\index{Constant@{Constant}!toString@{toString}}
+\index{toString@{toString}!Constant@{Constant}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_constant_a7b26bdaa26559595fd3a6846f7df3289} 
+std::\+string Constant::\+to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_expression}{Expression}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8cpp_source_l00016}{16}} of file \doxymbox{\hyperlink{expression_8cpp_source}{expression.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+expression.\+h\item 
+source/\+expression.\+cpp\end{DoxyCompactItemize}

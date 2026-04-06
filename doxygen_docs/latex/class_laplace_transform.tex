@@ -1,0 +1,143 @@
+\doxysection{Laplace\+Transform Class Reference}
+\hypertarget{class_laplace_transform}{}\label{class_laplace_transform}\index{LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_laplace_transform_ae08787f93bdc6b1fba4feaffd977343f}{transform}} (std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ expr, const std::\+string \&var="{}t"{})
+\item 
+static std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_laplace_transform_a063036bc1c424d2566f7fcb6dd1632c6}{inverse\+Transform}} (std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ expr, const std::\+string \&var="{}s"{})
+\item 
+static \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} \doxymbox{\hyperlink{class_laplace_transform_ae220f0f8831bfb11f1bd0b30225d8a9c}{numerical\+Transform}} (std::\+function$<$ double(double)$>$ f, \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} s, double T=10.\+0)
+\item 
+static std::\+function$<$ double(double)$>$ \doxymbox{\hyperlink{class_laplace_transform_ac9b2d81a989449fde7fcef01366b50e9}{numerical\+Inverse\+Transform}} (std::\+function$<$ \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}}(\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}})$>$ F, double t\+\_\+max=10.\+0)
+\item 
+static \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} \doxymbox{\hyperlink{class_laplace_transform_a586d1975cf8029c7c44eb156cdcd1daf}{exponential\+Transform}} (double a, \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} s)
+\item 
+static \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} \doxymbox{\hyperlink{class_laplace_transform_a1ec6c3675b0c945797160637c6aad7c4}{sinusoidal\+Transform}} (double omega, \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} s)
+\item 
+static \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} \doxymbox{\hyperlink{class_laplace_transform_abfc9450f75ca728bb0791a1485127602}{polynomial\+Transform}} (const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&p, \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} s)
+\item 
+static std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_laplace_transform_a31af1a7150a66f328707553ca8f2806d}{convolution}} (std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ f1, std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ f2)
+\item 
+static std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_laplace_transform_a191dff5010a41e75b601c5e09e096a64}{time\+Shift}} (std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ expr, double a)
+\item 
+static std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ \doxymbox{\hyperlink{class_laplace_transform_a5d133988c1965fe62113cb2d24917adf}{frequency\+Shift}} (std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ expr, double a)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8h_source_l00008}{8}} of file \doxymbox{\hyperlink{laplace_8h_source}{laplace.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_laplace_transform_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_laplace_transform_a31af1a7150a66f328707553ca8f2806d}\index{LaplaceTransform@{LaplaceTransform}!convolution@{convolution}}
+\index{convolution@{convolution}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{convolution()}{convolution()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_a31af1a7150a66f328707553ca8f2806d} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Laplace\+Transform::\+convolution (\begin{DoxyParamCaption}\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{f1}{, }\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{f2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00254}{254}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_a586d1975cf8029c7c44eb156cdcd1daf}\index{LaplaceTransform@{LaplaceTransform}!exponentialTransform@{exponentialTransform}}
+\index{exponentialTransform@{exponentialTransform}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{exponentialTransform()}{exponentialTransform()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_a586d1975cf8029c7c44eb156cdcd1daf} 
+\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} Laplace\+Transform::\+exponential\+Transform (\begin{DoxyParamCaption}\item[{double}]{a}{, }\item[{\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00216}{216}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_a5d133988c1965fe62113cb2d24917adf}\index{LaplaceTransform@{LaplaceTransform}!frequencyShift@{frequencyShift}}
+\index{frequencyShift@{frequencyShift}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{frequencyShift()}{frequencyShift()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_a5d133988c1965fe62113cb2d24917adf} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Laplace\+Transform::\+frequency\+Shift (\begin{DoxyParamCaption}\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{expr}{, }\item[{double}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00283}{283}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_a063036bc1c424d2566f7fcb6dd1632c6}\index{LaplaceTransform@{LaplaceTransform}!inverseTransform@{inverseTransform}}
+\index{inverseTransform@{inverseTransform}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{inverseTransform()}{inverseTransform()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_a063036bc1c424d2566f7fcb6dd1632c6} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Laplace\+Transform::\+inverse\+Transform (\begin{DoxyParamCaption}\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{expr}{, }\item[{const std::\+string \&}]{var}{ = {\ttfamily "{}s"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00103}{103}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_ac9b2d81a989449fde7fcef01366b50e9}\index{LaplaceTransform@{LaplaceTransform}!numericalInverseTransform@{numericalInverseTransform}}
+\index{numericalInverseTransform@{numericalInverseTransform}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{numericalInverseTransform()}{numericalInverseTransform()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_ac9b2d81a989449fde7fcef01366b50e9} 
+std::\+function$<$ double(double)$>$ Laplace\+Transform::\+numerical\+Inverse\+Transform (\begin{DoxyParamCaption}\item[{std::\+function$<$ \doxymbox{\hyperlink{class_complex_number}{Complex\+Number}}(\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}})$>$}]{F}{, }\item[{double}]{t\+\_\+max}{ = {\ttfamily 10.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00173}{173}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_ae220f0f8831bfb11f1bd0b30225d8a9c}\index{LaplaceTransform@{LaplaceTransform}!numericalTransform@{numericalTransform}}
+\index{numericalTransform@{numericalTransform}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{numericalTransform()}{numericalTransform()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_ae220f0f8831bfb11f1bd0b30225d8a9c} 
+\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} Laplace\+Transform::\+numerical\+Transform (\begin{DoxyParamCaption}\item[{std::\+function$<$ double(double)$>$}]{f}{, }\item[{\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}}}]{s}{, }\item[{double}]{T}{ = {\ttfamily 10.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00136}{136}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_abfc9450f75ca728bb0791a1485127602}\index{LaplaceTransform@{LaplaceTransform}!polynomialTransform@{polynomialTransform}}
+\index{polynomialTransform@{polynomialTransform}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{polynomialTransform()}{polynomialTransform()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_abfc9450f75ca728bb0791a1485127602} 
+\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} Laplace\+Transform::\+polynomial\+Transform (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&}]{p}{, }\item[{\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00228}{228}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_a1ec6c3675b0c945797160637c6aad7c4}\index{LaplaceTransform@{LaplaceTransform}!sinusoidalTransform@{sinusoidalTransform}}
+\index{sinusoidalTransform@{sinusoidalTransform}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{sinusoidalTransform()}{sinusoidalTransform()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_a1ec6c3675b0c945797160637c6aad7c4} 
+\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}} Laplace\+Transform::\+sinusoidal\+Transform (\begin{DoxyParamCaption}\item[{double}]{omega}{, }\item[{\doxymbox{\hyperlink{class_complex_number}{Complex\+Number}}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00222}{222}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_a191dff5010a41e75b601c5e09e096a64}\index{LaplaceTransform@{LaplaceTransform}!timeShift@{timeShift}}
+\index{timeShift@{timeShift}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{timeShift()}{timeShift()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_a191dff5010a41e75b601c5e09e096a64} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Laplace\+Transform::\+time\+Shift (\begin{DoxyParamCaption}\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{expr}{, }\item[{double}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00268}{268}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+\Hypertarget{class_laplace_transform_ae08787f93bdc6b1fba4feaffd977343f}\index{LaplaceTransform@{LaplaceTransform}!transform@{transform}}
+\index{transform@{transform}!LaplaceTransform@{LaplaceTransform}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily \label{class_laplace_transform_ae08787f93bdc6b1fba4feaffd977343f} 
+std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ Laplace\+Transform::\+transform (\begin{DoxyParamCaption}\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$}]{expr}{, }\item[{const std::\+string \&}]{var}{ = {\ttfamily "{}t"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{laplace_8cpp_source_l00063}{63}} of file \doxymbox{\hyperlink{laplace_8cpp_source}{laplace.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+laplace.\+h\item 
+source/\+laplace.\+cpp\end{DoxyCompactItemize}

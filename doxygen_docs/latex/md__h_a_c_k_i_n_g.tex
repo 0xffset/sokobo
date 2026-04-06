@@ -1,0 +1,96 @@
+\chapter{Hacking }
+\hypertarget{md__h_a_c_k_i_n_g}{}\label{md__h_a_c_k_i_n_g}\index{Hacking@{Hacking}}
+\label{md__h_a_c_k_i_n_g_autotoc_md10}%
+\Hypertarget{md__h_a_c_k_i_n_g_autotoc_md10}%
+
+
+Here is some wisdom to help you build and test this project as a developer and potential contributor.
+
+If you plan to contribute, please read the \doxysectlink{md__c_o_n_t_r_i_b_u_t_i_n_g}{CONTRIBUTING}{0} guide.\hypertarget{md__h_a_c_k_i_n_g_autotoc_md11}{}\doxysection{\texorpdfstring{Developer mode}{Developer mode}}\label{md__h_a_c_k_i_n_g_autotoc_md11}
+Build system targets that are only useful for developers of this project are hidden if the {\ttfamily sokobo\+\_\+\+DEVELOPER\+\_\+\+MODE} option is disabled. Enabling this option makes tests and other developer targets and options available. Not enabling this option means that you are a consumer of this project and thus you have no need for these targets and options.
+
+Developer mode is always set to on in CI workflows.\hypertarget{md__h_a_c_k_i_n_g_autotoc_md12}{}\doxysubsection{\texorpdfstring{Presets}{Presets}}\label{md__h_a_c_k_i_n_g_autotoc_md12}
+This project makes use of \href{https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html}{\texttt{presets}} to simplify the process of configuring the project. As a developer, you are recommended to always have the \href{https://cmake.org/download/}{\texttt{latest CMake version}} installed to make use of the latest Quality-\/of-\/\+Life additions.
+
+You have a few options to pass {\ttfamily sokobo\+\_\+\+DEVELOPER\+\_\+\+MODE} to the configure command, but this project prefers to use presets.
+
+As a developer, you should create a {\ttfamily CMake\+User\+Presets.\+json} file at the root of the project:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}version"{}:\ 2,}
+\DoxyCodeLine{\ \ "{}cmakeMinimumRequired"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}major"{}:\ 3,}
+\DoxyCodeLine{\ \ \ \ "{}minor"{}:\ 14,}
+\DoxyCodeLine{\ \ \ \ "{}patch"{}:\ 0}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}configurePresets"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}name"{}:\ "{}dev"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}binaryDir"{}:\ "{}\$\{sourceDir\}/build/dev"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}inherits"{}:\ ["{}dev-\/mode"{},\ "{}conan"{},\ "{}ci-\/<os>"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ "{}cacheVariables"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}CMAKE\_BUILD\_TYPE"{}:\ "{}Debug"{}}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ ],}
+\DoxyCodeLine{\ \ "{}buildPresets"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}name"{}:\ "{}dev"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}configurePreset"{}:\ "{}dev"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}configuration"{}:\ "{}Debug"{}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ ],}
+\DoxyCodeLine{\ \ "{}testPresets"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}name"{}:\ "{}dev"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}configurePreset"{}:\ "{}dev"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}configuration"{}:\ "{}Debug"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}output"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}outputOnFailure"{}:\ true}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+You should replace {\ttfamily \texorpdfstring{$<$}{<}os\texorpdfstring{$>$}{>}} in your newly created presets file with the name of the operating system you have, which may be {\ttfamily win64}, {\ttfamily linux} or {\ttfamily darwin}. You can see what these correspond to in the \href{CMakePresets.json}{\texttt{{\ttfamily CMake\+Presets.\+json}}} file.
+
+{\ttfamily CMake\+User\+Presets.\+json} is also the perfect place in which you can put all sorts of things that you would otherwise want to pass to the configure command in the terminal.
+
+\begin{quote}
+{\bfseries{Note}} Some editors are pretty greedy with how they open projects with presets. Some just randomly pick a preset and start configuring without your consent, which can be confusing. Make sure that your editor configures when you actually want it to, for example in CLion you have to make sure only the {\ttfamily dev-\/dev preset} has {\ttfamily Enable profile} ticked in {\ttfamily File \texorpdfstring{$>$}{>} Settings... \texorpdfstring{$>$}{>} Build, Execution, Deployment \texorpdfstring{$>$}{>} CMake} and in Visual Studio you have to set the option {\ttfamily Never run configure step automatically} in {\ttfamily Tools \texorpdfstring{$>$}{>} Options \texorpdfstring{$>$}{>} CMake} {\bfseries{prior to opening the project}}, after which you can manually configure using {\ttfamily Project \texorpdfstring{$>$}{>} Configure Cache}. \end{quote}
+\hypertarget{md__h_a_c_k_i_n_g_autotoc_md13}{}\doxysubsection{\texorpdfstring{Dependency manager}{Dependency manager}}\label{md__h_a_c_k_i_n_g_autotoc_md13}
+The above preset will make use of the \href{https://conan.io/}{\texttt{conan}} dependency manager. After installing it, make sure you have a \href{https://docs.conan.io/2/reference/config_files/profiles.html}{\texttt{Conan profile}} setup, then download the dependencies and generate the necessary CMake files by running this command in the project root:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{conan\ install\ .\ -\/s\ build\_type=Debug\ -\/b\ missing}
+
+\end{DoxyCode}
+
+
+Note that if your conan profile does not specify the same compiler, standard level, build type and runtime library as CMake, then that could potentially cause issues. See the link above for profiles documentation.\hypertarget{md__h_a_c_k_i_n_g_autotoc_md14}{}\doxysubsection{\texorpdfstring{Configure, build and test}{Configure, build and test}}\label{md__h_a_c_k_i_n_g_autotoc_md14}
+If you followed the above instructions, then you can configure, build and test the project respectively with the following commands from the project root on any operating system with any build system:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ -\/-\/preset=dev}
+\DoxyCodeLine{cmake\ -\/-\/build\ -\/-\/preset=dev}
+\DoxyCodeLine{ctest\ -\/-\/preset=dev}
+
+\end{DoxyCode}
+
+
+If you are using a compatible editor (e.\+g. VSCode) or IDE (e.\+g. CLion, VS), you will also be able to select the above created user presets for automatic integration.
+
+Please note that both the build and test commands accept a {\ttfamily -\/j} flag to specify the number of jobs to use, which should ideally be specified to the number of threads your CPU has. You may also want to add that to your preset using the {\ttfamily jobs} property, see the \href{https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html}{\texttt{presets documentation}} for more details.\hypertarget{md__h_a_c_k_i_n_g_autotoc_md15}{}\doxysubsection{\texorpdfstring{Developer mode targets}{Developer mode targets}}\label{md__h_a_c_k_i_n_g_autotoc_md15}
+These are targets you may invoke using the build command from above, with an additional {\ttfamily -\/t \texorpdfstring{$<$}{<}target\texorpdfstring{$>$}{>}} flag:\+\hypertarget{md__h_a_c_k_i_n_g_autotoc_md16}{}\doxysubsubsection{\texorpdfstring{{\ttfamily coverage}}{{\ttfamily coverage}}}\label{md__h_a_c_k_i_n_g_autotoc_md16}
+Available if {\ttfamily ENABLE\+\_\+\+COVERAGE} is enabled. This target processes the output of the previously run tests when built with coverage configuration. The commands this target runs can be found in the {\ttfamily COVERAGE\+\_\+\+TRACE\+\_\+\+COMMAND} and {\ttfamily COVERAGE\+\_\+\+HTML\+\_\+\+COMMAND} cache variables. The trace command produces an info file by default, which can be submitted to services with CI integration. The HTML command uses the trace command\textquotesingle{}s output to generate an HTML document to {\ttfamily \texorpdfstring{$<$}{<}binary-\/dir\texorpdfstring{$>$}{>}/\+coverage\+\_\+html} by default.\hypertarget{md__h_a_c_k_i_n_g_autotoc_md17}{}\doxysubsubsection{\texorpdfstring{{\ttfamily docs}}{{\ttfamily docs}}}\label{md__h_a_c_k_i_n_g_autotoc_md17}
+Available if {\ttfamily BUILD\+\_\+\+MCSS\+\_\+\+DOCS} is enabled. Builds to documentation using Doxygen and m.\+css. The output will go to {\ttfamily \texorpdfstring{$<$}{<}binary-\/dir\texorpdfstring{$>$}{>}/\+docs} by default (customizable using {\ttfamily DOXYGEN\+\_\+\+OUTPUT\+\_\+\+DIRECTORY}).\hypertarget{md__h_a_c_k_i_n_g_autotoc_md18}{}\doxysubsubsection{\texorpdfstring{{\ttfamily format-\/check} and {\ttfamily format-\/fix}}{{\ttfamily format-\/check} and {\ttfamily format-\/fix}}}\label{md__h_a_c_k_i_n_g_autotoc_md18}
+These targets run the clang-\/format tool on the codebase to check errors and to fix them respectively. Customization available using the {\ttfamily FORMAT\+\_\+\+PATTERNS} and {\ttfamily FORMAT\+\_\+\+COMMAND} cache variables.\hypertarget{md__h_a_c_k_i_n_g_autotoc_md19}{}\doxysubsubsection{\texorpdfstring{{\ttfamily run-\/exe}}{{\ttfamily run-\/exe}}}\label{md__h_a_c_k_i_n_g_autotoc_md19}
+Runs the executable target {\ttfamily sokobo\+\_\+exe}.\hypertarget{md__h_a_c_k_i_n_g_autotoc_md20}{}\doxysubsubsection{\texorpdfstring{{\ttfamily spell-\/check} and {\ttfamily spell-\/fix}}{{\ttfamily spell-\/check} and {\ttfamily spell-\/fix}}}\label{md__h_a_c_k_i_n_g_autotoc_md20}
+These targets run the codespell tool on the codebase to check errors and to fix them respectively. Customization available using the {\ttfamily SPELL\+\_\+\+COMMAND} cache variable. 

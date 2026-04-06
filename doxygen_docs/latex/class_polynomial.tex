@@ -1,0 +1,271 @@
+\doxysection{Polynomial Class Reference}
+\hypertarget{class_polynomial}{}\label{class_polynomial}\index{Polynomial@{Polynomial}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_polynomial_a9e7af75fafbe593212a34958255e5248}{Polynomial}} (const std::\+vector$<$ double $>$ \&coeffs)
+\item 
+\doxymbox{\hyperlink{class_polynomial_a59e787d98b0330add81c90b2cb0b9191}{Polynomial}} (double constant=0)
+\item 
+int \doxymbox{\hyperlink{class_polynomial_a2c8f9fa6f9746a435f0a4d1fc52db14b}{degree}} () const
+\item 
+double \doxymbox{\hyperlink{class_polynomial_ac56fbed80b306fabdbd0c02fe3dbb81b}{get\+Coeff}} (int i) const
+\item 
+void \doxymbox{\hyperlink{class_polynomial_a8e16ff723aad4d9afdc8aace540ca244}{set\+Coeff}} (int i, double val)
+\item 
+int \doxymbox{\hyperlink{class_polynomial_af3c0ee1e7104cf9363588b9886bb9448}{get\+Degree}} () const
+\item 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_a8242168d3de005c486f66034f1c1ccc7}{operator+}} (const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&other) const
+\item 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_ad13134583073c5103033b2053a9e6aec}{operator-\/}} (const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&other) const
+\item 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_a693a6a81593ba21cacc5b5f58310c319}{operator\texorpdfstring{$\ast$}{*}}} (const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&other) const
+\item 
+std::\+pair$<$ \doxymbox{\hyperlink{class_polynomial}{Polynomial}}, \doxymbox{\hyperlink{class_polynomial}{Polynomial}} $>$ \doxymbox{\hyperlink{class_polynomial_afd10ece7aa0376a1e72e7829b02e8854}{divide}} (const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&divisor) const
+\item 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_a734face83270fd17f2da956b51b07ceb}{gcd}} (const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&other) const
+\item 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_a862d2a1cd6ef5f0fd160b35f40c2d9e7}{derivative}} () const
+\item 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_ac53f607862cb5936136d26b687ac04fc}{integral}} () const
+\item 
+std::\+vector$<$ std::\+complex$<$ double $>$ $>$ \doxymbox{\hyperlink{class_polynomial_aae73dbb88bbde68ecfb91c084dd02ce3}{roots}} () const
+\item 
+double \doxymbox{\hyperlink{class_polynomial_a1e9079eb7d7438fd14c4788d6131f8c7}{evaluate}} (double x) const
+\item 
+std::\+complex$<$ double $>$ \doxymbox{\hyperlink{class_polynomial_a61f095ae00cdac14191a5091bcd85c85}{evaluate}} (std::\+complex$<$ double $>$ x) const
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_polynomial}{Polynomial}} $>$ \doxymbox{\hyperlink{class_polynomial_a162786326b037112e386e62f0c1d29b8}{factor}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_polynomial_affe46c12da2d77178de8271bd264c156}{to\+String}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_a62511d8296d4a3f1f33bc0ee286e62dd}{lagrange\+Interpolation}} (const std::\+vector$<$ double $>$ \&x, const std::\+vector$<$ double $>$ \&y)
+\item 
+static \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \doxymbox{\hyperlink{class_polynomial_afe882077e9dfaa2e59dfec48e5511473}{newton\+Interpolation}} (const std::\+vector$<$ double $>$ \&x, const std::\+vector$<$ double $>$ \&y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8h_source_l00006}{6}} of file \doxymbox{\hyperlink{polynomial_8h_source}{polynomial.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_polynomial_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_polynomial_a9e7af75fafbe593212a34958255e5248}\index{Polynomial@{Polynomial}!Polynomial@{Polynomial}}
+\index{Polynomial@{Polynomial}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{Polynomial()}{Polynomial()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_polynomial_a9e7af75fafbe593212a34958255e5248} 
+Polynomial::\+\+Polynomial (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{coeffs}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00009}{9}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a59e787d98b0330add81c90b2cb0b9191}\index{Polynomial@{Polynomial}!Polynomial@{Polynomial}}
+\index{Polynomial@{Polynomial}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{Polynomial()}{Polynomial()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_polynomial_a59e787d98b0330add81c90b2cb0b9191} 
+Polynomial::\+\+Polynomial (\begin{DoxyParamCaption}\item[{double}]{constant}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00015}{15}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_polynomial_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_polynomial_a2c8f9fa6f9746a435f0a4d1fc52db14b}\index{Polynomial@{Polynomial}!degree@{degree}}
+\index{degree@{degree}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{degree()}{degree()}}
+{\footnotesize\ttfamily \label{class_polynomial_a2c8f9fa6f9746a435f0a4d1fc52db14b} 
+int Polynomial::\+degree (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00030}{30}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a862d2a1cd6ef5f0fd160b35f40c2d9e7}\index{Polynomial@{Polynomial}!derivative@{derivative}}
+\index{derivative@{derivative}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{derivative()}{derivative()}}
+{\footnotesize\ttfamily \label{class_polynomial_a862d2a1cd6ef5f0fd160b35f40c2d9e7} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+derivative (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00147}{147}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_afd10ece7aa0376a1e72e7829b02e8854}\index{Polynomial@{Polynomial}!divide@{divide}}
+\index{divide@{divide}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{divide()}{divide()}}
+{\footnotesize\ttfamily \label{class_polynomial_afd10ece7aa0376a1e72e7829b02e8854} 
+std::\+pair$<$ \doxymbox{\hyperlink{class_polynomial}{Polynomial}}, \doxymbox{\hyperlink{class_polynomial}{Polynomial}} $>$ Polynomial::\+divide (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&}]{divisor}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00105}{105}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a1e9079eb7d7438fd14c4788d6131f8c7}\index{Polynomial@{Polynomial}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_polynomial_a1e9079eb7d7438fd14c4788d6131f8c7} 
+double Polynomial::\+evaluate (\begin{DoxyParamCaption}\item[{double}]{x}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00170}{170}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a61f095ae00cdac14191a5091bcd85c85}\index{Polynomial@{Polynomial}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_polynomial_a61f095ae00cdac14191a5091bcd85c85} 
+std::\+complex$<$ double $>$ Polynomial::\+evaluate (\begin{DoxyParamCaption}\item[{std::\+complex$<$ double $>$}]{x}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00187}{187}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a162786326b037112e386e62f0c1d29b8}\index{Polynomial@{Polynomial}!factor@{factor}}
+\index{factor@{factor}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{factor()}{factor()}}
+{\footnotesize\ttfamily \label{class_polynomial_a162786326b037112e386e62f0c1d29b8} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_polynomial}{Polynomial}} $>$ Polynomial::\+factor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00234}{234}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a734face83270fd17f2da956b51b07ceb}\index{Polynomial@{Polynomial}!gcd@{gcd}}
+\index{gcd@{gcd}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{gcd()}{gcd()}}
+{\footnotesize\ttfamily \label{class_polynomial_a734face83270fd17f2da956b51b07ceb} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+gcd (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00133}{133}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_ac56fbed80b306fabdbd0c02fe3dbb81b}\index{Polynomial@{Polynomial}!getCoeff@{getCoeff}}
+\index{getCoeff@{getCoeff}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{getCoeff()}{getCoeff()}}
+{\footnotesize\ttfamily \label{class_polynomial_ac56fbed80b306fabdbd0c02fe3dbb81b} 
+double Polynomial::\+get\+Coeff (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00035}{35}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_af3c0ee1e7104cf9363588b9886bb9448}\index{Polynomial@{Polynomial}!getDegree@{getDegree}}
+\index{getDegree@{getDegree}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{getDegree()}{getDegree()}}
+{\footnotesize\ttfamily \label{class_polynomial_af3c0ee1e7104cf9363588b9886bb9448} 
+int Polynomial::\+get\+Degree (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00055}{55}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_ac53f607862cb5936136d26b687ac04fc}\index{Polynomial@{Polynomial}!integral@{integral}}
+\index{integral@{integral}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{integral()}{integral()}}
+{\footnotesize\ttfamily \label{class_polynomial_ac53f607862cb5936136d26b687ac04fc} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+integral (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00161}{161}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a62511d8296d4a3f1f33bc0ee286e62dd}\index{Polynomial@{Polynomial}!lagrangeInterpolation@{lagrangeInterpolation}}
+\index{lagrangeInterpolation@{lagrangeInterpolation}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{lagrangeInterpolation()}{lagrangeInterpolation()}}
+{\footnotesize\ttfamily \label{class_polynomial_a62511d8296d4a3f1f33bc0ee286e62dd} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+lagrange\+Interpolation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{x}{, }\item[{const std::\+vector$<$ double $>$ \&}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00302}{302}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_afe882077e9dfaa2e59dfec48e5511473}\index{Polynomial@{Polynomial}!newtonInterpolation@{newtonInterpolation}}
+\index{newtonInterpolation@{newtonInterpolation}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{newtonInterpolation()}{newtonInterpolation()}}
+{\footnotesize\ttfamily \label{class_polynomial_afe882077e9dfaa2e59dfec48e5511473} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+newton\+Interpolation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ double $>$ \&}]{x}{, }\item[{const std::\+vector$<$ double $>$ \&}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00330}{330}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a693a6a81593ba21cacc5b5f58310c319}\index{Polynomial@{Polynomial}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{class_polynomial_a693a6a81593ba21cacc5b5f58310c319} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00084}{84}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a8242168d3de005c486f66034f1c1ccc7}\index{Polynomial@{Polynomial}!operator+@{operator+}}
+\index{operator+@{operator+}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \label{class_polynomial_a8242168d3de005c486f66034f1c1ccc7} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+operator+ (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00060}{60}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_ad13134583073c5103033b2053a9e6aec}\index{Polynomial@{Polynomial}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \label{class_polynomial_ad13134583073c5103033b2053a9e6aec} 
+\doxymbox{\hyperlink{class_polynomial}{Polynomial}} Polynomial::\+operator-\/ (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_polynomial}{Polynomial}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00072}{72}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_aae73dbb88bbde68ecfb91c084dd02ce3}\index{Polynomial@{Polynomial}!roots@{roots}}
+\index{roots@{roots}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{roots()}{roots()}}
+{\footnotesize\ttfamily \label{class_polynomial_aae73dbb88bbde68ecfb91c084dd02ce3} 
+std::\+vector$<$ std::\+complex$<$ double $>$ $>$ Polynomial::\+roots (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00204}{204}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_a8e16ff723aad4d9afdc8aace540ca244}\index{Polynomial@{Polynomial}!setCoeff@{setCoeff}}
+\index{setCoeff@{setCoeff}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{setCoeff()}{setCoeff()}}
+{\footnotesize\ttfamily \label{class_polynomial_a8e16ff723aad4d9afdc8aace540ca244} 
+void Polynomial::\+set\+Coeff (\begin{DoxyParamCaption}\item[{int}]{i}{, }\item[{double}]{val}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00043}{43}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+\Hypertarget{class_polynomial_affe46c12da2d77178de8271bd264c156}\index{Polynomial@{Polynomial}!toString@{toString}}
+\index{toString@{toString}!Polynomial@{Polynomial}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_polynomial_affe46c12da2d77178de8271bd264c156} 
+std::\+string Polynomial::\+to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{polynomial_8cpp_source_l00258}{258}} of file \doxymbox{\hyperlink{polynomial_8cpp_source}{polynomial.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+polynomial.\+h\item 
+source/\+polynomial.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,68 @@
+\doxysection{Expression Class Reference}
+\hypertarget{class_expression}{}\label{class_expression}\index{Expression@{Expression}}
+Inheritance diagram for Expression:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.684211cm]{class_expression}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Type} \{ \newline
+{\bfseries CONSTANT}
+, {\bfseries VARIABLE}
+, {\bfseries BINARY\+\_\+\+OP}
+, {\bfseries UNARY\+\_\+\+OP}
+, \newline
+{\bfseries FUNCTION}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_expression_a22548df7c3ed7ec63f8f4f3c7dbfd696}\label{class_expression_a22548df7c3ed7ec63f8f4f3c7dbfd696} 
+virtual std::\+string {\bfseries to\+String} () const =0
+\item 
+\Hypertarget{class_expression_a1529afd7d6463ac2ebea6e2e8c9cb9a4}\label{class_expression_a1529afd7d6463ac2ebea6e2e8c9cb9a4} 
+virtual std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ {\bfseries derivative} (const std::\+string \&var) const =0
+\item 
+\Hypertarget{class_expression_a1ab911544036ce42a56a6fec44b903af}\label{class_expression_a1ab911544036ce42a56a6fec44b903af} 
+virtual std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ {\bfseries simplify} () const =0
+\item 
+\Hypertarget{class_expression_adab2fd6bc24b1968c47381cde0f856db}\label{class_expression_adab2fd6bc24b1968c47381cde0f856db} 
+virtual double {\bfseries evaluate} (const std::\+map$<$ std::\+string, double $>$ \&vars=\{\}) const =0
+\item 
+\Hypertarget{class_expression_ab4d1ef1da94aabc732c6e2520fe77c25}\label{class_expression_ab4d1ef1da94aabc732c6e2520fe77c25} 
+virtual Type {\bfseries get\+Type} () const =0
+\item 
+\Hypertarget{class_expression_a2f7d12f95a0558e70ed66a6ed7ef8a64}\label{class_expression_a2f7d12f95a0558e70ed66a6ed7ef8a64} 
+virtual std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{class_expression}{Expression}} $>$ {\bfseries clone} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00006}{6}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_expression_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_expression_aa416ac50fdbe8bdea9c59f5c78f0c85b}\index{Expression@{Expression}!Type@{Type}}
+\index{Type@{Type}!Expression@{Expression}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily \label{class_expression_aa416ac50fdbe8bdea9c59f5c78f0c85b} 
+enum Expression::\+\+Type}
+
+
+
+Definition at line \doxymbox{\hyperlink{expression_8h_source_l00009}{9}} of file \doxymbox{\hyperlink{expression_8h_source}{expression.\+h}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+expression.\+h\end{DoxyCompactItemize}

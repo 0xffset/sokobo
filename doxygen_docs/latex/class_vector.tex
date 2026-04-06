@@ -1,0 +1,239 @@
+\doxysection{Vector\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_vector}{}\label{class_vector}\index{Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector_ab73469d815da2ab964c566c9131731ce}{Vector}} (int size)
+\item 
+\doxymbox{\hyperlink{class_vector_a09297f4d043f6c5b7eefb5f12511424a}{Vector}} (const std::\+vector$<$ T $>$ \&vec)
+\item 
+T \& \doxymbox{\hyperlink{class_vector_ada36811f9a98443820d1ebea0e36a429}{operator\+[$\,$]\+}} (int i)
+\item 
+const T \& \doxymbox{\hyperlink{class_vector_ad36c8ee6264c315377664fb3fd2bfcf6}{operator\+[$\,$]\+}} (int i) const
+\item 
+int \doxymbox{\hyperlink{class_vector_a196e9eedc9a88a48f64e69e39405fa72}{size}} () const
+\item 
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector_a0571ba60d95077e2a67fcce1decf1eb7}{operator+}} (const \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&other) const
+\item 
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector_aaade7800b389b06e7097896634b3d72d}{operator-\/}} (const \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&other) const
+\item 
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector_a88924a5816eb0ee368672aecca0caa46}{operator\texorpdfstring{$\ast$}{*}}} (T scalar) const
+\item 
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector_ad57e40c9f22aabe43938cfabeb61e86a}{operator/\+}} (T scalar) const
+\item 
+T \doxymbox{\hyperlink{class_vector_ab0b33def105cb4c100293f6ccd322240}{dot}} (const \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&other) const
+\item 
+double \doxymbox{\hyperlink{class_vector_a03f1ab7169c8e438541b437c9f8f0534}{norm}} () const
+\item 
+void \doxymbox{\hyperlink{class_vector_ae3bffb088d106d06ddf0b84d8e86ca31}{normalize}} ()
+\item 
+std::\+string \doxymbox{\hyperlink{class_vector_a4bf0efcbe80e25544082016fe603c962}{to\+String}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector_a47f1509751358c7280644ab20b14dff9}{zeros}} (int size)
+\item 
+static \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector_afa79e536dc01a6dcd3ba057bf0ed8f99}{ones}} (int size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Vector$<$ T $>$}
+
+
+Definition at line \doxymbox{\hyperlink{vector_8h_source_l00009}{9}} of file \doxymbox{\hyperlink{vector_8h_source}{vector.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_vector_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_vector_a39d6069675db4ecfc1ab81d440da759a}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!Vector@{Vector}}
+\index{Vector@{Vector}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_vector_a39d6069675db4ecfc1ab81d440da759a} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+\+Vector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00005}{5}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_ab73469d815da2ab964c566c9131731ce}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!Vector@{Vector}}
+\index{Vector@{Vector}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_vector_ab73469d815da2ab964c566c9131731ce} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+\+Vector (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00008}{8}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_a09297f4d043f6c5b7eefb5f12511424a}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!Vector@{Vector}}
+\index{Vector@{Vector}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_vector_a09297f4d043f6c5b7eefb5f12511424a} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+\+Vector (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ T $>$ \&}]{vec}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_vector_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vector_ab0b33def105cb4c100293f6ccd322240}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!dot@{dot}}
+\index{dot@{dot}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily \label{class_vector_ab0b33def105cb4c100293f6ccd322240} 
+template$<$typename T$>$ \\
+T \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+dot (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00076}{76}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_a03f1ab7169c8e438541b437c9f8f0534}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!norm@{norm}}
+\index{norm@{norm}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily \label{class_vector_a03f1ab7169c8e438541b437c9f8f0534} 
+template$<$typename T$>$ \\
+double \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+norm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00089}{89}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_ae3bffb088d106d06ddf0b84d8e86ca31}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!normalize@{normalize}}
+\index{normalize@{normalize}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily \label{class_vector_ae3bffb088d106d06ddf0b84d8e86ca31} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+normalize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00095}{95}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_afa79e536dc01a6dcd3ba057bf0ed8f99}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!ones@{ones}}
+\index{ones@{ones}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ones()}{ones()}}
+{\footnotesize\ttfamily \label{class_vector_afa79e536dc01a6dcd3ba057bf0ed8f99} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+ones (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00121}{121}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_a88924a5816eb0ee368672aecca0caa46}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{class_vector_a88924a5816eb0ee368672aecca0caa46} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{T}]{scalar}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00054}{54}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_a0571ba60d95077e2a67fcce1decf1eb7}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \label{class_vector_a0571ba60d95077e2a67fcce1decf1eb7} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+operator+ (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00030}{30}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_aaade7800b389b06e7097896634b3d72d}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \label{class_vector_aaade7800b389b06e7097896634b3d72d} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+operator-\/ (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00042}{42}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_ad57e40c9f22aabe43938cfabeb61e86a}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \label{class_vector_ad57e40c9f22aabe43938cfabeb61e86a} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+operator/\+ (\begin{DoxyParamCaption}\item[{T}]{scalar}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00063}{63}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_ada36811f9a98443820d1ebea0e36a429}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!operator\+[]\+@{operator[]}}
+\index{operator\+[]\+@{operator[]}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_vector_ada36811f9a98443820d1ebea0e36a429} 
+template$<$typename T$>$ \\
+T \& \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+operator\+[$\,$]\+ (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00014}{14}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_ad36c8ee6264c315377664fb3fd2bfcf6}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!operator\+[]\+@{operator[]}}
+\index{operator\+[]\+@{operator[]}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_vector_ad36c8ee6264c315377664fb3fd2bfcf6} 
+template$<$typename T$>$ \\
+const T \& \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+operator\+[$\,$]\+ (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00019}{19}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_a196e9eedc9a88a48f64e69e39405fa72}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!size@{size}}
+\index{size@{size}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{class_vector_a196e9eedc9a88a48f64e69e39405fa72} 
+template$<$typename T$>$ \\
+int \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00024}{24}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_a4bf0efcbe80e25544082016fe603c962}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!toString@{toString}}
+\index{toString@{toString}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_vector_a4bf0efcbe80e25544082016fe603c962} 
+template$<$typename T$>$ \\
+std::\+string \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00105}{105}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+\Hypertarget{class_vector_a47f1509751358c7280644ab20b14dff9}\index{Vector$<$ T $>$@{Vector$<$ T $>$}!zeros@{zeros}}
+\index{zeros@{zeros}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{zeros()}{zeros()}}
+{\footnotesize\ttfamily \label{class_vector_a47f1509751358c7280644ab20b14dff9} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \doxymbox{\hyperlink{class_vector}{Vector}}$<$ T $>$::\+zeros (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{vector_8cpp_source_l00116}{116}} of file \doxymbox{\hyperlink{vector_8cpp_source}{vector.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+vector.\+h\item 
+source/\+vector.\+cpp\end{DoxyCompactItemize}

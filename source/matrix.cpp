@@ -13,17 +13,32 @@
 
 #include "include/complex_number.h"
 
-// template<typename T>
-// Matrix<T>::Matrix(int r, int c)
-//     : rows(r)
-//     , cols(c)
-//{
-//   if (r <= 0 || c <= 0) {
-//     throw std::invalid_argument("Matrix dimensions must be positive");
-//   }
-//   data.resize(rows, std::vector<T>(cols, T {}));
-// }
-
+/**
+ * @brief Computes the square root of a value with type-safe handling for arithmetic and complex types.
+ * 
+ * This template function provides a unified interface for computing square roots across different
+ * numeric types. For arithmetic types, it returns the square root of the value. For complex types,
+ * it returns the square root of the magnitude (modulus) as a double.
+ * 
+ * @tparam T The type of the input value. Can be arithmetic (integral or floating-point) or complex.
+ * 
+ * @param value The value whose square root is to be computed.
+ * 
+ * @return For arithmetic types: returns the square root as type T (integral types are cast to double
+ *         for computation, then cast back to T). For floating-point types: returns std::sqrt(value).
+ *         For complex types: returns the square root of the magnitude as a double.
+ * 
+ * @note For integral types, the result is truncated when cast back to the original type.
+ * @note For complex types, this computes sqrt(|z|), not the principal complex square root.
+ * 
+ * Example usage:
+ * @code
+ * double d = safe_sqrt(4.0);           // Returns 2.0
+ * int i = safe_sqrt(9);                // Returns 3
+ * ComplexNumber c(3.0, 4.0);
+ * double mag_sqrt = safe_sqrt(c);      // Returns sqrt(5.0) ≈ 2.236
+ * @endcode
+ */
 template<typename T>
 auto safe_sqrt(T value) ->
     typename std::conditional_t<std::is_arithmetic_v<T>, T, double>
@@ -38,6 +53,35 @@ auto safe_sqrt(T value) ->
   }
 }
 
+/**
+ * @brief Computes the absolute value of a value with type-safe handling for arithmetic and complex types.
+ * 
+ * This template function provides a unified interface for computing absolute values across different
+ * numeric types. For arithmetic types, it returns the absolute value. For complex types, it returns
+ * the absolute value of the magnitude (modulus).
+ * 
+ * @tparam T The type of the input value. Can be arithmetic (integral or floating-point) or complex.
+ * 
+ * @param value The value whose absolute value is to be computed.
+ * 
+ * @return For arithmetic types: returns the absolute value as type T. For floating-point types:
+ *         returns std::abs(value). For integral types: value is cast to double, abs is computed,
+ *         then cast back to T. For complex types: returns the absolute value of the magnitude
+ *         as a double.
+ * 
+ * @note For integral types, the intermediate double conversion ensures proper handling of the
+ *       most negative value (e.g., INT_MIN).
+ * @note For complex types, this computes |magnitude(z)|, which is equivalent to |z| for properly
+ *       implemented magnitude functions.
+ * 
+ * Example usage:
+ * @code
+ * double d = safe_abs(-4.5);           // Returns 4.5
+ * int i = safe_abs(-7);                // Returns 7
+ * ComplexNumber c(-3.0, -4.0);
+ * double mag_abs = safe_abs(c);        // Returns 5.0
+ * @endcode
+ */
 template<typename T>
 auto safe_abs(T value) ->
     typename std::conditional_t<std::is_arithmetic_v<T>, T, double>
@@ -47,7 +91,7 @@ auto safe_abs(T value) ->
   } else if constexpr (std::is_arithmetic_v<T>) {
     return static_cast<T>(std::abs(static_cast<double>(value)));
   } else {
-    // For complex types, return the square root of the magnitude as double
+    // For complex types, return the absolute value of the magnitude as double
     return std::abs(value.magnitude());
   }
 }

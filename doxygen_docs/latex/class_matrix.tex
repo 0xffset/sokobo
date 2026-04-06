@@ -1,0 +1,1129 @@
+\doxysection{Matrix\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_matrix}{}\label{class_matrix}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+
+
+A templated matrix class supporting various linear algebra operations.  
+
+
+
+
+{\ttfamily \+\#include $<$matrix.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_matrix_a9d567e3a121b1be0c3f9c461cab524fe}{Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor creating an empty 0×0 matrix. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix_af93d267afc52c132dc78ec32d40ea58a}{Matrix}} (int r, int c)
+\begin{DoxyCompactList}\small\item\em Constructs a matrix with specified dimensions, initialized with default values. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix_acb4d5ba004638970c1f76c50d0551d40}{Matrix}} (const std::\+vector$<$ std::\+vector$<$ T $>$ $>$ \&mat)
+\begin{DoxyCompactList}\small\item\em Constructs a matrix from a 2D vector. \end{DoxyCompactList}\item 
+T \& \doxymbox{\hyperlink{class_matrix_ac9b7be53ead2a8f8272743ab60515a7a}{operator()}} (int row, int column)
+\begin{DoxyCompactList}\small\item\em Accesses matrix element at specified position (non-\/const). \end{DoxyCompactList}\item 
+const T \& \doxymbox{\hyperlink{class_matrix_a4874624cd389a1e5d72b9d1f385ef5fc}{operator()}} (int row, int column) const
+\begin{DoxyCompactList}\small\item\em Accesses matrix element at specified position (const). \end{DoxyCompactList}\item 
+std::\+vector$<$ T $>$ \& \doxymbox{\hyperlink{class_matrix_a60d0f1551fa325967aa38528549674f6}{operator\+[$\,$]\+}} (int i)
+\begin{DoxyCompactList}\small\item\em Accesses a row of the matrix (non-\/const). \end{DoxyCompactList}\item 
+const std::\+vector$<$ T $>$ \& \doxymbox{\hyperlink{class_matrix_a5ef756afbade9d720456d1744dc091b2}{operator\+[$\,$]\+}} (int i) const
+\begin{DoxyCompactList}\small\item\em Accesses a row of the matrix (const). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_ad11349720a973607dd32c90c41c1fd6b}{operator+}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em \doxylink{class_matrix}{Matrix} addition. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a60abec113d06926fe684823e30899d74}{operator-\/}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em \doxylink{class_matrix}{Matrix} subtraction. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a44e5a23ca2e6cb0f93dff64670b8e5ca}{operator\texorpdfstring{$\ast$}{*}}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em \doxylink{class_matrix}{Matrix} multiplication. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a70b449c052e8457dbf2efe4ca6876ae8}{operator\texorpdfstring{$\ast$}{*}}} (const T \&scalar) const
+\begin{DoxyCompactList}\small\item\em Scalar multiplication. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a8b7ce1468c6e946af944773803b57882}{operator/\+=}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Element-\/wise division. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_ad286c4dbb4697daa9b431f0947e02509}{operator-\/=}} (const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em In-\/place subtraction. \end{DoxyCompactList}\item 
+T \doxymbox{\hyperlink{class_matrix_ad325065cef54607a6f4119a2bee04e0d}{determinant}} () const
+\begin{DoxyCompactList}\small\item\em Computes the determinant of the matrix. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_ac6a5073d96b5a1a2682b1100678cdef8}{inverse}} () const
+\begin{DoxyCompactList}\small\item\em Computes the inverse of the matrix. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a650078c4e68d8c618e56c55951997470}{transpose}} () const
+\begin{DoxyCompactList}\small\item\em Computes the transpose of the matrix. \end{DoxyCompactList}\item 
+std::\+vector$<$ T $>$ \doxymbox{\hyperlink{class_matrix_ac7c5316542bdc0cbfe335e14374aad66}{eigenvalues}} () const
+\begin{DoxyCompactList}\small\item\em Computes the eigenvalues of the matrix. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a033415300575164df797e6a30b528fe2}{eigenvectors}} () const
+\begin{DoxyCompactList}\small\item\em Computes the eigenvectors of the matrix. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a7da57156fb47e5da006bf2f455de0a58}{adjoint}} () const
+\begin{DoxyCompactList}\small\item\em Computes the adjoint (adjugate) matrix. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a00a0bfd4e4b0d0f0def9f97acbf3c810}{submatrix}} (int row\+\_\+start, int row\+\_\+end, int col\+\_\+start, int col\+\_\+end) const
+\begin{DoxyCompactList}\small\item\em Extracts a submatrix from specified row and column ranges. \end{DoxyCompactList}\item 
+T \doxymbox{\hyperlink{class_matrix_a20b339e43e747cb92460ea3f035f0a4b}{rank}} () const
+\begin{DoxyCompactList}\small\item\em Computes the rank of the matrix. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_matrix_ae01bcf14b8a2eef42f22dd1b714ea11a}{is\+Symmetric}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the matrix is symmetric. \end{DoxyCompactList}\item 
+std::\+pair$<$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$, \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ $>$ \doxymbox{\hyperlink{class_matrix_a9a799eec5277eb1540082215b1078bbf}{LUDecomposition}} () const
+\begin{DoxyCompactList}\small\item\em Performs LU decomposition of the matrix. \end{DoxyCompactList}\item 
+std::\+pair$<$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$, \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ $>$ \doxymbox{\hyperlink{class_matrix_a47a08f6af0bd8ba74d2c6201527594cd}{QRDecomposition}} () const
+\begin{DoxyCompactList}\small\item\em Performs QR decomposition of the matrix using Gram-\/\+Schmidt orthogonalization. \end{DoxyCompactList}\item 
+std::\+vector$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a1d4cce69fdab29fa71aae72893531424}{mat\+Vec}} (const std::\+vector$<$ T $>$ \&v) const
+\begin{DoxyCompactList}\small\item\em Performs matrix-\/vector multiplication. \end{DoxyCompactList}\item 
+T \doxymbox{\hyperlink{class_matrix_a6855eccffac77f2d42246bf4d1a09f23}{dot}} (const std::\+vector$<$ T $>$ \&a, const std::\+vector$<$ T $>$ \&b) const
+\begin{DoxyCompactList}\small\item\em Computes the dot product of two vectors. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_matrix_a96c9156e7c3f2d8df697c30fa7e16f37}{normalize}} (std::\+vector$<$ T $>$ \&v) const
+\begin{DoxyCompactList}\small\item\em Normalizes a vector to unit length (in-\/place). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_matrix_a59cf54517b76f9507a743075dbb338cb}{lanczos}} (int m, std::\+vector$<$ T $>$ \&alpha, std::\+vector$<$ T $>$ \&beta, \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&Q) const
+\begin{DoxyCompactList}\small\item\em Performs the Lanczos algorithm for tridiagonalization. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_aa81fa36b1e0627ce7f4887bd0685a874}{build\+Tridiagonal}} (const std::\+vector$<$ T $>$ \&alpha, const std::\+vector$<$ T $>$ \&beta, int m) const
+\begin{DoxyCompactList}\small\item\em Constructs a tridiagonal matrix from diagonal and off-\/diagonal elements. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_matrix_a72d7ad5d72ee59d8edf22e4c0bf92b06}{frobenius\+Norm}} () const
+\begin{DoxyCompactList}\small\item\em Computes the Frobenius norm of the matrix. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_matrix_a3a8f97a2318690bc590378bf39eeceb3}{spectral\+Norm}} () const
+\begin{DoxyCompactList}\small\item\em Computes the spectral norm (2-\/norm) of the matrix. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_matrix_a3967eea721caa6d0ddb95444d460d4c5}{norm}} (const std::\+vector$<$ T $>$ \&v) const
+\begin{DoxyCompactList}\small\item\em Computes the Euclidean (L2) norm of a vector. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a327e443f7ff3bce7bdf82f53a4eb3686}{get\+Minor}} (int row, int col) const
+\begin{DoxyCompactList}\small\item\em Gets the minor matrix by removing a specified row and column. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{class_matrix_a63a5a4dc5f2f9f9b04b5eaf953d80415}{to\+String}} () const
+\begin{DoxyCompactList}\small\item\em Converts the matrix to a formatted string representation. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_matrix_af87bb2b52a3ff1751566cf7b452bc6ca}{get\+Rows}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of rows in the matrix. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_matrix_a10cc9826816e50cc8c58bce0631d0bec}{get\+Cols}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of columns in the matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_ad30552fcb427ec1b3c7c9c1c7c6c9999}{identity}} (int n)
+\begin{DoxyCompactList}\small\item\em Creates an n × n identity matrix. \end{DoxyCompactList}\item 
+static \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_abfcb44b6c0f017dcc8f25da0b9d7d6e4}{zeros}} (int r, int c)
+\begin{DoxyCompactList}\small\item\em Creates an r × c matrix filled with zeros. \end{DoxyCompactList}\item 
+static \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix_a89733b159fe4939c77f2815f0c4243d6}{ones}} (int r, int c)
+\begin{DoxyCompactList}\small\item\em Creates an r × c matrix filled with ones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std::\+ostream \& \doxymbox{\hyperlink{class_matrix_a98ca87ee5110a32bf2ee6963c90578d9}{operator$<$$<$}} (std::\+ostream \&os, const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&m)
+\begin{DoxyCompactList}\small\item\em Stream output operator for formatted matrix display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Matrix$<$ T $>$}
+A templated matrix class supporting various linear algebra operations. 
+
+This class provides a comprehensive implementation of matrix operations including basic arithmetic, advanced operations (determinant, inverse, eigenvalues), matrix decompositions (LU, QR), and iterative algorithms (Lanczos). Supports both real arithmetic types and complex number types.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The element type. Can be arithmetic types (int, float, double) or complex number types (\doxylink{class_complex_number}{Complex\+Number}). \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00022}{22}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_matrix_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_matrix_a9d567e3a121b1be0c3f9c461cab524fe}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_matrix_a9d567e3a121b1be0c3f9c461cab524fe} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor creating an empty 0×0 matrix. 
+
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00034}{34}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+\Hypertarget{class_matrix_af93d267afc52c132dc78ec32d40ea58a}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_matrix_af93d267afc52c132dc78ec32d40ea58a} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+\+Matrix (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a matrix with specified dimensions, initialized with default values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Number of rows \\
+\hline
+{\em c} & Number of columns \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00046}{46}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+\Hypertarget{class_matrix_acb4d5ba004638970c1f76c50d0551d40}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_matrix_acb4d5ba004638970c1f76c50d0551d40} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+\+Matrix (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ std::\+vector$<$ T $>$ $>$ \&}]{mat}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a matrix from a 2D vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & A 2D vector containing the matrix data \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if rows have inconsistent lengths \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00113}{113}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_matrix_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_matrix_a7da57156fb47e5da006bf2f455de0a58}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!adjoint@{adjoint}}
+\index{adjoint@{adjoint}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{adjoint()}{adjoint()}}
+{\footnotesize\ttfamily \label{class_matrix_a7da57156fb47e5da006bf2f455de0a58} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+adjoint (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the adjoint (adjugate) matrix. 
+
+The adjoint is the transpose of the cofactor matrix.
+
+\begin{DoxyReturn}{Returns}
+Adjoint matrix 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix is not square \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00403}{403}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_aa81fa36b1e0627ce7f4887bd0685a874}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!buildTridiagonal@{buildTridiagonal}}
+\index{buildTridiagonal@{buildTridiagonal}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{buildTridiagonal()}{buildTridiagonal()}}
+{\footnotesize\ttfamily \label{class_matrix_aa81fa36b1e0627ce7f4887bd0685a874} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+build\+Tridiagonal (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ T $>$ \&}]{alpha}{, }\item[{const std::\+vector$<$ T $>$ \&}]{beta}{, }\item[{int}]{m}{}\end{DoxyParamCaption}) const}
+
+
+
+Constructs a tridiagonal matrix from diagonal and off-\/diagonal elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & Diagonal elements \\
+\hline
+{\em beta} & Off-\/diagonal elements \\
+\hline
+{\em m} & Dimension of the tridiagonal matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+m × m tridiagonal matrix 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00847}{847}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_ad325065cef54607a6f4119a2bee04e0d}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!determinant@{determinant}}
+\index{determinant@{determinant}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily \label{class_matrix_ad325065cef54607a6f4119a2bee04e0d} 
+template$<$typename T$>$ \\
+T \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+determinant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the determinant of the matrix. 
+
+The calculation follows these rules based on the matrix dimension  $ n
+\times n $:\+
+
+
+\begin{DoxyItemize}
+\item For $ n = 1 $:\+ \[ \det(A) = a_{1,1} \]
+\item For $ n = 2 $:\+ \[ \det(A) = a_{0,0}a_{1,1} - a_{0,1}a_{1,0} \]
+\item For $ n > 2 $, using {\bfseries{LU Decomposition}} $ A = LU $:\+ \[ \det(A) = \det(L)\det(U) = \prod_{i=0}^{n-1} u_{i,i} \] \texorpdfstring{$\ast$}{*}(Note:\+ $ \det(L) = 1 $ as it is a unit triangular matrix)\texorpdfstring{$\ast$}{*}.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+Determinant value of type $ T $. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & If the matrix is not square (  $ rows \neq
+cols $). \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00276}{276}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a6855eccffac77f2d42246bf4d1a09f23}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!dot@{dot}}
+\index{dot@{dot}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily \label{class_matrix_a6855eccffac77f2d42246bf4d1a09f23} 
+template$<$typename T$>$ \\
+T \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+dot (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ T $>$ \&}]{a}{, }\item[{const std::\+vector$<$ T $>$ \&}]{b}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the dot product of two vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & First vector \\
+\hline
+{\em b} & Second vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dot product value 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if vectors have different sizes \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00733}{733}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_ac7c5316542bdc0cbfe335e14374aad66}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!eigenvalues@{eigenvalues}}
+\index{eigenvalues@{eigenvalues}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvalues()}{eigenvalues()}}
+{\footnotesize\ttfamily \label{class_matrix_ac7c5316542bdc0cbfe335e14374aad66} 
+template$<$typename T$>$ \\
+std::\+vector$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+eigenvalues (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the eigenvalues of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_vector}{Vector} containing eigenvalues 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix is not square \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00427}{427}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a033415300575164df797e6a30b528fe2}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!eigenvectors@{eigenvectors}}
+\index{eigenvectors@{eigenvectors}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvectors()}{eigenvectors()}}
+{\footnotesize\ttfamily \label{class_matrix_a033415300575164df797e6a30b528fe2} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+eigenvectors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the eigenvectors of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_matrix}{Matrix} where each column is an eigenvector 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix is not square \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00865}{865}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a72d7ad5d72ee59d8edf22e4c0bf92b06}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!frobeniusNorm@{frobeniusNorm}}
+\index{frobeniusNorm@{frobeniusNorm}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{frobeniusNorm()}{frobeniusNorm()}}
+{\footnotesize\ttfamily \label{class_matrix_a72d7ad5d72ee59d8edf22e4c0bf92b06} 
+template$<$typename T$>$ \\
+double \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+frobenius\+Norm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the Frobenius norm of the matrix. 
+
+The Frobenius norm is the square root of the sum of squares of all elements.
+
+\begin{DoxyReturn}{Returns}
+Frobenius norm value 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00619}{619}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a10cc9826816e50cc8c58bce0631d0bec}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!getCols@{getCols}}
+\index{getCols@{getCols}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getCols()}{getCols()}}
+{\footnotesize\ttfamily \label{class_matrix_a10cc9826816e50cc8c58bce0631d0bec} 
+template$<$typename T$>$ \\
+int \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+get\+Cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of columns in the matrix. 
+
+\begin{DoxyReturn}{Returns}
+Number of columns 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00425}{425}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+\Hypertarget{class_matrix_a327e443f7ff3bce7bdf82f53a4eb3686}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!getMinor@{getMinor}}
+\index{getMinor@{getMinor}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getMinor()}{getMinor()}}
+{\footnotesize\ttfamily \label{class_matrix_a327e443f7ff3bce7bdf82f53a4eb3686} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+get\+Minor (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the minor matrix by removing a specified row and column. 
+
+Used in computing determinants and adjoints via cofactor expansion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row to remove (0-\/based) \\
+\hline
+{\em col} & Column to remove (0-\/based) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(rows-\/1) × (cols-\/1) minor matrix 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+out\+\_\+of\+\_\+range} & if row or column index is out of bounds \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00655}{655}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_af87bb2b52a3ff1751566cf7b452bc6ca}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!getRows@{getRows}}
+\index{getRows@{getRows}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getRows()}{getRows()}}
+{\footnotesize\ttfamily \label{class_matrix_af87bb2b52a3ff1751566cf7b452bc6ca} 
+template$<$typename T$>$ \\
+int \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+get\+Rows (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of rows in the matrix. 
+
+\begin{DoxyReturn}{Returns}
+Number of rows 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00418}{418}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+\Hypertarget{class_matrix_ad30552fcb427ec1b3c7c9c1c7c6c9999}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!identity@{identity}}
+\index{identity@{identity}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{identity()}{identity()}}
+{\footnotesize\ttfamily \label{class_matrix_ad30552fcb427ec1b3c7c9c1c7c6c9999} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+identity (\begin{DoxyParamCaption}\item[{int}]{n}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates an n × n identity matrix. 
+
+The identity matrix has ones on the main diagonal and zeros elsewhere.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Dimension of the identity matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+n × n identity matrix 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00706}{706}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_ac6a5073d96b5a1a2682b1100678cdef8}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!inverse@{inverse}}
+\index{inverse@{inverse}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily \label{class_matrix_ac6a5073d96b5a1a2682b1100678cdef8} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+inverse (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the inverse of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+Inverse matrix 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix is not square \\
+\hline
+{\em std::\+runtime\+\_\+error} & if matrix is singular (determinant is zero) \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00303}{303}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_ae01bcf14b8a2eef42f22dd1b714ea11a}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!isSymmetric@{isSymmetric}}
+\index{isSymmetric@{isSymmetric}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isSymmetric()}{isSymmetric()}}
+{\footnotesize\ttfamily \label{class_matrix_ae01bcf14b8a2eef42f22dd1b714ea11a} 
+template$<$typename T$>$ \\
+bool \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+is\+Symmetric (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if the matrix is symmetric. 
+
+A matrix is symmetric if A = A\texorpdfstring{$^\wedge$}{\string^}T.
+
+\begin{DoxyReturn}{Returns}
+true if matrix is symmetric, false otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix is not square \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00258}{258}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a59cf54517b76f9507a743075dbb338cb}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!lanczos@{lanczos}}
+\index{lanczos@{lanczos}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{lanczos()}{lanczos()}}
+{\footnotesize\ttfamily \label{class_matrix_a59cf54517b76f9507a743075dbb338cb} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+lanczos (\begin{DoxyParamCaption}\item[{int}]{m}{, }\item[{std::\+vector$<$ T $>$ \&}]{alpha}{, }\item[{std::\+vector$<$ T $>$ \&}]{beta}{, }\item[{\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&}]{Q}{}\end{DoxyParamCaption}) const}
+
+
+
+Performs the Lanczos algorithm for tridiagonalization. 
+
+The Lanczos algorithm is an iterative method for computing eigenvalues and eigenvectors of large sparse symmetric matrices. It reduces the matrix to tridiagonal form.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Number of Lanczos iterations \\
+\hline
+{\em alpha} & Output vector of diagonal elements (size m) \\
+\hline
+{\em beta} & Output vector of off-\/diagonal elements (size m-\/1) \\
+\hline
+{\em Q} & Output matrix of orthonormal Lanczos vectors (n × m) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix is not square or m \texorpdfstring{$>$}{>} matrix size \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00792}{792}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a9a799eec5277eb1540082215b1078bbf}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!LUDecomposition@{LUDecomposition}}
+\index{LUDecomposition@{LUDecomposition}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{LUDecomposition()}{LUDecomposition()}}
+{\footnotesize\ttfamily \label{class_matrix_a9a799eec5277eb1540082215b1078bbf} 
+template$<$typename T$>$ \\
+std::\+pair$<$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$, \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+\+LUDecomposition (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Performs LU decomposition of the matrix. 
+
+Decomposes the matrix into lower triangular (L) and upper triangular (U) matrices such that A = LU.
+
+\begin{DoxyReturn}{Returns}
+Pair of matrices (L, U) 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix is not square \\
+\hline
+{\em std::\+runtime\+\_\+error} & if decomposition fails (singular matrix) \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00533}{533}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a1d4cce69fdab29fa71aae72893531424}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!matVec@{matVec}}
+\index{matVec@{matVec}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{matVec()}{matVec()}}
+{\footnotesize\ttfamily \label{class_matrix_a1d4cce69fdab29fa71aae72893531424} 
+template$<$typename T$>$ \\
+std::\+vector$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+mat\+Vec (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ T $>$ \&}]{v}{}\end{DoxyParamCaption}) const}
+
+
+
+Performs matrix-\/vector multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \doxylink{class_vector}{Vector} to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Resulting vector after multiplication 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if vector size doesn\textquotesingle{}t match matrix columns \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00721}{721}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a3967eea721caa6d0ddb95444d460d4c5}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!norm@{norm}}
+\index{norm@{norm}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily \label{class_matrix_a3967eea721caa6d0ddb95444d460d4c5} 
+template$<$typename T$>$ \\
+double \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+norm (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ T $>$ \&}]{v}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the Euclidean (L2) norm of a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \doxylink{class_vector}{Vector} to compute norm for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L2 norm value 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00743}{743}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a96c9156e7c3f2d8df697c30fa7e16f37}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!normalize@{normalize}}
+\index{normalize@{normalize}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily \label{class_matrix_a96c9156e7c3f2d8df697c30fa7e16f37} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+normalize (\begin{DoxyParamCaption}\item[{std::\+vector$<$ T $>$ \&}]{v}{}\end{DoxyParamCaption}) const}
+
+
+
+Normalizes a vector to unit length (in-\/place). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \doxylink{class_vector}{Vector} to normalize \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & if vector has zero norm \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00749}{749}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a89733b159fe4939c77f2815f0c4243d6}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!ones@{ones}}
+\index{ones@{ones}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ones()}{ones()}}
+{\footnotesize\ttfamily \label{class_matrix_a89733b159fe4939c77f2815f0c4243d6} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+ones (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates an r × c matrix filled with ones. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Number of rows \\
+\hline
+{\em c} & Number of columns \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+r × c matrix of ones 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00909}{909}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_ac9b7be53ead2a8f8272743ab60515a7a}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_matrix_ac9b7be53ead2a8f8272743ab60515a7a} 
+template$<$typename T$>$ \\
+T \& \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator() (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{column}{}\end{DoxyParamCaption})}
+
+
+
+Accesses matrix element at specified position (non-\/const). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row index (0-\/based) \\
+\hline
+{\em column} & Column index (0-\/based) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the element at (row, column) 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00134}{134}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a4874624cd389a1e5d72b9d1f385ef5fc}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_matrix_a4874624cd389a1e5d72b9d1f385ef5fc} 
+template$<$typename T$>$ \\
+const T \& \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator() (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{column}{}\end{DoxyParamCaption}) const}
+
+
+
+Accesses matrix element at specified position (const). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row index (0-\/based) \\
+\hline
+{\em column} & Column index (0-\/based) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Const reference to the element at (row, column) 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00146}{146}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a44e5a23ca2e6cb0f93dff64670b8e5ca}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_matrix_a44e5a23ca2e6cb0f93dff64670b8e5ca} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+\doxylink{class_matrix}{Matrix} multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \doxylink{class_matrix}{Matrix} to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of matrix multiplication 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if dimensions are incompatible (this.\+cols != other.\+rows) \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00190}{190}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a70b449c052e8457dbf2efe4ca6876ae8}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_matrix_a70b449c052e8457dbf2efe4ca6876ae8} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const T \&}]{scalar}{}\end{DoxyParamCaption}) const}
+
+
+
+Scalar multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & Scalar value to multiply all elements by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of scalar multiplication 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00211}{211}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_ad11349720a973607dd32c90c41c1fd6b}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \label{class_matrix_ad11349720a973607dd32c90c41c1fd6b} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator+ (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+\doxylink{class_matrix}{Matrix} addition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \doxylink{class_matrix}{Matrix} to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of element-\/wise addition 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrices have different dimensions \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00158}{158}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a60abec113d06926fe684823e30899d74}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \label{class_matrix_a60abec113d06926fe684823e30899d74} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator-\/ (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+\doxylink{class_matrix}{Matrix} subtraction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \doxylink{class_matrix}{Matrix} to subtract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of element-\/wise subtraction 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrices have different dimensions \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00174}{174}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_ad286c4dbb4697daa9b431f0947e02509}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \label{class_matrix_ad286c4dbb4697daa9b431f0947e02509} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator-\/= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+In-\/place subtraction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \doxylink{class_matrix}{Matrix} to subtract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of element-\/wise subtraction 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrices have different dimensions \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_a8b7ce1468c6e946af944773803b57882}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily \label{class_matrix_a8b7ce1468c6e946af944773803b57882} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator/\+= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Element-\/wise division. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \doxylink{class_matrix}{Matrix} to divide by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of element-\/wise division 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrices have different dimensions \\
+\hline
+{\em std::\+runtime\+\_\+error} & if division by zero occurs \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_a60d0f1551fa325967aa38528549674f6}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator\+[]\+@{operator[]}}
+\index{operator\+[]\+@{operator[]}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_matrix_a60d0f1551fa325967aa38528549674f6} 
+template$<$typename T$>$ \\
+std::\+vector$<$ T $>$ \& \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator\+[$\,$]\+ (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Accesses a row of the matrix (non-\/const). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index (0-\/based) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the row vector 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00085}{85}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+\Hypertarget{class_matrix_a5ef756afbade9d720456d1744dc091b2}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator\+[]\+@{operator[]}}
+\index{operator\+[]\+@{operator[]}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_matrix_a5ef756afbade9d720456d1744dc091b2} 
+template$<$typename T$>$ \\
+const std::\+vector$<$ T $>$ \& \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+operator\+[$\,$]\+ (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Accesses a row of the matrix (const). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index (0-\/based) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Const reference to the row vector 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00093}{93}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+\Hypertarget{class_matrix_a47a08f6af0bd8ba74d2c6201527594cd}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!QRDecomposition@{QRDecomposition}}
+\index{QRDecomposition@{QRDecomposition}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{QRDecomposition()}{QRDecomposition()}}
+{\footnotesize\ttfamily \label{class_matrix_a47a08f6af0bd8ba74d2c6201527594cd} 
+template$<$typename T$>$ \\
+std::\+pair$<$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$, \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+\+QRDecomposition (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Performs QR decomposition of the matrix using Gram-\/\+Schmidt orthogonalization. 
+
+Decomposes the matrix into an orthogonal matrix (Q) and an upper triangular matrix (R) such that A = QR.
+
+\begin{DoxyReturn}{Returns}
+Pair of matrices (Q, R) 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+invalid\+\_\+argument} & if matrix has more columns than rows \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00563}{563}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a20b339e43e747cb92460ea3f035f0a4b}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!rank@{rank}}
+\index{rank@{rank}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily \label{class_matrix_a20b339e43e747cb92460ea3f035f0a4b} 
+template$<$typename T$>$ \\
+T \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+rank (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the rank of the matrix. 
+
+The rank is the number of linearly independent rows or columns.
+
+\begin{DoxyReturn}{Returns}
+Rank of the matrix 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00223}{223}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a3a8f97a2318690bc590378bf39eeceb3}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!spectralNorm@{spectralNorm}}
+\index{spectralNorm@{spectralNorm}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{spectralNorm()}{spectralNorm()}}
+{\footnotesize\ttfamily \label{class_matrix_a3a8f97a2318690bc590378bf39eeceb3} 
+template$<$typename T$>$ \\
+double \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+spectral\+Norm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the spectral norm (2-\/norm) of the matrix. 
+
+The spectral norm is the largest singular value, equal to the square root of the largest eigenvalue of A\texorpdfstring{$^\wedge$}{\string^}T \texorpdfstring{$\ast$}{*} A.
+
+\begin{DoxyReturn}{Returns}
+Spectral norm value 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00633}{633}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a00a0bfd4e4b0d0f0def9f97acbf3c810}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!submatrix@{submatrix}}
+\index{submatrix@{submatrix}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{submatrix()}{submatrix()}}
+{\footnotesize\ttfamily \label{class_matrix_a00a0bfd4e4b0d0f0def9f97acbf3c810} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+submatrix (\begin{DoxyParamCaption}\item[{int}]{row\+\_\+start}{, }\item[{int}]{row\+\_\+end}{, }\item[{int}]{col\+\_\+start}{, }\item[{int}]{col\+\_\+end}{}\end{DoxyParamCaption}) const}
+
+
+
+Extracts a submatrix from specified row and column ranges. 
+
+Extracts rows \+[row\+\_\+start, row\+\_\+end) and columns \+[col\+\_\+start, col\+\_\+end) using exclusive upper bounds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+start} & Starting row index (inclusive) \\
+\hline
+{\em row\+\_\+end} & Ending row index (exclusive) \\
+\hline
+{\em col\+\_\+start} & Starting column index (inclusive) \\
+\hline
+{\em col\+\_\+end} & Ending column index (exclusive) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Extracted submatrix 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+out\+\_\+of\+\_\+range} & if indices are out of bounds \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00763}{763}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a63a5a4dc5f2f9f9b04b5eaf953d80415}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!toString@{toString}}
+\index{toString@{toString}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_matrix_a63a5a4dc5f2f9f9b04b5eaf953d80415} 
+template$<$typename T$>$ \\
+std::\+string \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Converts the matrix to a formatted string representation. 
+
+\begin{DoxyReturn}{Returns}
+String representation of the matrix 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00684}{684}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_a650078c4e68d8c618e56c55951997470}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!transpose@{transpose}}
+\index{transpose@{transpose}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily \label{class_matrix_a650078c4e68d8c618e56c55951997470} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+transpose (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the transpose of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+Transposed matrix with dimensions swapped 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00391}{391}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{class_matrix_abfcb44b6c0f017dcc8f25da0b9d7d6e4}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!zeros@{zeros}}
+\index{zeros@{zeros}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{zeros()}{zeros()}}
+{\footnotesize\ttfamily \label{class_matrix_abfcb44b6c0f017dcc8f25da0b9d7d6e4} 
+template$<$typename T$>$ \\
+\doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$::\+zeros (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates an r × c matrix filled with zeros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Number of rows \\
+\hline
+{\em c} & Number of columns \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+r × c zero matrix 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8cpp_source_l00899}{899}} of file \doxymbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+
+
+\label{doc-related-members}
+\Hypertarget{class_matrix_doc-related-members}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_matrix_a98ca87ee5110a32bf2ee6963c90578d9}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{class_matrix_a98ca87ee5110a32bf2ee6963c90578d9} 
+template$<$typename T$>$ \\
+std::\+ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std::\+ostream \&}]{os}{, }\item[{const \doxymbox{\hyperlink{class_matrix}{Matrix}}$<$ T $>$ \&}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Stream output operator for formatted matrix display. 
+
+Outputs the matrix with fixed-\/point notation, 6 decimal places, and field width of 12.
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream \\
+\hline
+{\em m} & \doxylink{class_matrix}{Matrix} to output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the output stream 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{matrix_8h_source_l00162}{162}} of file \doxymbox{\hyperlink{matrix_8h_source}{matrix.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+source/\+include/\+matrix.\+h\item 
+source/\+matrix.\+cpp\end{DoxyCompactItemize}
