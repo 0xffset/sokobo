@@ -1,9 +1,8 @@
 #pragma once
+#include <iomanip>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <vector>
-#include <iostream>
-#include <iomanip>
 
 #include "complex_number.h"
 #include "vector.h"
@@ -14,9 +13,6 @@ class Matrix
 private:
   std::vector<std::vector<T>> data;
   int rows, cols;
-
-
-
 
 public:
   Matrix()
@@ -48,15 +44,20 @@ public:
   Matrix<T> operator/=(const Matrix<T>& other) const;
   Matrix<T> operator-=(const Matrix<T>& other) const;
 
-  friend std::ostream& operator<<(std::ostream& os, const Matrix<T>& m) {
-        for (int i = 0; i < m.rows; ++i) {
-            for (int j = 0; j < m.cols; ++j) {
-                os << std::setw(12) << std::fixed << std::setprecision(6) << m.data[i][j];
-            }
-            if (i < m.rows - 1) os << "\n";
-        }
-        return os;
+  friend std::ostream& operator<<(std::ostream& os, const Matrix<T>& m)
+  {
+    for (int i = 0; i < m.rows; ++i) {
+      for (int j = 0; j < m.cols; ++j) {
+        os << std::setw(12) << std::fixed << std::setprecision(6)
+           << m.data[i][j];
+      }
+      if (i < m.rows - 1) {
+        os << "\n";
+      }
     }
+    return os;
+  }
+
   // Advanced operations
   T determinant() const;
   Matrix<T> inverse() const;
@@ -64,30 +65,39 @@ public:
   std::vector<T> eigenvalues() const;
   Matrix<T> eigenvectors() const;
   Matrix<T> adjoint() const;
-  Matrix<T> submatrix(int row_start, int row_end, int col_start, int col_end) const;
+  Matrix<T> submatrix(int row_start,
+                      int row_end,
+                      int col_start,
+                      int col_end) const;
   T rank() const;
+  bool isSymmetric() const;
+  
   // Decompositions
   std::pair<Matrix<T>, Matrix<T>> LUDecomposition() const;
-  std::pair<Matrix<T>, Matrix<T>> QRDecomposition() const; 
+  std::pair<Matrix<T>, Matrix<T>> QRDecomposition() const;
 
   std::vector<T> matVec(const std::vector<T>& v) const;
-  T dot(const std::vector<T>& a, const std::vector<T>& b) const; 
-  double norm(const std::vector<T>& v) const; 
+  T dot(const std::vector<T>& a, const std::vector<T>& b) const;
   void normalize(std::vector<T>& v) const;
 
-  void lanczos(int m, std::vector<T> & alpha, std::vector<T> & beta, Matrix<T>& Q) const;
+  void lanczos(int m,
+               std::vector<T>& alpha,
+               std::vector<T>& beta,
+               Matrix<T>& Q) const;
 
-  Matrix<T> buildTridiagonal(const std::vector<T>& alpha, const std::vector<T>& beta, int m) const;
+  Matrix<T> buildTridiagonal(const std::vector<T>& alpha,
+                             const std::vector<T>& beta,
+                             int m) const;
 
   // Matrix norms
   double frobeniusNorm() const;
   double spectralNorm() const;
- 
+  double norm(const std::vector<T>& v) const;
+
   // Utility
   Matrix<T> getMinor(int row, int col) const;
   std::string toString() const;
-  
-  
+
   int getRows() const { return rows; }
 
   int getCols() const { return cols; }

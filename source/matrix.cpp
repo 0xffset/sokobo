@@ -79,7 +79,7 @@ Matrix<T>::Matrix(const std::vector<std::vector<T>>& mat)
   for (const auto& row : mat) {
     if (row.size() != cols) {
       throw std::invalid_argument(
-          "All matrix rows must have the same number of columns");
+          "All matrix rows must have the same  number of columns");
     }
   }
 
@@ -208,6 +208,24 @@ T Matrix<T>::rank() const
     }
   }
   return rank;
+}
+
+template<typename T>
+bool Matrix<T>::isSymmetric() const
+{
+  if (getRows() != getCols()) {
+    return false;
+  }
+
+  int rows = getRows();
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < i; j++) {
+      if (data[i][j] != data[j][i]) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 template<typename T>
