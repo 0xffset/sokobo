@@ -1,0 +1,9 @@
+/**
+ * \page lanczos Lanczos Algorithm
+ * \ingroup algorithms
+ *
+ * Iterative method for computing eigenvalues of large sparse matrices.
+ *
+ * \section usage Usage
+ * Used internally for matrix eigenvalue computations.
+ */

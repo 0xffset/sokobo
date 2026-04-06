@@ -1,0 +1,4 @@
+/**
+ * \defgroup numerical Numerical Methods
+ * \brief Root finding, optimization, interpolation
+ */

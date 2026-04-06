@@ -1,0 +1,4 @@
+/**
+ * \defgroup matrix Matrix Module
+ * \brief Matrix operations and linear algebra utilities
+ */

@@ -1,0 +1,9 @@
+/**
+ * \page pde_solvers PDE Solvers
+ * \ingroup algorithms
+ *
+ * Supported equations:
+ * - Heat equation
+ * - Wave equation
+ * - Laplace equation
+ */

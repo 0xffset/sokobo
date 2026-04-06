@@ -1,12 +1,13 @@
 var searchData=
 [
-  ['calculus_0',['Expressions and Calculus',['../md__r_e_a_d_m_e.html#autotoc_md14',1,'']]],
-  ['cas_1',['sokobo - Computational Algebra System (CAS)',['../md__r_e_a_d_m_e.html',1,'']]],
-  ['cmake_2',['Using CMake',['../md__r_e_a_d_m_e.html#autotoc_md6',1,'']]],
-  ['commands_3',['Example Commands',['../md__r_e_a_d_m_e.html#autotoc_md11',1,'']]],
-  ['compile_20all_4',['Compile all',['../md__r_e_a_d_m_e.html#autotoc_md8',1,'']]],
-  ['complex_20numbers_5',['Complex Numbers',['../md__r_e_a_d_m_e.html#autotoc_md13',1,'']]],
-  ['computational_20algebra_20system_20cas_6',['sokobo - Computational Algebra System (CAS)',['../md__r_e_a_d_m_e.html',1,'']]],
-  ['contributing_7',['Contributing',['../md__r_e_a_d_m_e.html#autotoc_md21',1,'']]],
-  ['core_20functionality_8',['Core Functionality',['../md__r_e_a_d_m_e.html#autotoc_md2',1,'']]]
+  ['calculus_0',['Expressions and Calculus',['../index.html#expressions_calculus',1,'']]],
+  ['cas_1',['sokobo - Computational Algebra System (CAS)',['../index.html',1,'']]],
+  ['categories_2',['Categories',['../algorithms.html#categories',1,'']]],
+  ['cmake_3',['Using CMake',['../index.html#using_cmake',1,'']]],
+  ['command_20line_20interface_4',['Command Line Interface',['../cli.html',1,'']]],
+  ['commands_5',['Example Commands',['../index.html#examples',1,'']]],
+  ['complex_20numbers_6',['Complex Numbers',['../index.html#complex_numbers',1,'']]],
+  ['computational_20algebra_20system_20cas_7',['sokobo - Computational Algebra System (CAS)',['../index.html',1,'']]],
+  ['contributing_8',['Contributing',['../index.html#contributing',1,'']]],
+  ['core_20functionality_9',['Core Functionality',['../index.html#core_functionality',1,'']]]
 ];

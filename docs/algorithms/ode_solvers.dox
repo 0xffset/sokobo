@@ -1,0 +1,9 @@
+/**
+ * \page ode_solvers ODE Solvers
+ * \ingroup algorithms
+ *
+ * Methods:
+ * - Euler
+ * - Runge-Kutta
+ * - Adams-Bashforth
+ */

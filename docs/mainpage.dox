@@ -1,0 +1,156 @@
+/**
+
+* \mainpage sokobo - Computational Algebra System (CAS)
+*
+* A lightweight, comprehensive C++ implementation of a Computer Algebra System
+* with advanced mathematical capabilities.
+*
+* \section features Features
+*
+* \subsection core_functionality Core Functionality
+* * <b>Symbolic Expression Manipulation</b>: Variables, constants, binary operations, functions
+* * <b>Polynomial Arithmetic</b>: Addition, multiplication, division, GCD, factorization
+* * <b>Complex Number Operations</b>: All basic operations plus advanced functions
+* * <b>Matrix Operations</b>: Determinant, inverse, eigenvalues, decompositions
+* * <b>Calculus</b>: Symbolic differentiation, numerical integration, series expansions
+* * <b>Transforms</b>: Laplace transforms, Fourier transforms (DFT/FFT)
+* * <b>Differential Equations</b>: ODE and PDE solvers
+* * <b>Numerical Methods</b>: Root finding, optimization, interpolation
+*
+* \subsection advanced_features Advanced Features
+* * Taylor and Chebyshev series expansions
+* * Multiple integration methods (Trapezoidal, Simpson's, Gaussian quadrature, Monte Carlo)
+* * Various ODE solvers (Euler, Runge-Kutta, Adams-Bashforth)
+* * PDE solvers for heat, wave, and Laplace equations
+* * Linear system solvers (Gaussian elimination, LU decomposition, iterative methods)
+* * Statistical functions and regression analysis
+* * Special functions (Gamma, Beta, Error, Bessel, Legendre, Hermite)
+*
+* \section building Building
+*
+* \subsection using_make Using Make
+* \code
+* make
+* \endcode
+*
+* \subsection using_cmake Using CMake
+* \code
+* mkdir build
+* cd build
+* cmake ..
+* make
+* \endcode
+*
+* \section usage Usage
+*
+* Run the executable:
+* \code
+* ./sokobo
+* \endcode
+*
+* Compile all:
+* \code
+* g++ -std=c++23 -Wall -Wextra -O3 -Isource source/*.cpp -o sokobo
+* \endcode
+*
+* \section testing Unit Testing
+*
+* \subsection matrices Matrices
+* \code
+* g++ -std=c++23 -Wall -Wextra -O3 -Itest -Isource -Isource/include test/matrix_test.cpp source/matrix.cpp source/complex_number.cpp -o matrix_test -lm
+* \endcode
+*
+* \section examples Example Commands
+*
+* \subsection polynomials Polynomials
+* \code
+* poly p1 1 2 3
+* poly p2 2 1
+* add p1 p2
+* mult p1 p2
+* deriv p1
+* roots p1
+* factor p1
+* \endcode
+*
+* \subsection complex_numbers Complex Numbers
+* \code
+* complex c1 3 4
+* complex c2 1 -2
+* cadd c1 c2
+* cmult c1 c2
+* cpower c1 3
+* croots 8 3
+* \endcode
+*
+* \subsection expressions_calculus Expressions and Calculus
+* \code
+* expr f x^2+sin(x)
+* deriv f x
+* integral f x 0 1
+* series f 0 5
+* limit f 0
+* \endcode
+*
+* \subsection matrices_example Matrices
+* \code
+* matrix m1 3 3
+* matrix_raw m1 ([1,2],[3,4])
+* mset m1 0 0 5
+* mdet m1
+* minv m1
+* meigen m1
+* madj m1
+* mrank m1
+* \endcode
+*
+* \subsection transforms Transforms
+* \code
+* laplace f t
+* ilaplace F s
+* fourier signal
+* ifourier spectrum
+* \endcode
+*
+* \subsection differential_equations Differential Equations
+* \code
+* ode euler y'=x+y 0 1 0.1 10
+* ode rk4 y'=x+y 0 1 0.1 10
+* pde heat 1.0 1.0 1.0 50 50
+* \endcode
+*
+* \subsection numerical_methods Numerical Methods
+* \code
+* root bisect f -1 1
+* root newton f df 1
+* optimize golden f -1 1
+* interpolate lagrange x_vals y_vals
+* \endcode
+*
+* \section project_structure Project Structure
+*
+* \code
+* sokobo/
+* ├── include/
+* │   ├── expression.h
+* │   ├── polynomial.h
+* │   ├── complex_number.h
+* │   ├── matrix.h
+* │   ├── calculus.h
+* │   ├── laplace.h
+* │   ├── fourier.h
+* │   ├── differential_equations.h
+* │   ├── numerical_methods.h
+* │   └── cli.h
+* ├── src/
+* \endcode
+*
+* \section building_install Building and Installing
+* See BUILDING.md for detailed instructions.
+*
+* \section contributing Contributing
+* See CONTRIBUTING.md for guidelines.
+*
+* \section license License
+* Please choose an appropriate license (recommended: GNU AGPLv3).
+  */

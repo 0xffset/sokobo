@@ -1,0 +1,11 @@
+
+/**
+ * \page integration Numerical Integration
+ * \ingroup algorithms
+ *
+ * Methods:
+ * - Trapezoidal
+ * - Simpson
+ * - Gaussian Quadrature
+ * - Monte Carlo
+ */

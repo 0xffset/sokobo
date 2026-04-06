@@ -1,0 +1,14 @@
+/**
+ * \page algorithms Algorithms
+ *
+ * Overview of all implemented algorithms.
+ *
+ * \section categories Categories
+ *
+ * - \subpage lanczos
+ * - \subpage interpolation
+ * - \subpage integration
+ * - \subpage ode_solvers
+ * - \subpage pde_solvers
+ * - \subpage optimization
+ */

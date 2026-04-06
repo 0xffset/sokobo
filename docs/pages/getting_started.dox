@@ -1,0 +1,11 @@
+
+/**
+ * \page getting_started Getting Started
+ *
+ * \section install Installation
+ * \code
+ * mkdir build && cd build
+ * cmake ..
+ * make
+ * \endcode
+ */

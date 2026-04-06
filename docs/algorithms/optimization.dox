@@ -1,0 +1,8 @@
+/**
+ * \page optimization Optimization Algorithms
+ * \ingroup algorithms
+ *
+ * Includes:
+ * - Golden section search
+ * - Gradient-based methods
+ */

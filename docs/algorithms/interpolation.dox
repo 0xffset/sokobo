@@ -1,0 +1,7 @@
+
+/**
+ * \page interpolation Interpolation Methods
+ * \ingroup algorithms
+ *
+ * Includes Lagrange and Newton interpolation techniques.
+ */
