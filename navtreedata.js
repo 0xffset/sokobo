@@ -32,34 +32,6 @@ var NAVTREE =
     [ "Getting Started", "getting_started.html", [
       [ "Installation", "getting_started.html#install", null ]
     ] ],
-    [ "sokobo - Computational Algebra System (CAS)", "md_README.html", [
-      [ "Features", "md_README.html#autotoc_md1", [
-        [ "Core Functionality", "md_README.html#autotoc_md2", null ],
-        [ "Advanced Features", "md_README.html#autotoc_md3", null ]
-      ] ],
-      [ "Building", "md_README.html#autotoc_md4", [
-        [ "Using Make", "md_README.html#autotoc_md5", null ],
-        [ "Using CMake", "md_README.html#autotoc_md6", null ]
-      ] ],
-      [ "Usage", "md_README.html#autotoc_md7", null ],
-      [ "Compile all", "md_README.html#autotoc_md8", null ],
-      [ "Unit Testing", "md_README.html#autotoc_md9", [
-        [ "Matrices", "md_README.html#autotoc_md10", null ],
-        [ "Example Commands", "md_README.html#autotoc_md11", [
-          [ "Polynomials", "md_README.html#autotoc_md12", null ],
-          [ "Complex Numbers", "md_README.html#autotoc_md13", null ],
-          [ "Expressions and Calculus", "md_README.html#autotoc_md14", null ],
-          [ "Matrices", "md_README.html#autotoc_md15", null ],
-          [ "Transforms", "md_README.html#autotoc_md16", null ],
-          [ "Differential Equations", "md_README.html#autotoc_md17", null ],
-          [ "Numerical Methods", "md_README.html#autotoc_md18", null ]
-        ] ]
-      ] ],
-      [ "Project Structure", "md_README.html#autotoc_md19", null ],
-      [ "Building and installing", "md_README.html#autotoc_md20", null ],
-      [ "Contributing", "md_README.html#autotoc_md21", null ],
-      [ "Licensing", "md_README.html#autotoc_md22", null ]
-    ] ],
     [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
