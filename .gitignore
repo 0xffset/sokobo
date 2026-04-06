@@ -19,3 +19,5 @@ sokobo.kdev4
 *.exe
 .project
 .cproject
+docs/html
+docs/latex
