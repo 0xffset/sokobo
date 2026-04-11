@@ -14,23 +14,29 @@
 #include "include/complex_number.h"
 
 /**
- * @brief Computes the square root of a value with type-safe handling for arithmetic and complex types.
- * 
- * This template function provides a unified interface for computing square roots across different
- * numeric types. For arithmetic types, it returns the square root of the value. For complex types,
- * it returns the square root of the magnitude (modulus) as a double.
- * 
- * @tparam T The type of the input value. Can be arithmetic (integral or floating-point) or complex.
- * 
+ * @brief Computes the square root of a value with type-safe handling for
+ * arithmetic and complex types.
+ *
+ * This template function provides a unified interface for computing square
+ * roots across different numeric types. For arithmetic types, it returns the
+ * square root of the value. For complex types, it returns the square root of
+ * the magnitude (modulus) as a double.
+ *
+ * @tparam T The type of the input value. Can be arithmetic (integral or
+ * floating-point) or complex.
+ *
  * @param value The value whose square root is to be computed.
- * 
- * @return For arithmetic types: returns the square root as type T (integral types are cast to double
- *         for computation, then cast back to T). For floating-point types: returns std::sqrt(value).
- *         For complex types: returns the square root of the magnitude as a double.
- * 
- * @note For integral types, the result is truncated when cast back to the original type.
- * @note For complex types, this computes sqrt(|z|), not the principal complex square root.
- * 
+ *
+ * @return For arithmetic types: returns the square root as type T (integral
+ * types are cast to double for computation, then cast back to T). For
+ * floating-point types: returns std::sqrt(value). For complex types: returns
+ * the square root of the magnitude as a double.
+ *
+ * @note For integral types, the result is truncated when cast back to the
+ * original type.
+ * @note For complex types, this computes sqrt(|z|), not the principal complex
+ * square root.
+ *
  * Example usage:
  * @code
  * double d = safe_sqrt(4.0);           // Returns 2.0
@@ -54,26 +60,29 @@ auto safe_sqrt(T value) ->
 }
 
 /**
- * @brief Computes the absolute value of a value with type-safe handling for arithmetic and complex types.
- * 
- * This template function provides a unified interface for computing absolute values across different
- * numeric types. For arithmetic types, it returns the absolute value. For complex types, it returns
- * the absolute value of the magnitude (modulus).
- * 
- * @tparam T The type of the input value. Can be arithmetic (integral or floating-point) or complex.
- * 
+ * @brief Computes the absolute value of a value with type-safe handling for
+ * arithmetic and complex types.
+ *
+ * This template function provides a unified interface for computing absolute
+ * values across different numeric types. For arithmetic types, it returns the
+ * absolute value. For complex types, it returns the absolute value of the
+ * magnitude (modulus).
+ *
+ * @tparam T The type of the input value. Can be arithmetic (integral or
+ * floating-point) or complex.
+ *
  * @param value The value whose absolute value is to be computed.
- * 
- * @return For arithmetic types: returns the absolute value as type T. For floating-point types:
- *         returns std::abs(value). For integral types: value is cast to double, abs is computed,
- *         then cast back to T. For complex types: returns the absolute value of the magnitude
- *         as a double.
- * 
- * @note For integral types, the intermediate double conversion ensures proper handling of the
- *       most negative value (e.g., INT_MIN).
- * @note For complex types, this computes |magnitude(z)|, which is equivalent to |z| for properly
- *       implemented magnitude functions.
- * 
+ *
+ * @return For arithmetic types: returns the absolute value as type T. For
+ * floating-point types: returns std::abs(value). For integral types: value is
+ * cast to double, abs is computed, then cast back to T. For complex types:
+ * returns the absolute value of the magnitude as a double.
+ *
+ * @note For integral types, the intermediate double conversion ensures proper
+ * handling of the most negative value (e.g., INT_MIN).
+ * @note For complex types, this computes |magnitude(z)|, which is equivalent to
+ * |z| for properly implemented magnitude functions.
+ *
  * Example usage:
  * @code
  * double d = safe_abs(-4.5);           // Returns 4.5
@@ -391,9 +400,15 @@ template<typename T>
 Matrix<T> Matrix<T>::transpose() const
 {
   Matrix<T> result(cols, rows);
-  for (int i = 0; i < rows; ++i) {
-    for (int j = 0; j < cols; ++j) {
-      result(j, i) = data[i][j];
+  const int blockSize = 16;
+
+  for (int i = 0; i < rows; i += blockSize) {
+    for (int j = 0; j <= cols; j += blockSize) {
+      for (int ii = i; ii < std::min(i + blockSize, rows); ++ii) {
+        for (int jj = j; jj < std::min(j + blockSize, rows); ++jj) {
+          result(jj, ii) = data[ii][jj];
+        }
+      }
     }
   }
   return result;
