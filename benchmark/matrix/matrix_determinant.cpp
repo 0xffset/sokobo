@@ -1,5 +1,4 @@
 #include <benchmark/benchmark.h>
-#include <random>
 #include "../source/include/matrix.h"
 #include "../source/include/complex_number.h"
 #include "../source/matrix.cpp"
@@ -19,21 +18,25 @@ void fill_m(Matrix<T>& mat)
         }
     }
 }
-
-static void transpose_BM(benchmark::State& state)
+static void determinant_BM(benchmark::State& state)
 {
   const int size = state.range(0);
   Matrix<double> m(size, size);
 
   fill_m(m);
+
   for (auto _ : state) {
-    benchmark::DoNotOptimize(m.transpose());
+    benchmark::DoNotOptimize(m.determinant());
   }
-  state.SetBytesProcessed(
-      uint64_t(state.iterations() * size * size * sizeof(double)));
+
+ state.SetBytesProcessed(
+    int64_t(state.iterations()) *
+    int64_t(size) *
+    int64_t(size) *
+    sizeof(double));
   state.SetComplexityN(size);
 }
 
-BENCHMARK(transpose_BM)->RangeMultiplier(2)->Range(8, 2024)->Complexity();
+BENCHMARK(determinant_BM)->RangeMultiplier(2)->Range(8, 2024)->Complexity();
 
 BENCHMARK_MAIN();

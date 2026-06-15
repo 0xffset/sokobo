@@ -59,8 +59,7 @@ add_executable(fourier "source/fourier.cpp" "source/include/fourier.h")
 add_executable(laplace "source/laplace.cpp" "source/include/laplace.h" )
 add_executable(numerical_methods "source/numerical_methods.cpp" "source/include/numerical_methods.h")
 add_executable(polynomial "source/polynomial.cpp" "source/include/polynomial.h")
-add_executable(matrix "source/matrix.cpp" "source/include/matrix.h"
-        test/matrix_test.cpp)
+add_executable(matrix "source/matrix.cpp" "source/include/matrix.h" test/matrix/matrix_test.cpp)
 add_executable(cli "source/cli.cpp" "source/include/cli.h")
 
 set_property(TARGET sokobo_exe PROPERTY OUTPUT_NAME sokobo)
