@@ -50,18 +50,18 @@ TEST_CASE("QR Decomposition - Symmetric", "[qr]") {
 
 // --- TEST 2: LANCZOS ALGORITHM ---
 TEST_CASE("Lanczos Algorithm - Symmetric Matrix", "[lanczos]") {
-    Matrix<double> A(2, 2);
-    A(0, 0) = 2; A(0, 1) = 1;
-    A(1, 0) = 1; A(1, 1) = 2;
-    
+    Matrix<double> B(2, 2);
+    B(0, 0) = 2; B(0, 1) = 1;
+    B(1, 0) = 1; B(1, 1) = 2;
+
     std::cout << "\n--- TEST: Lanczos Algorithm ---\n";
-    printMatrix("Matriz A", A);
+    printMatrix("Matriz B", B);
 
     std::vector<double> alpha, beta;
     Matrix<double> Q_lanc;
     
     // Intentamos 2 pasos
-    A.lanczos(2, alpha, beta, Q_lanc);
+    B.lanczos(2, alpha, beta, Q_lanc);
 
     printVector("Alpha (Diagonal de T)", alpha);
     printVector("Beta (Subdiagonal de T)", beta);
@@ -69,11 +69,11 @@ TEST_CASE("Lanczos Algorithm - Symmetric Matrix", "[lanczos]") {
 
     // T debe construirse con el tamaño real de alpha (puede ser 1 o 2)
     int actual_m = alpha.size();
-    Matrix<double> T = A.buildTridiagonal(alpha, beta, actual_m);
+    Matrix<double> T = B.buildTridiagonal(alpha, beta, actual_m);
     printMatrix("Matriz Tridiagonal T", T);
     
     // Verificación fundamental: Q^T * A * Q = T
-    Matrix<double> QtAQ = Q_lanc.transpose() * A * Q_lanc;
+    Matrix<double> QtAQ = Q_lanc.transpose() * B * Q_lanc;
     printMatrix("Verificación Q^T * A * Q", QtAQ);
 
     for (int i = 0; i < T.getRows(); ++i) {

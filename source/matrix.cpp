@@ -399,19 +399,24 @@ Matrix<T> Matrix<T>::inverse() const
 template<typename T>
 Matrix<T> Matrix<T>::transpose() const
 {
-  Matrix<T> result(cols, rows);
-  const int blockSize = 16;
+    Matrix<T> result(cols, rows);
+    constexpr int blockSize = 16;
 
-  for (int i = 0; i < rows; i += blockSize) {
-    for (int j = 0; j <= cols; j += blockSize) {
-      for (int ii = i; ii < std::min(i + blockSize, rows); ++ii) {
-        for (int jj = j; jj < std::min(j + blockSize, rows); ++jj) {
-          result(jj, ii) = data[ii][jj];
+    for (int i = 0; i < rows; i += blockSize)
+    {
+        for (int j = 0; j < cols; j += blockSize)
+        {
+            for (int ii = i; ii < std::min(i + blockSize, rows); ++ii)
+            {
+                for (int jj = j; jj < std::min(j + blockSize, cols); ++jj)
+                {
+                    result(jj, ii) = data[ii][jj];
+                }
+            }
         }
-      }
     }
-  }
-  return result;
+
+    return result;
 }
 
 template<typename T>
