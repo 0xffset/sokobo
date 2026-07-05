@@ -14,7 +14,7 @@ TEST_CASE("Matrix Inverse", "[matrix]")
             for (int j = 0; j < m.getCols(); ++j) {
                 float expected = (i == j) ? 1.0f : 0.0f;
                 if (std::abs(m[i][j] - expected) > epsilon) return false;
-            }
+            }norm {{1, 2}, {3, 4}}
         }
         return true;
     };
