@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_MATH
+#define CATCH_CONFIG_MAIN
 #include <vector>
 
 #include "../../sokobo/source/include/matrix.h"
