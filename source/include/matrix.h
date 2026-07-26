@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "complex_number.h"
-#include "vector.h"
 
 /**
  * @brief A templated matrix class supporting various linear algebra operations.
@@ -381,6 +380,13 @@ public:
    */
   double spectralNorm() const;
 
+  /*
+   * @brief Computes the spectral radius of the matrix
+   *
+   * The speectral radius is the maximum of the absolute values of its eigenvalues
+   *
+   */
+  double spectralRadius() const;
   /**
    * @brief Computes the Euclidean (L2) norm of a vector.
    *

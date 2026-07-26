@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "include/matrix.h"
-
+#include "include/vector.h"
 #include "include/complex_number.h"
 
 /**
@@ -669,6 +669,43 @@ double Matrix<T>::spectralNorm() const
   }
 
   return std::sqrt(maxEigenval);
+}
+
+template<typename T>
+double Matrix<T>::spectralRadius() const {
+    if (this->rows != this->cols) {
+        throw std::invalid_argument("Spectral radius requies a square matrix");
+    }
+
+    int n = this->rows;
+    ::Vector<T> bk = ::Vector<T>::ones(n);
+    bk.normalize();
+
+    double rho = 0 ;
+    double old_rho = 0.0;
+
+    const int max_it = 500;
+    const double tolerance = 1e-10;
+
+    for (int iter = 0; iter<max_it; ++iter) {
+        ::Vector<T> bk_next = (*this) * bk;
+
+        rho = bk.dot(bk_next);
+        double current_norm = bk_next.norm();
+
+        if (current_norm <1e-15) {
+             return 0.0;
+        }
+
+        bk_next.normalize();
+        bk = bk_next;
+
+        if(iter>0&&std::abs(rho - old_rho) < tolerance) {
+            break;
+        }
+        old_rho = rho;
+    }
+    return std::abs(rho);
 }
 
 template<typename T>
