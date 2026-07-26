@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <vector>
 
-#include "../../external/catch.hpp".\te
+#include "../../external/catch.hpp"
 #include "../../sokobo/source/include/matrix.h"
 #include "utils.h"
 

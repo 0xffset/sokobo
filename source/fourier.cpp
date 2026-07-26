@@ -18,7 +18,7 @@
 std::vector<ComplexNumber> FourierTransform::DFT(const std::vector<ComplexNumber>& signal) {
     int N = signal.size();
     std::vector<ComplexNumber> spectrum(N);
-    
+
     for (int k = 0; k < N; ++k) {
         ComplexNumber sum(0, 0);
         for (int n = 0; n < N; ++n) {
@@ -28,14 +28,14 @@ std::vector<ComplexNumber> FourierTransform::DFT(const std::vector<ComplexNumber
         }
         spectrum[k] = sum;
     }
-    
+
     return spectrum;
 }
 
 std::vector<ComplexNumber> FourierTransform::IDFT(const std::vector<ComplexNumber>& spectrum) {
     int N = spectrum.size();
     std::vector<ComplexNumber> signal(N);
-    
+
     for (int n = 0; n < N; ++n) {
         ComplexNumber sum(0, 0);
         for (int k = 0; k < N; ++k) {
@@ -45,7 +45,7 @@ std::vector<ComplexNumber> FourierTransform::IDFT(const std::vector<ComplexNumbe
         }
         signal[n] = sum / N;
     }
-    
+
     return signal;
 }
 
@@ -62,22 +62,22 @@ static int reverseBits(int num, int bits) {
 // Fast Fourier Transform (Cooley-Tukey algorithm)
 std::vector<ComplexNumber> FourierTransform::FFT(const std::vector<ComplexNumber>& signal) {
     int N = signal.size();
-    
+
     // Check if N is a power of 2
     if (N == 0 || (N & (N - 1)) != 0) {
         // If not power of 2, fall back to DFT
         return DFT(signal);
     }
-    
+
     int bits = 0;
     int temp = N;
     while (temp > 1) {
         temp >>= 1;
         bits++;
     }
-    
+
     std::vector<ComplexNumber> result(signal);
-    
+
     // Bit-reversal permutation
     for (int i = 0; i < N; ++i) {
         int j = reverseBits(i, bits);
@@ -85,12 +85,12 @@ std::vector<ComplexNumber> FourierTransform::FFT(const std::vector<ComplexNumber
             std::swap(result[i], result[j]);
         }
     }
-    
+
     // FFT computation
     for (int len = 2; len <= N; len <<= 1) {
         double angle = -2.0 * M_PI / len;
         ComplexNumber wlen(cos(angle), sin(angle));
-        
+
         for (int i = 0; i < N; i += len) {
             ComplexNumber w(1, 0);
             for (int j = 0; j < len / 2; ++j) {
@@ -102,29 +102,29 @@ std::vector<ComplexNumber> FourierTransform::FFT(const std::vector<ComplexNumber
             }
         }
     }
-    
+
     return result;
 }
 
 std::vector<ComplexNumber> FourierTransform::IFFT(const std::vector<ComplexNumber>& spectrum) {
     int N = spectrum.size();
-    
+
     // Conjugate the input
     std::vector<ComplexNumber> conjugated(N);
     for (int i = 0; i < N; ++i) {
       conjugated[i] = ComplexNumber(spectrum[i].getValue().real(),
                                     -spectrum[i].getValue().imag());
     }
-    
+
     // Apply FFT
     std::vector<ComplexNumber> result = FFT(conjugated);
-    
+
     // Conjugate and normalize
     for (int i = 0; i < N; ++i) {
       result[i] = ComplexNumber(result[i].getValue().real() / N,
                                 -result[i].getValue().imag() / N);
     }
-    
+
     return result;
 }
 
@@ -133,14 +133,14 @@ ComplexNumber FourierTransform::continuousFT(std::function<double(double)> f, do
     const int samples = 1000;
     double dt = 2 * T / samples;
     ComplexNumber result(0, 0);
-    
+
     for (int n = 0; n < samples; ++n) {
         double t = -T + n * dt;
         double angle = -omega * t;
         ComplexNumber exponential(cos(angle), sin(angle));
         result = result + ComplexNumber(f(t), 0) * exponential * dt;
     }
-    
+
     return result;
 }
 
@@ -149,7 +149,7 @@ std::function<double(double)> FourierTransform::inverseFT(std::function<ComplexN
         const int samples = 1000;
         double domega = 2 * t_max / samples;
         double result = 0.0;
-        
+
         for (int n = 0; n < samples; ++n) {
             double omega = -t_max + n * domega;
             ComplexNumber F_omega = F(omega);
@@ -158,7 +158,7 @@ std::function<double(double)> FourierTransform::inverseFT(std::function<ComplexN
             ComplexNumber integrand = F_omega * exponential;
             result += integrand.getValue().real() * domega;
         }
-        
+
         return result / (2 * M_PI);
     };
 }
@@ -167,22 +167,22 @@ std::function<double(double)> FourierTransform::inverseFT(std::function<ComplexN
 std::vector<ComplexNumber> FourierTransform::fourierSeries(std::function<double(double)> f, double period, int harmonics) {
     std::vector<ComplexNumber> coefficients(2 * harmonics + 1);
     double omega0 = 2 * M_PI / period;
-    
+
     for (int n = -harmonics; n <= harmonics; ++n) {
         const int samples = 1000;
         double dt = period / samples;
         ComplexNumber sum(0, 0);
-        
+
         for (int k = 0; k < samples; ++k) {
             double t = k * dt;
             double angle = -n * omega0 * t;
             ComplexNumber exponential(cos(angle), sin(angle));
             sum = sum + ComplexNumber(f(t), 0) * exponential * dt;
         }
-        
+
         coefficients[n + harmonics] = sum / period;
     }
-    
+
     return coefficients;
 }
 
@@ -193,18 +193,18 @@ std::vector<double> FourierTransform::powerSpectrum(const std::vector<double>& s
     for (double val : signal) {
         complexSignal.push_back(ComplexNumber(val, 0));
     }
-    
+
     // Compute FFT
     std::vector<ComplexNumber> spectrum = FFT(complexSignal);
-    
+
     // Compute power spectrum
     std::vector<double> power(spectrum.size());
     for (size_t i = 0; i < spectrum.size(); ++i) {
       power[i] = spectrum[i].getValue().real() * spectrum[i].getValue().real()
-          + 
+          +
                    spectrum[i].getValue().imag() * spectrum[i].getValue().imag();
     }
-    
+
     return power;
 }
 
@@ -213,7 +213,7 @@ std::vector<double> FourierTransform::magnitude(const std::vector<ComplexNumber>
     for (size_t i = 0; i < spectrum.size(); ++i) {
       mag[i] =
           sqrt(spectrum[i].getValue().real() * spectrum[i].getValue().real()
-                    + 
+                    +
                       spectrum[i].getValue().imag() * spectrum[i].getValue().imag());
     }
     return mag;
