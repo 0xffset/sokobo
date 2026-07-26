@@ -1,9 +1,11 @@
 #pragma once
-#include <vector>
-#include <string>
-#include <stdexcept>
 #include <cmath>
 #include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+#include "matrix.h"
 
 template<typename T>
 class Vector
@@ -24,7 +26,6 @@ public:
   Vector<T> operator-(const Vector<T>& other) const;
   Vector<T> operator*(T scalar) const;
   Vector<T> operator/(T scalar) const;
-
   T dot(const Vector<T>& other) const;
   double norm() const;
   void normalize();
@@ -33,5 +34,6 @@ public:
 
   static Vector<T> zeros(int size);
   static Vector<T> ones(int size);
- 
 };
+template<typename T>
+Vector<T> operator*(const Matrix<T>& mat, const Vector<T>& vec);
