@@ -8,7 +8,6 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-
 #include "include/cli.h"
 
 #include "include/calculus.h"
@@ -532,11 +531,10 @@ void CAS_CLI::handleIntegral(const std::vector<std::string>& tokens)
   double lower = std::stod(tokens[3]);
   double upper = std::stod(tokens[4]);
 
-  // For demo - using numerical integration
-  auto f = [](double x) { return x * x; };  // Example function
+  auto f = [](double x) { return x * x; };
   double result = Calculus::simpsonsRule(f, lower, upper);
-  std::cout << "∫[" << lower << "," << upper << "] " << expr << " d" << var
-            << " ≈ " << result << std::endl;
+  std::cout << "[" << lower << "," << upper << "] " << expr << " d" << var
+            << " approx " << result << std::endl;
 }
 
 void CAS_CLI::handleLimit(const std::vector<std::string>& tokens)
