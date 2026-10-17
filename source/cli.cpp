@@ -1,4 +1,5 @@
-﻿#include <algorithm>
+﻿#include "include/cli.h"
+#include <algorithm>
 #include <cctype>
 #include <cmath>
 #include <exception>
@@ -8,7 +9,6 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include "include/cli.h"
 
 #include "include/calculus.h"
 #include "include/complex_number.h"
@@ -19,8 +19,7 @@
 #include "include/numerical_methods.h"
 #include "include/polynomial.h"
 
-void CAS_CLI::run()
-{
+void CAS_CLI::run() {
   std::cout << "=== sokobo - Computational Algebra System ===" << '\n';
   std::cout << "Type 'help' for available commands or 'quit' to exit." << '\n';
 
@@ -95,6 +94,8 @@ void CAS_CLI::run()
         handleMatrix(tokens);
       } else if (cmd == "matrix_raw") {
         handleMatrixRaw(tokens);
+      } else if (cmd == "mtrans") {
+        handleMatrixTranspose(tokens);
       } else if (cmd == "madj") {
         handleMatrixAdjoint(tokens);
       } else if (cmd == "mdisp") {
@@ -129,7 +130,7 @@ void CAS_CLI::run()
         std::cout << "Unknown command: " << cmd << '\n';
         std::cout << "Type 'help' for available commands." << '\n';
       }
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
       std::cout << "Error: " << e.what() << '\n';
     }
   }
@@ -137,8 +138,7 @@ void CAS_CLI::run()
   std::cout << "Goodbye!" << '\n';
 }
 
-std::vector<std::string> CAS_CLI::split(const std::string& str)
-{
+std::vector<std::string> CAS_CLI::split(const std::string &str) {
   std::vector<std::string> tokens;
   std::istringstream iss(str);
   std::string token;
@@ -148,8 +148,7 @@ std::vector<std::string> CAS_CLI::split(const std::string& str)
   return tokens;
 }
 
-void CAS_CLI::showHelpMatrices()
-{
+void CAS_CLI::showHelpMatrices() {
   std::cout << "\nMatrices:" << '\n';
   std::cout << "  matrix <name> <rows> <cols>     - Create matrix" << '\n';
   std::cout
@@ -167,8 +166,7 @@ void CAS_CLI::showHelpMatrices()
   std::cout << "  mtrans <matrix>                 - Matrix transpose" << '\n';
 }
 
-void CAS_CLI::showHelp()
-{
+void CAS_CLI::showHelp() {
   std::cout << "\n=== CAS Commands ===" << std::endl;
 
   std::cout << "\nGeneral:" << std::endl;
@@ -227,8 +225,7 @@ void CAS_CLI::showHelp()
   std::cout << std::endl;
 }
 
-void CAS_CLI::handleExpression(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleExpression(const std::vector<std::string> &tokens) {
   if (tokens.size() < 3) {
     std::cout << "Usage: expr <name> <expression>" << std::endl;
     return;
@@ -253,16 +250,15 @@ void CAS_CLI::handleExpression(const std::vector<std::string>& tokens)
     // Optionally show the parsed form
     std::cout << "Parsed as: " << expr->toString() << std::endl;
 
-  } catch (const std::exception& e) {
+  } catch (const std::exception &e) {
     std::cout << "Error parsing expression: " << e.what() << std::endl;
     std::cout << "Expression '" << name << "' was not stored." << std::endl;
   }
 }
 
-void CAS_CLI::clearAll()
-{
-  int totalObjects = expressions.size() + polynomials.size()
-      + complexNumbers.size() + matrices.size();
+void CAS_CLI::clearAll() {
+  int totalObjects = expressions.size() + polynomials.size() +
+                     complexNumbers.size() + matrices.size();
 
   if (totalObjects == 0) {
     std::cout << "No objects to clear." << std::endl;
@@ -279,14 +275,13 @@ void CAS_CLI::clearAll()
             << std::endl;
 }
 
-void CAS_CLI::listObjects()
-{
+void CAS_CLI::listObjects() {
   bool hasObjects = false;
 
   // List expressions
   if (!expressions.empty()) {
     std::cout << "\nExpressions:" << std::endl;
-    for (const auto& pair : expressions) {
+    for (const auto &pair : expressions) {
       std::cout << "  " << pair.first << " = " << pair.second->toString()
                 << std::endl;
     }
@@ -296,7 +291,7 @@ void CAS_CLI::listObjects()
   // List polynomials
   if (!polynomials.empty()) {
     std::cout << "\nPolynomials:" << std::endl;
-    for (const auto& pair : polynomials) {
+    for (const auto &pair : polynomials) {
       std::cout << "  " << pair.first << " = " << pair.second.toString()
                 << std::endl;
     }
@@ -306,7 +301,7 @@ void CAS_CLI::listObjects()
   // List complex numbers
   if (!complexNumbers.empty()) {
     std::cout << "\nComplex Numbers:" << std::endl;
-    for (const auto& pair : complexNumbers) {
+    for (const auto &pair : complexNumbers) {
       std::cout << "  " << pair.first << " = " << pair.second.toString()
                 << std::endl;
     }
@@ -316,7 +311,7 @@ void CAS_CLI::listObjects()
   // List matrices
   if (!matrices.empty()) {
     std::cout << "\nMatrices:" << std::endl;
-    for (const auto& pair : matrices) {
+    for (const auto &pair : matrices) {
       std::cout << "  " << pair.first << " (" << pair.second.getRows() << "x"
                 << pair.second.getCols() << ")" << std::endl;
     }
@@ -331,8 +326,8 @@ void CAS_CLI::listObjects()
 }
 
 // Helper method to parse expression strings (you'll need to implement this)
-std::shared_ptr<Expression> CAS_CLI::parseExpression(const std::string& exprStr)
-{
+std::shared_ptr<Expression>
+CAS_CLI::parseExpression(const std::string &exprStr) {
   // Remove whitespace
   std::string cleanExpr = removeWhitespace(exprStr);
 
@@ -346,8 +341,7 @@ std::shared_ptr<Expression> CAS_CLI::parseExpression(const std::string& exprStr)
 }
 
 // Remove whitespace from expression string
-std::string CAS_CLI::removeWhitespace(const std::string& str)
-{
+std::string CAS_CLI::removeWhitespace(const std::string &str) {
   std::string result;
   for (char c : str) {
     if (!std::isspace(c)) {
@@ -358,9 +352,8 @@ std::string CAS_CLI::removeWhitespace(const std::string& str)
 }
 
 // Parse addition and subtraction (lowest precedence)
-std::shared_ptr<Expression> CAS_CLI::parseAddSub(const std::string& expr,
-                                                 size_t& pos)
-{
+std::shared_ptr<Expression> CAS_CLI::parseAddSub(const std::string &expr,
+                                                 size_t &pos) {
   auto left = parseMulDiv(expr, pos);
 
   while (pos < expr.length() && (expr[pos] == '+' || expr[pos] == '-')) {
@@ -373,9 +366,8 @@ std::shared_ptr<Expression> CAS_CLI::parseAddSub(const std::string& expr,
 }
 
 // Parse multiplication and division
-std::shared_ptr<Expression> CAS_CLI::parseMulDiv(const std::string& expr,
-                                                 size_t& pos)
-{
+std::shared_ptr<Expression> CAS_CLI::parseMulDiv(const std::string &expr,
+                                                 size_t &pos) {
   auto left = parsePower(expr, pos);
 
   while (pos < expr.length() && (expr[pos] == '*' || expr[pos] == '/')) {
@@ -388,14 +380,13 @@ std::shared_ptr<Expression> CAS_CLI::parseMulDiv(const std::string& expr,
 }
 
 // Parse exponentiation (highest precedence)
-std::shared_ptr<Expression> CAS_CLI::parsePower(const std::string& expr,
-                                                size_t& pos)
-{
+std::shared_ptr<Expression> CAS_CLI::parsePower(const std::string &expr,
+                                                size_t &pos) {
   auto left = parseFactor(expr, pos);
 
   if (pos < expr.length() && expr[pos] == '^') {
     pos++;
-    auto right = parsePower(expr, pos);  // Right associative
+    auto right = parsePower(expr, pos); // Right associative
     left = std::make_shared<BinaryOp>(left, '^', right);
   }
 
@@ -403,21 +394,20 @@ std::shared_ptr<Expression> CAS_CLI::parsePower(const std::string& expr,
 }
 
 // Parse factors (numbers, variables, functions, parentheses)
-std::shared_ptr<Expression> CAS_CLI::parseFactor(const std::string& expr,
-                                                 size_t& pos)
-{
+std::shared_ptr<Expression> CAS_CLI::parseFactor(const std::string &expr,
+                                                 size_t &pos) {
   if (pos >= expr.length()) {
     throw std::runtime_error("Unexpected end of expression");
   }
 
   // Handle parentheses
   if (expr[pos] == '(') {
-    pos++;  // Skip '('
+    pos++; // Skip '('
     auto result = parseAddSub(expr, pos);
     if (pos >= expr.length() || expr[pos] != ')') {
       throw std::runtime_error("Missing closing parenthesis");
     }
-    pos++;  // Skip ')'
+    pos++; // Skip ')'
     return result;
   }
 
@@ -425,8 +415,8 @@ std::shared_ptr<Expression> CAS_CLI::parseFactor(const std::string& expr,
   if (expr[pos] == '-') {
     pos++;
     auto operand = parseFactor(expr, pos);
-    return std::make_shared<BinaryOp>(
-        std::make_shared<Constant>(-1), '*', operand);
+    return std::make_shared<BinaryOp>(std::make_shared<Constant>(-1), '*',
+                                      operand);
   }
 
   // Handle unary plus
@@ -445,20 +435,18 @@ std::shared_ptr<Expression> CAS_CLI::parseFactor(const std::string& expr,
     return parseVariableOrFunction(expr, pos);
   }
 
-  throw std::runtime_error("Unexpected character: "
-                           + std::string(1, expr[pos]));
+  throw std::runtime_error("Unexpected character: " +
+                           std::string(1, expr[pos]));
 }
 
 // Parse numeric constants
-std::shared_ptr<Expression> CAS_CLI::parseNumber(const std::string& expr,
-                                                 size_t& pos)
-{
+std::shared_ptr<Expression> CAS_CLI::parseNumber(const std::string &expr,
+                                                 size_t &pos) {
   size_t start = pos;
   bool hasDecimal = false;
 
-  while (pos < expr.length()
-         && (std::isdigit(expr[pos]) || (expr[pos] == '.' && !hasDecimal)))
-  {
+  while (pos < expr.length() &&
+         (std::isdigit(expr[pos]) || (expr[pos] == '.' && !hasDecimal))) {
     if (expr[pos] == '.') {
       hasDecimal = true;
     }
@@ -471,9 +459,8 @@ std::shared_ptr<Expression> CAS_CLI::parseNumber(const std::string& expr,
 }
 
 // Parse variables and functions
-std::shared_ptr<Expression> CAS_CLI::parseVariableOrFunction(
-    const std::string& expr, size_t& pos)
-{
+std::shared_ptr<Expression>
+CAS_CLI::parseVariableOrFunction(const std::string &expr, size_t &pos) {
   size_t start = pos;
 
   // Parse identifier
@@ -485,12 +472,12 @@ std::shared_ptr<Expression> CAS_CLI::parseVariableOrFunction(
 
   // Check if it's a function call
   if (pos < expr.length() && expr[pos] == '(') {
-    pos++;  // Skip '('
+    pos++; // Skip '('
     auto argument = parseAddSub(expr, pos);
     if (pos >= expr.length() || expr[pos] != ')') {
       throw std::runtime_error("Missing closing parenthesis in function call");
     }
-    pos++;  // Skip ')'
+    pos++; // Skip ')'
     return std::make_shared<Function>(identifier, argument);
   }
 
@@ -498,8 +485,7 @@ std::shared_ptr<Expression> CAS_CLI::parseVariableOrFunction(
   return std::make_shared<Variable>(identifier);
 }
 
-void CAS_CLI::handleDerivative(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleDerivative(const std::vector<std::string> &tokens) {
   if (tokens.size() < 3) {
     std::cout << "Usage: deriv <expression> <variable>" << std::endl;
     return;
@@ -518,8 +504,7 @@ void CAS_CLI::handleDerivative(const std::vector<std::string>& tokens)
             << std::endl;
 }
 
-void CAS_CLI::handleIntegral(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleIntegral(const std::vector<std::string> &tokens) {
   if (tokens.size() < 5) {
     std::cout << "Usage: integral <expression> <variable> <lower> <upper>"
               << std::endl;
@@ -537,8 +522,7 @@ void CAS_CLI::handleIntegral(const std::vector<std::string>& tokens)
             << " approx " << result << std::endl;
 }
 
-void CAS_CLI::handleLimit(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleLimit(const std::vector<std::string> &tokens) {
   if (tokens.size() < 4) {
     std::cout << "Usage: limit <expression> <variable> <value>" << std::endl;
     return;
@@ -548,14 +532,13 @@ void CAS_CLI::handleLimit(const std::vector<std::string>& tokens)
   std::string var = tokens[2];
   double value = std::stod(tokens[3]);
 
-  auto f = [](double x) { return x * x; };  // Example function
+  auto f = [](double x) { return x * x; }; // Example function
   double result = Calculus::limit(f, value);
   std::cout << "lim(" << var << "→" << value << ") " << expr << " = " << result
             << std::endl;
 }
 
-void CAS_CLI::handleSeries(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleSeries(const std::vector<std::string> &tokens) {
   if (tokens.size() < 5) {
     std::cout << "Usage: series <expression> <variable> <center> <degree>"
               << std::endl;
@@ -567,14 +550,13 @@ void CAS_CLI::handleSeries(const std::vector<std::string>& tokens)
   double center = std::stod(tokens[3]);
   int degree = std::stoi(tokens[4]);
 
-  auto f = [](double x) { return std::exp(x); };  // Example function
+  auto f = [](double x) { return std::exp(x); }; // Example function
   Polynomial series = Calculus::taylorSeries(f, center, degree);
   std::cout << "Taylor series of " << expr << " around " << var << "=" << center
             << " (degree " << degree << "): " << series.toString() << std::endl;
 }
 
-void CAS_CLI::handlePolynomial(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handlePolynomial(const std::vector<std::string> &tokens) {
   if (tokens.size() < 3) {
     std::cout << "Usage: poly <name> <coefficient0> <coefficient1> ..."
               << std::endl;
@@ -592,8 +574,7 @@ void CAS_CLI::handlePolynomial(const std::vector<std::string>& tokens)
             << " stored." << std::endl;
 }
 
-void CAS_CLI::handlePolynomialEvaluate(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handlePolynomialEvaluate(const std::vector<std::string> &tokens) {
   if (tokens.size() < 3) {
     std::cout << "Usage: peval <polynomial> <value>" << std::endl;
     return;
@@ -611,8 +592,7 @@ void CAS_CLI::handlePolynomialEvaluate(const std::vector<std::string>& tokens)
   std::cout << name << "(" << value << ") = " << result << std::endl;
 }
 
-void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handlePolynomialAdd(const std::vector<std::string> &tokens) {
   if (tokens.size() < 4) {
     std::cout << "Usage: padd <poly1> <poly2> <result_name>" << std::endl;
     return;
@@ -622,9 +602,8 @@ void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
   std::string p2_name = tokens[2];
   std::string result_name = tokens[3];
 
-  if (CAS_CLI::polynomials.find(p1_name) == CAS_CLI::polynomials.end()
-      || CAS_CLI::polynomials.find(p2_name) == CAS_CLI::polynomials.end())
-  {
+  if (CAS_CLI::polynomials.find(p1_name) == CAS_CLI::polynomials.end() ||
+      CAS_CLI::polynomials.find(p2_name) == CAS_CLI::polynomials.end()) {
     std::cout << "One or both polynomials not found." << std::endl;
     return;
   }
@@ -683,8 +662,7 @@ void CAS_CLI::handlePolynomialAdd(const std::vector<std::string>& tokens)
 //             << std::endl;
 // }
 //
-void CAS_CLI::handlePolynomialRoots(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handlePolynomialRoots(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: proots <polynomial>" << '\n';
     return;
@@ -728,8 +706,7 @@ void CAS_CLI::handlePolynomialRoots(const std::vector<std::string>& tokens)
 //   }
 // }
 
-void CAS_CLI::handleComplex(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleComplex(const std::vector<std::string> &tokens) {
   if (tokens.size() < 4) {
     std::cout << "Usage: complex <name> <real> <imaginary>" << std::endl;
     return;
@@ -745,8 +722,7 @@ void CAS_CLI::handleComplex(const std::vector<std::string>& tokens)
             << std::endl;
 }
 
-void CAS_CLI::handleComplexAdd(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleComplexAdd(const std::vector<std::string> &tokens) {
   if (tokens.size() < 4) {
     std::cout << "Usage: cadd <complex1> <complex2> <result_name>" << std::endl;
     return;
@@ -756,9 +732,8 @@ void CAS_CLI::handleComplexAdd(const std::vector<std::string>& tokens)
   std::string c2_name = tokens[2];
   std::string result_name = tokens[3];
 
-  if (complexNumbers.find(c1_name) == complexNumbers.end()
-      || complexNumbers.find(c2_name) == complexNumbers.end())
-  {
+  if (complexNumbers.find(c1_name) == complexNumbers.end() ||
+      complexNumbers.find(c2_name) == complexNumbers.end()) {
     std::cout << "One or both complex numbers not found." << std::endl;
     return;
   }
@@ -769,8 +744,7 @@ void CAS_CLI::handleComplexAdd(const std::vector<std::string>& tokens)
             << std::endl;
 }
 
-void CAS_CLI::handleComplexMultiply(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleComplexMultiply(const std::vector<std::string> &tokens) {
   if (tokens.size() < 4) {
     std::cout << "Usage: cmult <complex1> <complex2> <result_name>"
               << std::endl;
@@ -781,9 +755,8 @@ void CAS_CLI::handleComplexMultiply(const std::vector<std::string>& tokens)
   std::string c2_name = tokens[2];
   std::string result_name = tokens[3];
 
-  if (complexNumbers.find(c1_name) == complexNumbers.end()
-      || complexNumbers.find(c2_name) == complexNumbers.end())
-  {
+  if (complexNumbers.find(c1_name) == complexNumbers.end() ||
+      complexNumbers.find(c2_name) == complexNumbers.end()) {
     std::cout << "One or both complex numbers not found." << std::endl;
     return;
   }
@@ -794,8 +767,7 @@ void CAS_CLI::handleComplexMultiply(const std::vector<std::string>& tokens)
             << std::endl;
 }
 
-void CAS_CLI::handleComplexPower(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleComplexPower(const std::vector<std::string> &tokens) {
   if (tokens.size() < 4) {
     std::cout << "Usage: cpower <complex> <power> <result_name>" << std::endl;
     return;
@@ -815,8 +787,7 @@ void CAS_CLI::handleComplexPower(const std::vector<std::string>& tokens)
             << std::endl;
 }
 
-void CAS_CLI::handleComplexRoots(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleComplexRoots(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: croots <n>" << std::endl;
     return;
@@ -831,24 +802,30 @@ void CAS_CLI::handleComplexRoots(const std::vector<std::string>& tokens)
   }
 }
 
-void CAS_CLI::handleMatrixAdjoint(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixAdjoint(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: madj <name>";
   }
   std::string name = tokens[1];
   std::cout << matrices[name].adjoint().toString() << '\n';
 }
+void CAS_CLI::handleMatrixTranspose(const std::vector<std::string>& tokens) {
+  if (tokens.size() < 2) {
+    std::cout << "Usage: mtrans <name>\n";
+    return;
+  }
+  const std::string &name = tokens[1];
+  std::cout << matrices[name].transpose().toString() << '\n';
+}
 
-void CAS_CLI::handleMatrixRaw(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixRaw(const std::vector<std::string> &tokens) {
   if (tokens.size() < 3) {
     std::cout << "Usage: matrix <name> (<raw>)\n";
     return;
   }
 
-  const std::string& name = tokens[1];
-  const std::string& raw = tokens[2];
+  const std::string &name = tokens[1];
+  const std::string &raw = tokens[2];
 
   if (raw.front() != '(' || raw.back() != ')') {
     std::cout << "Invalid format: expected '(...)'\n";
@@ -927,8 +904,7 @@ void CAS_CLI::handleMatrixRaw(const std::vector<std::string>& tokens)
             << expected_cols << ")\n";
 }
 
-void CAS_CLI::handleMatrix(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrix(const std::vector<std::string> &tokens) {
   if (tokens.size() < 4) {
     std::cout << "Usage: matrix <name> <rows> <cols>" << std::endl;
     return;
@@ -943,8 +919,7 @@ void CAS_CLI::handleMatrix(const std::vector<std::string>& tokens)
             << ") created." << std::endl;
 }
 
-void CAS_CLI::handleMatrixDisplay(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixDisplay(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: mdisp <name>" << std::endl;
   }
@@ -952,8 +927,7 @@ void CAS_CLI::handleMatrixDisplay(const std::vector<std::string>& tokens)
   std::cout << matrices[name].toString() << std::endl;
 }
 
-void CAS_CLI::handleMatrixRank(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixRank(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: mrank <name>" << std::endl;
   }
@@ -961,8 +935,7 @@ void CAS_CLI::handleMatrixRank(const std::vector<std::string>& tokens)
   std::cout << matrices[name].rank() << std::endl;
 }
 
-void CAS_CLI::handleMatrixSet(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixSet(const std::vector<std::string> &tokens) {
   if (tokens.size() < 5) {
     std::cout << "Usage: mset <matrix> <row> <col> <value>" << std::endl;
     return;
@@ -983,8 +956,7 @@ void CAS_CLI::handleMatrixSet(const std::vector<std::string>& tokens)
             << std::endl;
 }
 
-void CAS_CLI::handleMatrixDeterminant(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixDeterminant(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: mdet <matrix>" << std::endl;
     return;
@@ -1002,8 +974,7 @@ void CAS_CLI::handleMatrixDeterminant(const std::vector<std::string>& tokens)
   std::cout << matrices[name].toString() << std::endl;
 }
 
-void CAS_CLI::handleMatrixInverse(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixInverse(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: minv <matrix>" << std::endl;
     return;
@@ -1020,13 +991,12 @@ void CAS_CLI::handleMatrixInverse(const std::vector<std::string>& tokens)
     Matrix<float> inv = matrices[name].inverse();
     std::cout << "Inverse of " << name << ":" << std::endl;
     std::cout << inv.toString() << std::endl;
-  } catch (const std::exception& e) {
+  } catch (const std::exception &e) {
     std::cout << "Cannot compute inverse: " << e.what() << std::endl;
   }
 }
 
-void CAS_CLI::handleMatrixEigenvalues(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixEigenvalues(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: meigen <matrix>" << std::endl;
     return;
@@ -1046,8 +1016,7 @@ void CAS_CLI::handleMatrixEigenvalues(const std::vector<std::string>& tokens)
   }
 }
 
-void CAS_CLI::handleMatrixEigenvectors(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleMatrixEigenvectors(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: meigenv <matrix> " << std::endl;
     return;
@@ -1066,8 +1035,7 @@ void CAS_CLI::handleMatrixEigenvectors(const std::vector<std::string>& tokens)
   }
 }
 
-void CAS_CLI::handleLaplace(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleLaplace(const std::vector<std::string> &tokens) {
   if (tokens.size() < 3) {
     std::cout << "Usage: laplace <expression> <variable>" << std::endl;
     return;
@@ -1083,8 +1051,7 @@ void CAS_CLI::handleLaplace(const std::vector<std::string>& tokens)
       << std::endl;
 }
 
-void CAS_CLI::handleFourier(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleFourier(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: fourier <signal_values...>" << std::endl;
     return;
@@ -1102,8 +1069,7 @@ void CAS_CLI::handleFourier(const std::vector<std::string>& tokens)
   }
 }
 
-void CAS_CLI::handleODE(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handleODE(const std::vector<std::string> &tokens) {
   if (tokens.size() < 7) {
     std::cout << "Usage: ode <method> <dy/dx_expression> <x0> <y0> <h> <steps>"
               << std::endl;
@@ -1138,8 +1104,7 @@ void CAS_CLI::handleODE(const std::vector<std::string>& tokens)
   }
 }
 
-void CAS_CLI::handlePDE(const std::vector<std::string>& tokens)
-{
+void CAS_CLI::handlePDE(const std::vector<std::string> &tokens) {
   if (tokens.size() < 2) {
     std::cout << "Usage: pde <type> <parameters...>" << std::endl;
     std::cout << "Types: heat, wave, laplace" << std::endl;
