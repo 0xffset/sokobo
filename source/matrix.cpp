@@ -799,7 +799,25 @@ T Matrix<T>::dot(const std::vector<T>& a, const std::vector<T>& b) const
 template<typename T>
 double Matrix<T>::norm(const std::vector<T>& v) const
 {
-  return std::sqrt((double)dot(v, v));
+  if (getCols() != static_cast<int>(v.size())) {
+    throw std::invalid_argument("Matrix columns must match vector size.");
+  }
+
+  std::vector<T> result_vec(getRows(), 0);
+  for (int i = 0; i < getRows(); ++i) {
+    T sum = 0;
+    for (int j = 0; j < getCols(); ++j) {
+      sum += (*this)(i, j) * v[j];
+    }
+    result_vec[i] = sum;
+  }
+
+  double sum_squares = 0.0;
+  for (const auto& val : result_vec) {
+    sum_squares += static_cast<double>(val * val);
+  }
+
+  return std::sqrt(sum_squares);
 }
 
 template<typename T>

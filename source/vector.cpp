@@ -1,8 +1,7 @@
 #include <stdexcept>
-
+#include <cmath>
+#include <sstream>
 #include "include/vector.h"
-
-#include "string"
 
 template<typename T>
 Vector<T>::Vector()
@@ -39,7 +38,6 @@ int Vector<T>::size() const
   return data.size();
 }
 
-// Arithmetic
 template<typename T>
 Vector<T> Vector<T>::operator+(const Vector<T>& other) const
 {
@@ -114,7 +112,6 @@ Vector<T> Vector<T>::operator/(T scalar) const
   return result;
 }
 
-// Dot product
 template<typename T>
 T Vector<T>::dot(const Vector<T>& other) const
 {
@@ -130,14 +127,12 @@ T Vector<T>::dot(const Vector<T>& other) const
   return sum;
 }
 
-// Norm
 template<typename T>
 double Vector<T>::norm() const
 {
   return std::sqrt((double)dot(*this));
 }
 
-// Normalize
 template<typename T>
 void Vector<T>::normalize()
 {
@@ -151,7 +146,6 @@ void Vector<T>::normalize()
   }
 }
 
-// Utility
 template<typename T>
 std::string Vector<T>::toString() const
 {
@@ -164,7 +158,6 @@ std::string Vector<T>::toString() const
   return ss.str();
 }
 
-// Static
 template<typename T>
 Vector<T> Vector<T>::zeros(int size)
 {
@@ -174,18 +167,17 @@ Vector<T> Vector<T>::zeros(int size)
 template<typename T>
 Vector<T> Vector<T>::ones(int size)
 {
-  Vector<T> v(size);
+  Vector<T> result(size);
   for (int i = 0; i < size; ++i) {
-    v[i] = 1;
+    result[i] = 1;
   }
-  return v;
+  return result;
 }
+
 template class Vector<double>;
-template Vector<double> operator*<double>(const Matrix<double>& mat, const Vector<double>& vec);
-
-
 template class Vector<float>;
-template Vector<float> operator*<float>(const Matrix<float>& mat, const Vector<float>& vec);
-
 template class Vector<int>;
-template Vector<int> operator*<int>(const Matrix<int>& mat, const Vector<int>& vec);
+
+template Vector<double> operator*(const Matrix<double>& mat, const Vector<double>& vec);
+template Vector<float> operator*(const Matrix<float>& mat, const Vector<float>& vec);
+template Vector<int> operator*(const Matrix<int>& mat, const Vector<int>& vec);

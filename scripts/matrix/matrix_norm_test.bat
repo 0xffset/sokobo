@@ -10,6 +10,7 @@ g++ -std=c++23 -Wall -Wextra -O3 ^
     -Itest -Isource -Isource/include ^
     test/matrix/matrix_norm_test.cpp ^
     source/matrix.cpp ^
+    source/vector.cpp ^
     source/complex_number.cpp ^
     -o matrix_norm_test -lm
 
