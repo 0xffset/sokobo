@@ -2,8 +2,7 @@
 #include <vector>
 
 #include "../../external/catch.hpp"
-#include "../../sokobo/source/include/matrix.h"
-#include "utils.h"
+#include "../../source/include/matrix.h"
 
 TEST_CASE("Matrix Transpose", "[matrix]")
 {

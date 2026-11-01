@@ -1,12 +1,9 @@
 
 #define CATCH_CONFIG_MAIN
-#include "../../sokobo/source/include/matrix.h"
+#include "../../source/include/matrix.h"
 #include "../../external/catch.hpp"
-#include <iostream>
 #include <vector>
 
-using Catch::Matchers::Message;
-using Catch::Matchers::StartsWith;
 
 using namespace Catch::Matchers;
 

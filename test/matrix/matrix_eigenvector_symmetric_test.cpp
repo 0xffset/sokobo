@@ -2,9 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
-#include <iomanip>
 
-#include "../../sokobo/source/include/matrix.h"
+#include "../../source/include/matrix.h"
 #include "../../external/catch.hpp"
 #include "utils.h"
 
@@ -15,12 +14,12 @@ TEST_CASE("QR Decomposition - Symmetric", "[qr]") {
     Matrix<double> A(2, 2);
     A(0, 0) = 2; A(0, 1) = 1;
     A(1, 0) = 1; A(1, 1) = 2;
-    
+
     std::cout << "--- TEST: QR Decomposition ---\n";
     printMatrix("Matriz Original A", A);
 
     auto [Q, R] = A.QRDecomposition();
-    
+
     printMatrix("Resultado Q", Q);
     printMatrix("Resultado R", R);
 
@@ -38,7 +37,7 @@ TEST_CASE("QR Decomposition - Symmetric", "[qr]") {
     SECTION("Q should be orthogonal") {
         Matrix<double> QtQ = Q.transpose() * Q;
         printMatrix("Ortogonalidad Q^T * Q", QtQ);
-        
+
         for (int i = 0; i < QtQ.getRows(); ++i) {
             for (int j = 0; j < QtQ.getCols(); ++j) {
                 double expected = (i == j) ? 1.0 : 0.0;
@@ -59,7 +58,7 @@ TEST_CASE("Lanczos Algorithm - Symmetric Matrix", "[lanczos]") {
 
     std::vector<double> alpha, beta;
     Matrix<double> Q_lanc;
-    
+
     // Intentamos 2 pasos
     B.lanczos(2, alpha, beta, Q_lanc);
 
@@ -71,7 +70,7 @@ TEST_CASE("Lanczos Algorithm - Symmetric Matrix", "[lanczos]") {
     int actual_m = alpha.size();
     Matrix<double> T = B.buildTridiagonal(alpha, beta, actual_m);
     printMatrix("Matriz Tridiagonal T", T);
-    
+
     // Verificación fundamental: Q^T * A * Q = T
     Matrix<double> QtAQ = Q_lanc.transpose() * B * Q_lanc;
     printMatrix("Verificación Q^T * A * Q", QtAQ);
@@ -88,7 +87,7 @@ TEST_CASE("QR Iterations and Eigenvalues", "[qr_iterations]") {
     Matrix<double> A(2, 2);
     A(0, 0) = 2; A(0, 1) = 1;
     A(1, 0) = 1; A(1, 1) = 2;
-    
+
     std::cout << "\n--- TEST: QR Iterations ---\n";
 
     std::vector<double> alpha, beta;
@@ -97,12 +96,12 @@ TEST_CASE("QR Iterations and Eigenvalues", "[qr_iterations]") {
 
     Matrix<double> T = A.buildTridiagonal(alpha, beta, alpha.size());
     Matrix<double> T_copy = T;
-    
+
     for (int iter = 0; iter < 100; ++iter) {
         auto [Qk, Rk] = T_copy.QRDecomposition();
         T_copy = Rk * Qk;
     }
-    
+
     printMatrix("T Final (Diagonalizada)", T_copy);
 
     for(int i = 0; i < T_copy.getRows(); ++i) {
@@ -118,12 +117,12 @@ TEST_CASE("Full Eigenvector Method - Symmetric", "[eigenvectors_full]") {
     Matrix<double> A(2, 2);
     A(0, 0) = 2; A(0, 1) = 1;
     A(1, 0) = 1; A(1, 1) = 2;
-    
+
     std::cout << "\n--- TEST: Full Eigenvector Reconstruction ---\n";
 
     Matrix<double> eigvecs = A.eigenvectors();
     printMatrix("Matriz de Autovectores (Columnas)", eigvecs);
-    
+
     for (int k = 0; k < eigvecs.getCols(); ++k) {
         std::vector<double> v(A.getRows());
         for(int i = 0; i < A.getRows(); ++i) {
@@ -134,7 +133,7 @@ TEST_CASE("Full Eigenvector Method - Symmetric", "[eigenvectors_full]") {
 
         auto Av = A.matVec(v);
         double lambda = A.dot(v, Av) / A.dot(v, v);
-        
+
         std::cout << "Autovalor calculado (Rayleigh): " << lambda << "\n";
 
         bool isCorrectLambda = (std::abs(lambda - 3.0) < 1e-6 || std::abs(lambda - 1.0) < 1e-6);
@@ -147,7 +146,7 @@ TEST_CASE("Full Eigenvector Method - Symmetric", "[eigenvectors_full]") {
         }
         double residual = std::sqrt(residual_sq);
         std::cout << "Residuo ||Av - lv||: " << residual << "\n";
-        
+
         REQUIRE(residual < 1e-8);
     }
     std::cout << "-------------------------------------------\n";

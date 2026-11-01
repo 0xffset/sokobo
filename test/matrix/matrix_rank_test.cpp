@@ -1,12 +1,11 @@
 #define CATCH_CONFIG_MAIN
 #include <cmath>
 
-#include "../../sokobo/source/include/matrix.h"
+#include "../../source/include/matrix.h"
 
 #include "../../external/catch.hpp"
 #include "utils.h"
-using Catch::Matchers::Message;
-using Catch::Matchers::StartsWith;
+
 
 using namespace Catch::Matchers;
 
@@ -207,4 +206,3 @@ TEST_CASE("Rank of matrix with linearly independent columns - Rank", "[rank]")
 
     CHECK(result == expected);
 }
-

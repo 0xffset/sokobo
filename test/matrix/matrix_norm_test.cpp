@@ -1,8 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <vector>
 
-#include "../../sokobo/source/include/matrix.h"
-#include "../../sokobo/source/include/vector.h"
+#include "../../source/include/matrix.h"
 #include "../../external/catch.hpp"
 
 using namespace std;

@@ -1,89 +1,123 @@
-# Ensure CMAKE_MODULE_PATH is initialized before use
-set(CMAKE_ERROR_DEPRECATED OFF)
-if(NOT DEFINED CMAKE_MODULE_PATH)
-  set(CMAKE_MODULE_PATH "")
-endif()
 
-cmake_minimum_required(VERSION 3.14)
-
-# include(cmake/prelude.cmake)
+cmake_minimum_required(VERSION 3.20)
 
 project(
     sokobo
     VERSION 0.1.0
     DESCRIPTION "C++ Computational Algebra CLI"
-    HOMEPAGE_URL ""
     LANGUAGES CXX
 )
 
-# include(cmake/project-is-top-level.cmake)
-# include(cmake/variables.cmake)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# ---- Declare library ----
+enable_testing()
 
-#add_library(
-#    sokobo_lib OBJECT
-#    source/lib.cpp
-#)
-#
-#target_include_directories(
-#    sokobo_lib ${warning_guard}
-#    PUBLIC
-#    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
-#)
-#
-#target_compile_features(sokobo_lib PUBLIC cxx_std_17)
+add_library(sokobo_lib
+    source/calculus.cpp
+    source/cli.cpp
+    source/complex_number.cpp
+    source/differential_equations.cpp
+    source/expression.cpp
+    source/fourier.cpp
+    source/laplace.cpp
+    source/matrix.cpp
+    source/numerical_methods.cpp
+    source/polynomial.cpp
+    source/vector.cpp
+)
 
-# include(FetchContent)
+target_include_directories(sokobo_lib
+    PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/source/include
+)
 
-# FetchContent_Declare(
-#   fmt
-#   GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-#   GIT_TAG 10.2.1 
-# )
-
-# FetchContent_MakeAvailable(fmt)
-
-#target_link_libraries(sokobo_lib PRIVATE fmt::fmt)
-
-
-# ---- Declare executable ----
-
-add_executable(sokobo_exe source/main.cpp source/cli.cpp source/differential_equations.cpp source/numerical_methods.cpp source/fourier.cpp  source/calculus.cpp source/polynomial.cpp source/complex_number.cpp source/expression.cpp  source/laplace.cpp  source/matrix.cpp)
-add_executable(sokobo::exe ALIAS sokobo_exe)
-add_executable(calculus "source/calculus.cpp" "source/include/calculus.h")
-add_executable(complex_number "source/complex_number.cpp" "source/include/complex_number.h")
-add_executable(differential_equations "source/differential_equations.cpp" "source/include/differential_equations.h")
-add_executable(expression "source/expression.cpp" "source/include/expression.h")
-add_executable(fourier "source/fourier.cpp" "source/include/fourier.h")
-add_executable(laplace "source/laplace.cpp" "source/include/laplace.h" )
-add_executable(numerical_methods "source/numerical_methods.cpp" "source/include/numerical_methods.h")
-add_executable(polynomial "source/polynomial.cpp" "source/include/polynomial.h")
-add_executable(matrix "source/matrix.cpp" "source/include/matrix.h" test/matrix/matrix_test.cpp)
-add_executable(cli "source/cli.cpp" "source/include/cli.h")
-
-set_property(TARGET sokobo_exe PROPERTY OUTPUT_NAME sokobo)
-
-target_compile_features(sokobo_exe PRIVATE cxx_std_17)
-#target_include_directories(sokobo_lib INTERFACE ${CMAKE_SOURCE_DIR}/source)
-
-#target_link_libraries(sokobo_exe PRIVATE sokobo_lib)
-
-# ---- Install rules ----
-
-if(NOT CMAKE_SKIP_INSTALL_RULES)
-  # include(cmake/install-rules.cmake)
+if(MSVC)
+    target_compile_options(sokobo_lib PRIVATE /W4)
+else()
+    target_compile_options(sokobo_lib PRIVATE
+        -Wall -Wextra -Wpedantic
+    )
 endif()
 
-# ---- Developer mode ----
+# Main executable
+add_executable(sokobo
+    source/main.cpp
+)
 
-if(NOT sokobo_DEVELOPER_MODE)
-  return()
-elseif(NOT PROJECT_IS_TOP_LEVEL)
-  message(
-      AUTHOR_WARNING
-      "Developer mode is intended for developers of sokobo"
-  )
-endif()
+target_link_libraries(sokobo PRIVATE sokobo_lib)
 
-# include(cmake/dev-mode.cmake)
+
+# ============================================================
+# Matrix Unit Tests
+# ============================================================
+
+function(add_matrix_test TEST_NAME SOURCE_FILE)
+    add_executable(${TEST_NAME} ${SOURCE_FILE})
+
+    target_link_libraries(${TEST_NAME}
+        PRIVATE sokobo_lib
+    )
+
+    add_test(
+        NAME ${TEST_NAME}
+        COMMAND ${TEST_NAME}
+    )
+endfunction()
+
+add_matrix_test(MatrixTests
+    test/matrix/matrix_test.cpp
+)
+
+add_matrix_test(MatrixBuildTriangularTests
+    test/matrix/matrix_build_triangular_test.cpp
+)
+
+add_matrix_test(MatrixDeterminantTests
+    test/matrix/matrix_determinant_test.cpp
+)
+
+add_matrix_test(MatrixDotTests
+    test/matrix/matrix_dot_test.cpp
+)
+
+add_matrix_test(MatrixEigenvectorSymmetricTests
+    test/matrix/matrix_eigenvector_symmetric_test.cpp
+)
+
+add_matrix_test(MatrixFrobeniusNormTests
+    test/matrix/matrix_frobenius_norm_test.cpp
+)
+
+add_matrix_test(MatrixInverseTests
+    test/matrix/matrix_inverse_test.cpp
+)
+
+add_matrix_test(MatrixLanczosTests
+    test/matrix/matrix_lanczos_test.cpp
+)
+
+add_matrix_test(MatrixNormTests
+    test/matrix/matrix_norm_test.cpp
+)
+
+add_matrix_test(MatrixQRDecompositionTests
+    test/matrix/matrix_qr_decomposition_test.cpp
+)
+
+add_matrix_test(MatrixRankTests
+    test/matrix/matrix_rank_test.cpp
+)
+
+add_matrix_test(MatrixSpectralNormTests
+    test/matrix/matrix_spectral_norm_test.cpp
+)
+
+add_matrix_test(MatrixSpectralRadiusTests
+    test/matrix/matrix_spectral_radius_test.cpp
+)
+
+add_matrix_test(MatrixTransposeTests
+    test/matrix/matrix_transpose_test.cpp
+)

@@ -1,10 +1,9 @@
 #define CATCH_CONFIG_MAIN
-#include <vector>
 
-#include "../../sokobo/source/include/matrix.h"
+#include "../../source/include/matrix.h"
 
 #include "../../external/catch.hpp"
-#include "utils.h"
+
 
 TEST_CASE("Matrix Inverse", "[matrix]")
 {
@@ -36,7 +35,7 @@ TEST_CASE("Matrix Inverse", "[matrix]")
         a[0][0] = 1; a[0][1] = 2; a[0][2] = 3;
         a[1][0] = 0; a[1][1] = 1; a[1][2] = 4;
         a[2][0] = 5; a[2][1] = 6; a[2][2] = 0;
-        
+
         Matrix<float> inv = a.inverse();
         CHECK(is_identity(a * inv));
     }
@@ -102,7 +101,7 @@ TEST_CASE("Matrix Inverse", "[matrix]")
         for(int i=0; i<100; ++i) {
             for(int j=0; j<100; ++j) a[i][j] = (i == j) ? 100.0f : 0.1f;
         }
-        CHECK(is_identity(a * a.inverse(), 0.01f)); 
+        CHECK(is_identity(a * a.inverse(), 0.01f));
     }
 
     SECTION("1000x1000 Matrix Inverse") {

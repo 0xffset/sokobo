@@ -3,7 +3,6 @@
 #include "include/polynomial.h"
 #define _USE_MATH_DEFINES
 #include <cmath>
-#include <iostream>
 #include <random>
 #include <algorithm>
 #include <stdexcept>
@@ -139,7 +138,7 @@ Expression::Type
 
       auto operand = unaryExpr->getOperand();
       char op = unaryExpr->getOperator();
-     
+
 
       switch (op) {
         case '-': {
@@ -217,41 +216,41 @@ std::shared_ptr<Expression> Calculus::integrate(std::shared_ptr<Expression> expr
     // - Power rule: x^n -> x^(n+1)/(n+1)
     // - Sum rule: integral of sum = sum of integrals
     // - Basic trigonometric and exponential integrals
-    
+
     throw std::runtime_error("Symbolic integration not fully implemented - requires complete expression tree structure");
 }
 
 // Numerical integration using trapezoidal rule
 double Calculus::trapezoidalRule(std::function<double(double)> f, double a, double b, int n) {
     if (n <= 0) throw std::invalid_argument("Number of intervals must be positive");
-    
+
     double h = (b - a) / n;
     double sum = 0.5 * (f(a) + f(b));
-    
+
     for (int i = 1; i < n; i++) {
         sum += f(a + i * h);
     }
-    
+
     return sum * h;
 }
 
 // Numerical integration using Simpson's rule
 double Calculus::simpsonsRule(std::function<double(double)> f, double a, double b, int n)  {
     if (n <= 0 || n % 2 != 0) throw std::invalid_argument("Number of intervals must be positive and even");
-    
+
     double h = (b - a) / n;
     double sum = f(a) + f(b);
-    
+
     // Add odd-indexed terms (coefficient 4)
     for (int i = 1; i < n; i += 2) {
         sum += 4 * f(a + i * h);
     }
-    
+
     // Add even-indexed terms (coefficient 2)
     for (int i = 2; i < n; i += 2) {
         sum += 2 * f(a + i * h);
     }
-    
+
     return sum * h / 3.0;
 }
 
@@ -266,7 +265,7 @@ double Calculus::gaussianQuadrature(std::function<double(double)> f, double a, d
         {-0.8611363115940526, -0.3399810435848563, 0.3399810435848563, 0.8611363115940526},  // n=4
         {-0.9061798459386640, -0.5384693101056831, 0.0, 0.5384693101056831, 0.9061798459386640}  // n=5
     };
-    
+
     static const std::vector<std::vector<double>> weights = {
         {},  // n=0 (unused)
         {2.0},  // n=1
@@ -275,79 +274,79 @@ double Calculus::gaussianQuadrature(std::function<double(double)> f, double a, d
         {0.3478548451374538, 0.6521451548625461, 0.6521451548625461, 0.3478548451374538},  // n=4
         {0.2369268850561891, 0.4786286704993665, 0.5688888888888889, 0.4786286704993665, 0.2369268850561891}  // n=5
     };
-    
+
     if (n < 1 || n > 5) {
         throw std::invalid_argument("Gaussian quadrature only implemented for n=1 to 5");
     }
-    
+
     double sum = 0.0;
     double mid = (a + b) / 2.0;
     double half_width = (b - a) / 2.0;
-    
+
     for (int i = 0; i < n; i++) {
         double x = mid + half_width * points[n][i];
         sum += weights[n][i] * f(x);
     }
-    
+
     return half_width * sum;
 }
 
 // Monte Carlo integration
 double Calculus::monteCarloIntegration(std::function<double(double)> f, double a, double b, int samples) {
     if (samples <= 0) throw std::invalid_argument("Number of samples must be positive");
-    
+
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dis(a, b);
-    
+
     double sum = 0.0;
     for (int i = 0; i < samples; i++) {
         double x = dis(gen);
         sum += f(x);
     }
-    
+
     return (b - a) * sum / samples;
 }
 
 // Double integral using nested trapezoidal rule
-double Calculus::doubleIntegral(std::function<double(double, double)> f, 
+double Calculus::doubleIntegral(std::function<double(double, double)> f,
                                double x1, double x2, double y1, double y2, int nx, int ny) {
     if (nx <= 0 || ny <= 0) throw std::invalid_argument("Number of intervals must be positive");
-    
+
     double hx = (x2 - x1) / nx;
     double hy = (y2 - y1) / ny;
     double sum = 0.0;
-    
+
     // Apply trapezoidal rule in both dimensions
     for (int i = 0; i <= nx; i++) {
         double x = x1 + i * hx;
         double weight_x = (i == 0 || i == nx) ? 0.5 : 1.0;
-        
+
         for (int j = 0; j <= ny; j++) {
             double y = y1 + j * hy;
             double weight_y = (j == 0 || j == ny) ? 0.5 : 1.0;
-            
+
             sum += weight_x * weight_y * f(x, y);
         }
     }
-    
+
     return sum * hx * hy;
 }
 
 // Taylor series expansion
 Polynomial Calculus::taylorSeries(std::function<double(double)> f, double center, int degree) {
     if (degree < 0) throw std::invalid_argument("Degree must be non-negative");
-    
+
     std::vector<double> coefficients(degree + 1);
     double h = 1e-8;  // Small step for numerical differentiation
-    
+
     // Calculate derivatives numerically and build Taylor series
     coefficients[0] = f(center);  // f(center)
-    
+
     for (int n = 1; n <= degree; n++) {
         // Calculate nth derivative using finite differences
         double derivative = 0.0;
-        
+
         // Use central difference formula for higher accuracy
         if (n == 1) {
             derivative = (f(center + h) - f(center - h)) / (2.0 * h);
@@ -363,45 +362,45 @@ Polynomial Calculus::taylorSeries(std::function<double(double)> f, double center
             }
             derivative = fn(center);
         }
-        
+
         // Calculate factorial
         double factorial = 1.0;
         for (int i = 1; i <= n; i++) {
             factorial *= i;
         }
-        
+
         coefficients[n] = derivative / factorial;
     }
-    
+
     return Polynomial(coefficients);
 }
 
 // Chebyshev series expansion
 Polynomial Calculus::chebyshevSeries(std::function<double(double)> f, double a, double b, int degree) {
     if (degree < 0) throw std::invalid_argument("Degree must be non-negative");
-    
+
     std::vector<double> coefficients(degree + 1, 0.0);
-    
+
     // Transform interval [a,b] to [-1,1] for Chebyshev polynomials
     auto transform = [a, b](double t) { return 0.5 * ((b - a) * t + a + b); };
-    
+
     // Calculate Chebyshev coefficients
     for (int k = 0; k <= degree; k++) {
         double sum = 0.0;
         int n_points = std::max(degree + 1, 50);  // Use enough points for accuracy
-        
+
         for (int j = 0; j < n_points; j++) {
             double t = std::cos(std::acos(-1.0) * (j + 0.5) / n_points);  // Chebyshev points
             double x = transform(t);
             double T_k = 1.0;  // T_0(t) = 1
-            
+
             if (k == 1) {
                 T_k = t;  // T_1(t) = t
             } else if (k > 1) {
                 // Use recurrence relation: T_{k+1}(t) = 2t*T_k(t) - T_{k-1}(t)
                 double T_prev = 1.0;  // T_0
                 double T_curr = t;    // T_1
-                
+
                 for (int m = 2; m <= k; m++) {
                     double T_next = 2.0 * t * T_curr - T_prev;
                     T_prev = T_curr;
@@ -409,13 +408,13 @@ Polynomial Calculus::chebyshevSeries(std::function<double(double)> f, double a, 
                 }
                 T_k = T_curr;
             }
-            
+
             sum += f(x) * T_k;
         }
-        
+
         coefficients[k] = (k == 0 ? 1.0 : 2.0) * sum / n_points;
     }
-    
+
     // Convert Chebyshev coefficients to standard polynomial form
     // This is a simplified conversion - full implementation would use proper basis transformation
     return Polynomial(coefficients);
@@ -424,26 +423,26 @@ Polynomial Calculus::chebyshevSeries(std::function<double(double)> f, double a, 
 // Numerical limit calculation
 double Calculus::limit(std::function<double(double)> f, double x, double h) {
     if (h <= 0) throw std::invalid_argument("Step size must be positive");
-    
+
     // Approach the limit from both sides
     double left_limit = f(x - h);
     double right_limit = f(x + h);
-    
+
     // Refine the estimate by reducing h
     double prev_avg = (left_limit + right_limit) / 2.0;
-    
+
     for (int i = 0; i < 10; i++) {  // Iterate to improve accuracy
         h *= 0.1;
         left_limit = f(x - h);
         right_limit = f(x + h);
         double current_avg = (left_limit + right_limit) / 2.0;
-        
+
         // Check for convergence
         if (std::abs(current_avg - prev_avg) < 1e-12) {
             break;
         }
         prev_avg = current_avg;
     }
-    
+
     return prev_avg;
 }

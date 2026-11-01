@@ -57,6 +57,24 @@ g++ -std=c++23 -Wall -Wextra -O3 -Isource source/*.cpp -o sokobo
 ```bash
 g++ -std=c++23 -Wall -Wextra -O3 -Itest -Isource -Isource/include test/matrix_test.cpp source/matrix.cpp source/complex_number.cpp -o matrix_test -lm
 ```
+```bash
+ctest --test-dir build -C Release --verbose
+```
+
+```bash
+Mathematical operation	Command
+Determinant	ctest --test-dir build -C Release -R MatrixDeterminantTests
+Inverse	ctest --test-dir build -C Release -R MatrixInverseTests
+Dot product	ctest --test-dir build -C Release -R MatrixDotTests
+Frobenius norm	ctest --test-dir build -C Release -R MatrixFrobeniusNormTests
+Eigenvectors	ctest --test-dir build -C Release -R MatrixEigenvectorSymmetricTests
+Lanczos	ctest --test-dir build -C Release -R MatrixLanczosTests
+QR decomposition	ctest --test-dir build -C Release -R MatrixQRDecompositionTests
+Rank	ctest --test-dir build -C Release -R MatrixRankTests
+Spectral norm	ctest --test-dir build -C Release -R MatrixSpectralNormTests
+Spectral radius	ctest --test-dir build -C Release -R MatrixSpectralRadiusTests
+Transpose	ctest --test-dir build -C Release -R MatrixTransposeTests
+```
 
 ### Example Commands
 
