@@ -1,8 +1,7 @@
 #include <benchmark/benchmark.h>
-#include "../source/include/matrix.h"
-#include "../source/include/complex_number.h"
-#include "../source/matrix.cpp"
-#include "../source/complex_number.cpp"
+#include "../../source/include/matrix.h"
+#include "../../source/matrix.cpp"
+#include "../../source/complex_number.cpp"
 
 template<typename T>
 void fill_m(Matrix<T>& mat)

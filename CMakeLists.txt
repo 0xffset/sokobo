@@ -7,7 +7,7 @@ project(
     DESCRIPTION "C++ Computational Algebra CLI"
     LANGUAGES CXX
 )
-
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -48,6 +48,59 @@ add_executable(sokobo
 
 target_link_libraries(sokobo PRIVATE sokobo_lib)
 
+# ============================================================
+# Google Benchmark
+# ============================================================
+
+include(FetchContent)
+set(BENCHMARK_ENABLE_WERROR OFF CACHE BOOL "" FORCE)
+set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "" FORCE)
+set(BENCHMARK_ENABLE_GTEST_TESTS OFF CACHE BOOL "" FORCE)
+option(BUILD_BENCHMARKS "Build performance benchmarks" ON)
+
+if(BUILD_BENCHMARKS)
+
+    set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "" FORCE)
+    set(BENCHMARK_ENABLE_GTEST_TESTS OFF CACHE BOOL "" FORCE)
+
+    FetchContent_Declare(
+        googlebenchmark
+        GIT_REPOSITORY https://github.com/google/benchmark.git
+        GIT_TAG v1.9.1
+        GIT_SHALLOW TRUE
+    )
+
+    FetchContent_MakeAvailable(googlebenchmark)
+
+    function(add_matrix_benchmark BENCHMARK_NAME SOURCE_FILE)
+
+        add_executable(${BENCHMARK_NAME} ${SOURCE_FILE})
+
+        target_link_libraries(${BENCHMARK_NAME}
+            PRIVATE
+                sokobo_lib
+                benchmark::benchmark
+        )
+
+    endfunction()
+
+    add_matrix_benchmark(MatrixDeterminantBenchmark
+        benchmark/matrix/matrix_determinant.cpp
+    )
+
+    add_matrix_benchmark(MatrixInverseBenchmark
+        benchmark/matrix/matrix_inverse.cpp
+    )
+
+    add_matrix_benchmark(MatrixRankBenchmark
+        benchmark/matrix/matrix_rank.cpp
+    )
+
+    add_matrix_benchmark(MatrixTransposeBenchmark
+        benchmark/matrix/matrix_transpose.cpp
+    )
+
+endif()
 
 # ============================================================
 # Matrix Unit Tests

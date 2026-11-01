@@ -1,12 +1,7 @@
-#include <random>
-
-#include "../source/include/matrix.h"
-
 #include <benchmark/benchmark.h>
-
-#include "../source/complex_number.cpp"
-#include "../source/include/complex_number.h"
-#include "../source/matrix.cpp"
+#include "../../source/include/matrix.h"
+#include "../../source/complex_number.cpp"
+#include "../../source/matrix.cpp"
 
 template<typename T>
 void fill_matrix(Matrix<T>& matrix)

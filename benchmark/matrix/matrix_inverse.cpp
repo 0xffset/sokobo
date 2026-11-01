@@ -1,9 +1,8 @@
 #include <benchmark/benchmark.h>
 #include <random>
-#include "../source/include/matrix.h"
-#include "../source/include/complex_number.h"
-#include "../source/matrix.cpp"
-#include "../source/complex_number.cpp"
+#include "../../source/include/matrix.h"
+#include "../../source/matrix.cpp"
+#include "../../source/complex_number.cpp"
 
 template<typename T>
 Matrix<T> generate_invertible_matrix(int n)
