@@ -21,3 +21,4 @@ sokobo.kdev4
 .cproject
 docs/html
 docs/latex
+.cache/

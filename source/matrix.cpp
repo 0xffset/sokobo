@@ -871,51 +871,50 @@ void Matrix<T>::lanczos(int m,
 {
   int n = rows;
   alpha.resize(m);
-  beta.resize(m - 1);  // FIX: beta has m-1 elements
+  beta.resize(m - 1);
   Q = Matrix<T>(n, m);
 
-  std::vector<T> q(n, 1);
+  std::vector<T> q(n, 1.0);
   normalize(q);
 
-  std::vector<T> q_prev(n, 0);
+  std::vector<T> q_prev(n, 0.0);
 
   for (int j = 0; j < m; ++j) {
-    auto v = matVec(q);
+    auto v = matVec(q); // v = A * q_j
 
-    if (j > 0) {
-      for (int i = 0; i < n; ++i) {
-        v[i] -= beta[j - 1] * q_prev[i];
-      }
-    }
     alpha[j] = dot(q, v);
 
     for (int i = 0; i < n; ++i) {
       v[i] -= alpha[j] * q[i];
     }
-
-    // FIX: Store current q in column j of Q before computing next q
-    for (int i = 0; i < n; ++i) {
-      Q(i, j) = q[i];  // Store in column j, not row j
+    if (j > 0) {
+      for (int i = 0; i < n; ++i) {
+        v[i] -= beta[j - 1] * q_prev[i];
+      }
     }
 
-    // FIX: Only compute beta if not last iteration
+    for (int i = 0; i < n; ++i) {
+      Q(i, j) = q[i];
+    }
+
     if (j < m - 1) {
       beta[j] = norm(v);
       if (beta[j] < 1e-10) {
-        // FIX: Resize arrays to actual size
         alpha.resize(j + 1);
         beta.resize(j);
-        Q = Q.submatrix(0, n, 0, j + 1);  // Assuming you have submatrix method
+        Q = Q.submatrix(0, n, 0, j + 1);
         break;
       }
 
       q_prev = q;
+
       for (int i = 0; i < n; ++i) {
         q[i] = v[i] / beta[j];
       }
     }
   }
 }
+
 
 // Build T
 template<typename T>
