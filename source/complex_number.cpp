@@ -9,7 +9,6 @@
 #  define M_E 2.71828
 #endif
 #include "include/complex_number.h"
-#include "include/numerical_methods.h"
 
 //ComplexNumber::ComplexNumber(double real, double imag)
 //    : value(real, imag)

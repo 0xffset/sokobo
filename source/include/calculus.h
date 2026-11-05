@@ -1,7 +1,6 @@
 #include "expression.h"
 #include "polynomial.h"
 #include <functional>
-#include <vector>
 
 class Calculus {
 public:

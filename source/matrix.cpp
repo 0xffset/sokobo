@@ -12,7 +12,7 @@
 #include "include/matrix.h"
 #include "include/vector.h"
 #include "include/complex_number.h"
-
+#include <random>
 /**
  * @brief Computes the square root of a value with type-safe handling for
  * arithmetic and complex types.
@@ -796,40 +796,54 @@ T Matrix<T>::dot(const std::vector<T>& a, const std::vector<T>& b) const
   return s;
 }
 
+// template<typename T>
+// double Matrix<T>::norm(const std::vector<T>& v) const
+// {
+//   if (getCols() != static_cast<int>(v.size())) {
+//     throw std::invalid_argument("Matrix columns must match vector size.");
+//   }
+
+//   std::vector<T> result_vec(getRows(), 0);
+//   for (int i = 0; i < getRows(); ++i) {
+//     T sum = 0;
+//     for (int j = 0; j < getCols(); ++j) {
+//       sum += (*this)(i, j) * v[j];
+//     }
+//     result_vec[i] = sum;
+//   }
+
+//   double sum_squares = 0.0;
+//   for (const auto& val : result_vec) {
+//     sum_squares += static_cast<double>(val * val);
+//   }
+
+//   return std::sqrt(sum_squares);
+// }
+//
 template<typename T>
 double Matrix<T>::norm(const std::vector<T>& v) const
 {
-  if (getCols() != static_cast<int>(v.size())) {
-    throw std::invalid_argument("Matrix columns must match vector size.");
-  }
-
-  std::vector<T> result_vec(getRows(), 0);
-  for (int i = 0; i < getRows(); ++i) {
-    T sum = 0;
-    for (int j = 0; j < getCols(); ++j) {
-      sum += (*this)(i, j) * v[j];
-    }
-    result_vec[i] = sum;
-  }
-
   double sum_squares = 0.0;
-  for (const auto& val : result_vec) {
-    sum_squares += static_cast<double>(val * val);
+  for (const auto& x : v) {
+    sum_squares += static_cast<double>(x) * static_cast<double>(x);
   }
-
   return std::sqrt(sum_squares);
 }
 
 template<typename T>
 void Matrix<T>::normalize(std::vector<T>& v) const
 {
-  double n = norm(v);
-  if (n == 0) {
-    return;
-  }
-  for (auto& x : v) {
-    x /= n;
-  }
+    double sum = 0.0;
+    for (const auto& x : v) {
+        sum+=static_cast<double>(x*x);
+    }
+    double n = std::sqrt(sum);
+    if (n < 1e-10) {
+        return;
+    }
+    for (auto& x: v) {
+        x/=n;
+    }
 }
 
 // Extract a submatrix from (row_start, col_start) to (row_end, col_end)
@@ -874,12 +888,20 @@ void Matrix<T>::lanczos(int m,
   beta.resize(m - 1);
   Q = Matrix<T>(n, m);
 
-  std::vector<T> q(n, 1.0);
-  normalize(q);
+  std::mt19937 gen(12345);
+   std::uniform_real_distribution<double> dist(-1.0, 1.0);
+   std::vector<T> q(n);
+   for (auto& x : q) x = static_cast<T>(dist(gen));
+   normalize(q);
 
   std::vector<T> q_prev(n, 0.0);
 
   for (int j = 0; j < m; ++j) {
+
+    for (int i = 0; i < n; ++i) {
+      Q(i, j) = q[i];
+    }
+
     auto v = matVec(q); // v = A * q_j
 
     alpha[j] = dot(q, v);
@@ -893,12 +915,10 @@ void Matrix<T>::lanczos(int m,
       }
     }
 
-    for (int i = 0; i < n; ++i) {
-      Q(i, j) = q[i];
-    }
-
     if (j < m - 1) {
+
       beta[j] = norm(v);
+
       if (beta[j] < 1e-10) {
         alpha.resize(j + 1);
         beta.resize(j);
@@ -914,7 +934,6 @@ void Matrix<T>::lanczos(int m,
     }
   }
 }
-
 
 // Build T
 template<typename T>

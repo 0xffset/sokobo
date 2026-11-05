@@ -41,7 +41,7 @@ TEST_CASE("Lanczos algorithm invariants on symmetric matrix", "[lanczos]") {
             colNormSq += Q(i, j) * Q(i, j);
         }
         CAPTURE(j, colNormSq);
-        CHECK(colNormSq == Catch::Detail::Approx(1.0).margin(1e-4));
+        CHECK(colNormSq == Catch::Detail::Approx(1.0).margin(1e-10));
     }
 
     for (int c1 = 0; c1 < m; ++c1) {
@@ -51,7 +51,7 @@ TEST_CASE("Lanczos algorithm invariants on symmetric matrix", "[lanczos]") {
                 dotProd += Q(i, c1) * Q(i, c2);
             }
             CAPTURE(c1, c2, dotProd);
-            CHECK(dotProd == Catch::Detail::Approx(0.0).margin(1e-4));
+            CHECK(dotProd == Catch::Detail::Approx(0.0).margin(1e-10));
         }
     }
 
